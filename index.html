@@ -126,8 +126,11 @@ footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
 <form id="videoForm">
 <label>Jina la video</label>
 <input id="vTitle" required maxlength="180">
-<label>Link ya picha / cover (https://)</label>
-<input id="vImage" type="url" required placeholder="https://...">
+
+<label>Chagua picha ya cover kutoka kwenye simu</label>
+<input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">
+<small>Picha ya JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>
+ 
 <label>Link ya video ya nje (https://)</label>
 <input id="vUrl" type="url" required placeholder="https://...">
 <label>Gharama ya tokeni</label>
