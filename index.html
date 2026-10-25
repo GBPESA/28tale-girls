@@ -230,7 +230,7 @@ footer {
 
     <div class="msg">
       <b>Namba ya malipo:</b>
-      <span id="payNumber">0702715377</span>
+      <span id="payNumber">0661683804</span>
     </div>
 
     <form id="paymentForm">
@@ -254,6 +254,13 @@ footer {
 </section>
 
 <section id="adminPanel" class="hidden">
+  
+<div class="panel">
+  <h2>👥 Watumiaji Waliojiunga</h2>
+  <p>Jumla ya watumiaji: <b id="userCount">0</b></p>
+  <button type="button" id="refreshUserCount">Sasisha idadi</button>
+</div>
+ 
   <div class="panel">
     <h2 id="videoFormHeading">Ongeza video</h2>
 
@@ -375,10 +382,13 @@ document.querySelector(".tabs").addEventListener("click", async event => {
     await loadMyPayments();
   }
 
-  if (button.dataset.tab === "adminPanel" && isAdmin) {
-    await loadAdminVideos();
-    await loadAdminPayments();
-  }
+  
+if (button.dataset.tab === "adminPanel" && isAdmin) {
+  await loadAdminVideos();
+  await loadAdminPayments();
+  await loadUserCount();
+}
+ 
 });
 
 $("logoutBtn").addEventListener("click", async () => {
@@ -1059,6 +1069,28 @@ $("shareBtn").addEventListener("click", async () => {
     }
   }
 });
+
+/* KUHESABU WATUMIAJI KWA ADMIN */
+async function loadUserCount() {
+  if (!isAdmin || !db) return;
+
+  const countElement = $("userCount");
+  countElement.textContent = "...";
+
+  const { count, error } = await db
+    .from("profiles")
+    .select("id", { count: "exact", head: true });
+
+  if (error) {
+    countElement.textContent = "Imeshindikana";
+    console.error("loadUserCount:", error);
+    return;
+  }
+
+  countElement.textContent = count ?? 0;
+}
+
+$("refreshUserCount").addEventListener("click", loadUserCount);
 
 </script>
 </body>
