@@ -162,8 +162,10 @@ const SUPABASE_URL = "https://gwwphhrppvluwutycrap.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_Evs4rVusXd_GX_2OsgIkIQ_txwf8ynE";
 const PAYMENT_NUMBER = "0702715377";
 
+
 let db = null, currentUser = null, isAdmin = false, editingVideoId = null;
-const $ = id => document.getElementById(id);
+let editingImageUrl = "";
+ 
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({
  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
@@ -356,13 +358,16 @@ async function loadMyPayments(){
   </div>`).join("")||'<p class="muted">Bado hujatuma ombi.</p>';
 }
 
+
 function clearVideoForm(){
- editingVideoId=null;
- $("videoForm").reset();
- $("vCost").value=1;
- $("vPublished").checked=true;
- $("cancelEdit").classList.add("hidden");
+  editingVideoId = null;
+  editingImageUrl = "";
+  $("videoForm").reset();
+  $("vCost").value = 1;
+  $("vPublished").checked = true;
+  $("cancelEdit").classList.add("hidden");
 }
+ 
 
 $("cancelEdit").addEventListener("click",clearVideoForm);
 
