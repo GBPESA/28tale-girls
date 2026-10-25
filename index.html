@@ -179,15 +179,42 @@ function configured(){
  return !!db && !SUPABASE_URL.includes("WEKA_") && !SUPABASE_ANON_KEY.includes("WEKA_");
 }
 
-function tab(id){
- document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
- $(id).classList.remove("hidden");
- document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+
+function tab(id) {
+  const target = document.getElementById(id);
+
+  if (!target) {
+    say("Sehemu uliyochagua haijapatikana: " + id);
+    return;
+  }
+
+  document.querySelectorAll("main section").forEach(section => {
+    section.classList.add("hidden");
+  });
+
+  target.classList.remove("hidden");
+
+  document.querySelectorAll(".tabs [data-tab]").forEach(button => {
+    button.classList.toggle("active", button.dataset.tab === id);
+  });
 }
 
-document.querySelectorAll("[data-tab]").forEach(b=>
- b.addEventListener("click",()=>tab(b.dataset.tab))
-);
+document.querySelector(".tabs").addEventListener("click", async event => {
+  const button = event.target.closest("button[data-tab]");
+  if (!button) return;
+
+  tab(button.dataset.tab);
+
+  if (button.dataset.tab === "buyPanel" && currentUser) {
+    await loadMyPayments();
+  }
+
+  if (button.dataset.tab === "adminPanel" && isAdmin) {
+    await loadAdminVideos();
+    await loadAdminPayments();
+  }
+});
+ 
 
 $("logoutBtn").addEventListener("click",async()=>{
  if(db) await db.auth.signOut();
