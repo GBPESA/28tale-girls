@@ -371,30 +371,104 @@ function clearVideoForm(){
 
 $("cancelEdit").addEventListener("click",clearVideoForm);
 
-$("videoForm").addEventListener("submit",async e=>{
- e.preventDefault();
- if(!isAdmin){say("Admin pekee ndiye anayeweza kuweka video.");return;}
- const obj={
-  title:$("vTitle").value.trim(),
-  image_url:$("vImage").value.trim(),
-  video_url:$("vUrl").value.trim(),
-  token_cost:Number($("vCost").value),
-  description:$("vDesc").value.trim(),
-  is_published:$("vPublished").checked,
-  updated_at:new Date().toISOString()
- };
- if(!obj.image_url.startsWith("https://")||!obj.video_url.startsWith("https://")){
-  say("Tumia link zinazoanza na https://");return;
- }
- let result;
- if(editingVideoId)result=await db.from("videos").update(obj).eq("id",editingVideoId);
- else result=await db.from("videos").insert(obj);
- if(result.error){say(result.error.message);return;}
- say("Video imehifadhiwa.",true);
- clearVideoForm();
- await loadVideos();
- await loadAdminVideos();
+
+$("videoForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  if (!isAdmin || !currentUser) {
+    say("Admin pekee ndiye anayeweza kuweka video.");
+    return;
+  }
+
+  const file = $("vImage").files[0];
+  const title = $("vTitle").value.trim();
+  const videoUrl = $("vUrl").value.trim();
+  const cost = Number($("vCost").value);
+
+  if (!title || !videoUrl.startsWith("https://")) {
+    say("Weka jina na link sahihi ya video inayoanza na https://");
+    return;
+  }
+
+  if (!Number.isInteger(cost) || cost < 1) {
+    say("Gharama ya tokeni lazima iwe angalau 1.");
+    return;
+  }
+
+  if (file && !["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    say("Chagua picha ya JPG, PNG au WebP pekee.");
+    return;
+  }
+
+  if (file && file.size > 5 * 1024 * 1024) {
+    say("Picha imezidi MB 5. Chagua picha ndogo.");
+    return;
+  }
+
+  if (!file && !editingVideoId) {
+    say("Tafadhali chagua picha ya cover kutoka kwenye simu.");
+    return;
+  }
+
+  const saveButton = $("videoForm").querySelector('button[type="submit"]');
+  saveButton.disabled = true;
+
+  try {
+    let imageUrl = editingImageUrl;
+
+    if (file) {
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = currentUser.id + "/" + Date.now() + "_" + safeName;
+
+      const { error: uploadError } = await db.storage
+        .from("video-covers")
+        .upload(path, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: publicData } = db.storage
+        .from("video-covers")
+        .getPublicUrl(path);
+
+      imageUrl = publicData.publicUrl;
+    }
+
+    if (!imageUrl) {
+      throw new Error("Picha haijapatikana. Chagua picha tena.");
+    }
+
+    const obj = {
+      title,
+      image_url: imageUrl,
+      video_url: videoUrl,
+      token_cost: cost,
+      description: $("vDesc").value.trim(),
+      is_published: $("vPublished").checked,
+      updated_at: new Date().toISOString()
+    };
+
+    const result = editingVideoId
+      ? await db.from("videos").update(obj).eq("id", editingVideoId)
+      : await db.from("videos").insert(obj);
+
+    if (result.error) throw result.error;
+
+    say("Video na picha yake vimehifadhiwa!", true);
+    clearVideoForm();
+    await loadVideos();
+    await loadAdminVideos();
+
+  } catch (err) {
+    say("Imeshindikana kuhifadhi: " + (err.message || "Hitilafu imetokea."));
+  } finally {
+    saveButton.disabled = false;
+  }
 });
+ 
 
 async function loadAdminVideos(){
  if(!isAdmin)return;
@@ -416,9 +490,10 @@ async function loadAdminVideos(){
   const v=data.find(x=>x.id===b.dataset.edit);
   if(!v)return;
   editingVideoId=v.id;
-  $("vTitle").value=v.title;
-  $("vImage").value=v.image_url;
-  $("vUrl").value=v.video_url;
+  $("vTitle").value = v.title;
+editingImageUrl = v.image_url || "";
+$("vImage").value = "";
+$("vUrl").value = v.video_url;
   $("vCost").value=v.token_cost;
   $("vDesc").value=v.description||"";
   $("vPublished").checked=v.is_published;
