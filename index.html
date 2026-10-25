@@ -170,13 +170,16 @@ footer {
   Karibu 28TALE GIRLS. Jisajili au ingia ili kutumia tokeni.
 </div>
 
+
 <nav class="tabs">
   <button type="button" class="tab active" data-tab="videosPanel">Video</button>
   <button type="button" class="tab" data-tab="authPanel">Ingia / Jisajili</button>
   <button type="button" class="tab" data-tab="buyPanel">Nunua tokeni</button>
   <button type="button" class="tab hidden" id="adminTab" data-tab="adminPanel">Admin</button>
   <button type="button" class="tab hidden" id="logoutBtn">Toka</button>
+  <button type="button" class="tab" id="shareBtn">📤 Shiriki</button>
 </nav>
+
 
 <section id="videosPanel">
   <div class="panel">
@@ -1028,6 +1031,35 @@ try {
 } catch (error) {
   showError("Hitilafu wakati wa kuanzisha tovuti:", error);
 }
+  
+/* KUSHIRIKI LINK YA 28TALE GIRLS */
+$("shareBtn").addEventListener("click", async () => {
+  const shareData = {
+    title: "28TALE GIRLS",
+    text: "Karibu 28TALE GIRLS! Tembelea tovuti na ushiriki na marafiki.",
+    url: window.location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      const link = window.location.href;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(link);
+        alert("Link imenakiliwa! Sasa unaweza kuituma kwa WhatsApp.");
+      } else {
+        window.prompt("Nakili link hii ya tovuti:", link);
+      }
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      alert("Imeshindikana kushiriki. Jaribu kunakili link ya tovuti.");
+    }
+  }
+});
+
 </script>
 </body>
 </html>
