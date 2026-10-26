@@ -98,46 +98,10 @@ label { font-size:14px; color:#ead9e8; }
 .row>* { flex:1; min-width:0; }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-#videoList {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 155px;
-  grid-template-rows: 1fr;
-  overflow-x: auto;
-  overflow-y: hidden;
-  gap: 12px;
-  padding-bottom: 12px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-#videoList .card {
-  min-width: 0;
-  scroll-snap-align: start;
-}
-
-#videoList .card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-#videoList .cardbody {
-  padding: 9px;
-}
-
-#videoList .card h3 {
-  font-size: 14px;
-}
-
-#videoList .card p {
-  font-size: 12px;
-}
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:13px;
+  }
  
 .card {
   overflow:hidden;
