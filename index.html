@@ -241,13 +241,29 @@ footer {
       <label>Jina lako</label>
       <input id="signupName" required maxlength="80" autocomplete="name" placeholder="Jina kamili">
 
-      <label>Email</label>
-      <input id="signupEmail" type="email" required autocomplete="email" placeholder="Barua pepe">
+      
+<label>Namba ya simu</label>
+<input
+  id="signupPhone"
+  type="tel"
+  required
+  inputmode="tel"
+  autocomplete="tel"
+  placeholder="+255712345678"
+  pattern="^\+255[0-9]{9}$"
+  title="Tumia muundo +255712345678"
+>
 
-      <label>Nenosiri (angalau herufi 6)</label>
-      <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">
+<label>Nenosiri (angalau herufi 6)</label>
+<input
+  id="signupPassword"
+  type="password"
+  minlength="6"
+  required
+  autocomplete="new-password"
+>
 
-      <button type="submit">Fungua akaunti</button>
+<button type="submit">Fungua akaunti</button>
     </form>
   </div>
 
@@ -267,6 +283,34 @@ footer {
       Nimesahau nenosiri
     </button>
   </div>
+  
+<div class="panel">
+  <h2>🔐 OTP ya ndani</h2>
+  <p class="muted">
+    OTP ya majaribio kwa mtumiaji aliyeingia.
+  </p>
+
+  <button type="button" id="requestOtpBtn">
+    Omba OTP
+  </button>
+
+  <div id="otpMessage" class="msg hidden"></div>
+
+  <form id="verifyOtpForm">
+    <label>Ingiza OTP ya tarakimu 6</label>
+    <input
+      id="otpCode"
+      type="text"
+      inputmode="numeric"
+      pattern="[0-9]{6}"
+      maxlength="6"
+      required
+      placeholder="000000"
+    >
+    <button type="submit">Thibitisha OTP</button>
+  </form>
+</div>
+
 
   <div class="panel">
     <h2>🔐 OTP ya ndani</h2>
