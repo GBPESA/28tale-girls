@@ -743,6 +743,105 @@ $("resetBtn").addEventListener("click", async () => {
     showError("Imeshindwa kutuma maelekezo:", error);
   }
 });
+  
+/* OTP YA NDANI - MAJARIBIO */
+function showOtpMessage(message, good = false) {
+  const box = $("otpMessage");
+  box.textContent = message;
+  box.classList.remove("hidden");
+  box.classList.toggle("good", good);
+  box.classList.toggle("bad", !good);
+}
+
+$("requestOtpBtn").addEventListener("click", async () => {
+  if (!db || !currentUser) {
+    showOtpMessage("Ingia kwenye akaunti kwanza.");
+    return;
+  }
+
+  const button = $("requestOtpBtn");
+  button.disabled = true;
+
+  try {
+    const { data, error } = await db.functions.invoke("internal-otp", {
+      body: {
+        action: "start",
+        purpose: "verify_session"
+      }
+    });
+
+    if (error) throw error;
+
+    if (!data?.success || !data?.code) {
+      throw new Error(data?.error || "OTP haikutengenezwa.");
+    }
+
+    $("otpCode").value = "";
+
+    showOtpMessage(
+      "OTP yako ya majaribio ni: " + data.code +
+      ". Inaisha baada ya dakika 5. Hii si uthibitisho wa umiliki wa simu.",
+      true
+    );
+  } catch (error) {
+    console.error("OTP start:", error);
+    showOtpMessage(
+      "Imeshindwa kutengeneza OTP. Kagua kama internal-otp ime-deployiwa na ujaribu tena."
+    );
+  } finally {
+    button.disabled = false;
+  }
+});
+
+$("verifyOtpForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!db || !currentUser) {
+    showOtpMessage("Ingia kwenye akaunti kwanza.");
+    return;
+  }
+
+  const code = $("otpCode").value.trim();
+
+  if (!/^\d{6}$/.test(code)) {
+    showOtpMessage("Ingiza OTP ya tarakimu 6.");
+    return;
+  }
+
+  const button = $("verifyOtpForm").querySelector('button[type="submit"]');
+  button.disabled = true;
+
+  try {
+    const { data, error } = await db.functions.invoke("internal-otp", {
+      body: {
+        action: "verify",
+        purpose: "verify_session",
+        code
+      }
+    });
+
+    if (error) throw error;
+
+    if (!data?.success || !data?.verified) {
+      throw new Error(data?.error || "OTP haijathibitishwa.");
+    }
+
+    showOtpMessage(
+      "OTP imekubaliwa kwa jaribio hili.",
+      true
+    );
+
+    $("otpCode").value = "";
+  } catch (error) {
+    console.error("OTP verify:", error);
+    showOtpMessage(
+      error.message || "Imeshindwa kuthibitisha OTP."
+    );
+  } finally {
+    button.disabled = false;
+  }
+});
+
 
 /* KUWASILISHA OMBI LA MALIPO */
 $("paymentForm").addEventListener("submit", async event => {
