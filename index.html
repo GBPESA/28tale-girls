@@ -691,7 +691,7 @@ async function watchVideo(id, button) {
 $("signupForm").addEventListener("submit", async event => {
   event.preventDefault();
 
-  if (!configured()) {
+  if (!come onfigured()) {
     say("Supabase haijaunganishwa. Kagua URL na public key.");
     return;
   }
@@ -731,100 +731,7 @@ $("signupForm").addEventListener("submit", async event => {
   }
 });
 
-/* KUINGIA */
-$("loginForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!configured()) {
-    say("Supabase haijaunganishwa. Kagua URL na public key.");
-    return;
-  }
-
-  const button = $("loginForm").querySelector('button[type="submit"]');
-  button.disabled = true;
-
-  try {
-    const { error } = await db.auth.signInWithPassword({
-      email: $("loginEmail").value.trim(),
-      password: $("loginPassword").value
-    });
-
-    if (error) throw error;
-
-    await refreshAuth();
-    tab("videosPanel");
-    say("Umeingia kwenye akaunti yako.", true);
-  } catch (error) {
-    showError("Kuingia kumeshindikana:", error);
-  } finally {
-    button.disabled = false;
-  }
-});
-
-/* KUSAHAU NENOSIRI */
-$("resetBtn").addEventListener("click", async () => {
-  if (!configured()) {
-    say("Supabase haijaunganishwa.");
-    return;
-  }
-
-  const email = $("loginEmail").value.trim();
-
-  if (!email) {
-    say("Andika email yako kwenye sehemu ya Ingia kwanza.");
-    return;
-  }
-
-  try {
-    const { error } = await db.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.href
-    });
-
-    if (error) throw error;
-
-    say("Tumetuma maelekezo ya kubadilisha nenosiri kwenye email yako.", true);
-  } catch (error) {
-    showError("Imeshindwa kutuma maelekezo:", error);
-  }
-});
-  
-/* OTP YA NDANI - MAJARIBIO */
-function showOtpMessage(message, good = false) {
-  const box = $("otpMessage");
-  box.textContent = message;
-  box.classList.remove("hidden");
-  box.classList.toggle("good", good);
-  box.classList.toggle("bad", !good);
-}
-
-$("requestOtpBtn").addEventListener("click", async () => {
-  if (!db || !currentUser) {
-    showOtpMessage("Ingia kwenye akaunti kwanza.");
-    return;
-  }
-
-  const button = $("requestOtpBtn");
-  button.disabled = true;
-
-  try {
-    const { data, error } = await db.functions.invoke("internal-otp", {
-      body: {
-        action: "start",
-        purpose: "verify_session"
-      }
-    });
-
-    if (error) throw error;
-
-    if (!data?.success || !data?.code) {
-      throw new Error(data?.error || "OTP haikutengenezwa.");
-    }
-
-    $("otpCode").value = "";
-
-    showOtpMessage(
-      "OTP yako ya majaribio ni: " + data.code +
-      ". Inaisha baada ya dakika 5. Hii si uthibitisho wa umiliki wa simu.",
+/function showOtpMessage(message, good = false) {      ". Inaisha baada ya dakika 5. Hii si uthibitisho wa umiliki wa simu.",
       true
     );
   } catch (error) {
