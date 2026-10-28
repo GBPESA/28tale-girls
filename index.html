@@ -218,28 +218,70 @@ footer {
     <div id="videoList" class="grid"></div>  
   </div>  
 </section>  <section id="authPanel" class="hidden">  
-  <div class="panel">  
-    <h2>Jisajili</h2>  
-    <form id="signupForm">  
-      <label>Jina lako</label>  
-      <input id="signupName" required maxlength="80" autocomplete="name" placeholder="Jina kamili">  <label>Email</label>  
-  <input id="signupEmail" type="email" required autocomplete="email" placeholder="Barua pepe">  
 
-  <label>Nenosiri (angalau herufi 6)</label>  
-  <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">  
+<div class="panel">
+  <h2>Jisajili</h2>
 
-  <button type="submit">Fungua akaunti</button>  
-</form>
+  <form id="signupForm">
+    <label>Jina lako</label>
+    <input
+      id="signupName"
+      type="text"
+      required
+      maxlength="80"
+      autocomplete="name"
+      placeholder="Jina kamili"
+    >
 
-  </div>    <div class="panel">  
-    <h2>Ingia</h2>  
-    <form id="loginForm">  
-      <label>Email</label>  
-      <input id="loginEmail" type="email" required autocomplete="username">  <label>Nenosiri</label>  
-  <input id="loginPassword" type="password" required autocomplete="current-password">  
+    <label>Namba ya simu</label>
+    <input
+      id="signupPhone"
+      type="tel"
+      required
+      autocomplete="tel"
+      inputmode="tel"
+      placeholder="07XXXXXXXX"
+    >
 
-  <button type="submit">Ingia</button>  
-</form>  
+    <label>Nenosiri (angalau herufi 6)</label>
+    <input
+      id="signupPassword"
+      type="password"
+      minlength="6"
+      required
+      autocomplete="new-password"
+    >
+
+    <button type="submit">Fungua akaunti</button>
+  </form>
+</div>
+
+<div class="panel">
+  <h2>Ingia</h2>
+
+  <form id="loginForm">
+    <label>Namba ya simu</label>
+    <input
+      id="loginPhone"
+      type="tel"
+      required
+      autocomplete="tel"
+      inputmode="tel"
+      placeholder="07XXXXXXXX"
+    >
+
+    <label>Nenosiri</label>
+    <input
+      id="loginPassword"
+      type="password"
+      required
+      autocomplete="current-password"
+    >
+
+    <button id="loginBtn" type="submit">Ingia</button>
+  </form>
+</div>
+
 <button id="resetBtn" type="button" style="background:#493348;margin-top:10px">  
   Nimesahau nenosiri  
 </button>
@@ -575,106 +617,129 @@ async function watchVideo(id, button) {
 }  
   
 /* USAJILI */  
-$("signupForm").addEventListener("submit", async event => {  
-  event.preventDefault();  
+
   
-  if (!configured()) {  
-    say("Supabase haijaunganishwa. Kagua URL na public key.");  
-    return;  
-  }  
-  
-  const button = $("signupForm").querySelector('button[type="submit"]');  
-  button.disabled = true;  
-  
-  try {  
-    const name = $("signupName").value.trim();  
-    const email = $("signupEmail").value.trim();  
-    const password = $("signupPassword").value;  
-  
-    const { data, error } = await db.auth.signUp({  
-      email,  
-      password,  
-      options: {  
-        data: { full_name: name }  
-      }  
-    });  
-  
-    if (error) throw error;  
-  
-    if (data.session) {  
-      await refreshAuth();  
-      tab("videosPanel");  
-      say("Akaunti imefunguliwa na umeingia.", true);  
-    } else {  
-      say(  
-        "Akaunti imetengenezwa. Kagua email kuthibitisha akaunti, kisha ingia.",  
-        true  
-      );  
-    }  
-  } catch (error) {  
-    showError("Usajili umeshindikana:", error);  
-  } finally {  
-    button.disabled = false;  
-  }  
-});  
-  
-/* KUINGIA */  
-$("loginForm").addEventListener("submit", async event => {  
-  event.preventDefault();  
-  
-  if (!configured()) {  
-    say("Supabase haijaunganishwa. Kagua URL na public key.");  
-    return;  
-  }  
-  
-  const button = $("loginForm").querySelector('button[type="submit"]');  
-  button.disabled = true;  
-  
-  try {  
-    const { error } = await db.auth.signInWithPassword({  
-      email: $("loginEmail").value.trim(),  
-      password: $("loginPassword").value  
-    });  
-  
-    if (error) throw error;  
-  
-    await refreshAuth();  
-    tab("videosPanel");  
-    say("Umeingia kwenye akaunti yako.", true);  
-  } catch (error) {  
-    showError("Kuingia kumeshindikana:", error);  
-  } finally {  
-    button.disabled = false;  
-  }  
-});  
-  
-/* KUSAHAU NENOSIRI */  
-$("resetBtn").addEventListener("click", async () => {  
-  if (!configured()) {  
-    say("Supabase haijaunganishwa.");  
-    return;  
-  }  
-  
-  const email = $("loginEmail").value.trim();  
-  
-  if (!email) {  
-    say("Andika email yako kwenye sehemu ya Ingia kwanza.");  
-    return;  
-  }  
-  
-  try {  
-    const { error } = await db.auth.resetPasswordForEmail(email, {  
-      redirectTo: window.location.href  
-    });  
-  
-    if (error) throw error;  
-  
-    say("Tumetuma maelekezo ya kubadilisha nenosiri kwenye email yako.", true);  
-  } catch (error) {  
-    showError("Imeshindwa kutuma maelekezo:", error);  
-  }  
-});  
-  
+/* KUINGIA */
+
+function normalizeTanzaniaPhone(value) {
+  let phone = String(value || "").replace(/[\s()-]/g, "");
+
+  if (phone.startsWith("+255")) {
+    phone = phone;
+  } else if (phone.startsWith("255")) {
+    phone = "+" + phone;
+  } else if (/^0[67]\d{8}$/.test(phone)) {
+    phone = "+255" + phone.slice(1);
+  } else {
+    throw new Error(
+      "Weka namba sahihi ya Tanzania, mfano 0712345678."
+    );
+  }
+
+  if (!/^\+255[67]\d{8}$/.test(phone)) {
+    throw new Error(
+      "Namba si sahihi. Tumia mfano 0712345678."
+    );
+  }
+
+  return phone;
+}
+
+/* USAJILI KWA NAMBA YA SIMU */
+if ($("signupForm")) {
+  $("signupForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const name = $("signupName").value.trim();
+    const password = $("signupPassword").value;
+
+    let phone;
+
+    try {
+      phone = normalizeTanzaniaPhone($("signupPhone").value);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Nenosiri lazima liwe na angalau herufi 6.");
+      return;
+    }
+
+    const button = $("signupForm").querySelector(
+      'button[type="submit"]'
+    );
+
+    if (button) button.disabled = true;
+
+    try {
+      const { data, error } = await db.auth.signUp({
+        phone,
+        password,
+        options: {
+          data: { full_name: name }
+        }
+      });
+
+      if (error) throw error;
+
+      if (data.session) {
+        alert("Usajili umefanikiwa.");
+        await refreshSession();
+        showPanel("videosPanel");
+      } else {
+        alert(
+          "Akaunti imepokelewa, lakini huenda inahitaji " +
+          "uthibitisho wa simu kulingana na mipangilio ya Supabase."
+        );
+      }
+    } catch (error) {
+      alert("Usajili umeshindikana: " + error.message);
+    } finally {
+      if (button) button.disabled = false;
+    }
+  });
+}
+
+/* LOGIN KWA NAMBA YA SIMU */
+if ($("loginForm")) {
+  $("loginForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    let phone;
+
+    try {
+      phone = normalizeTanzaniaPhone($("loginPhone").value);
+    } catch (error) {
+      alert(error.message);
+      return;
+    }
+
+    const password = $("loginPassword").value;
+    const button = $("loginBtn");
+
+    if (button) button.disabled = true;
+
+    try {
+      const { error } = await db.auth.signInWithPassword({
+        phone,
+        password
+      });
+
+      if (error) throw error;
+
+      await refreshSession();
+      showPanel("videosPanel");
+      alert("Umeingia kikamilifu.");
+    } catch (error) {
+      alert("Kuingia kumeshindikana: " + error.message);
+    } finally {
+      if (button) button.disabled = false;
+    }
+  });
+}
+
 /* KUWASILISHA OMBI LA MALIPO */  
 $("paymentForm").addEventListener("submit", async event => {  
   event.preventDefault();  
