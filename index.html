@@ -262,11 +262,42 @@ footer {
 
       <button type="submit">Ingia</button>
     </form>
+    
     <button id="resetBtn" type="button" style="background:#493348;margin-top:10px">
       Nimesahau nenosiri
     </button>
   </div>
+
+  <div class="panel">
+    <h2>🔐 OTP ya ndani</h2>
+    <p class="muted">
+      Kipengele cha majaribio kwa mtumiaji aliyeingia.
+      Hakithibitishi umiliki wa namba ya simu.
+    </p>
+
+    <button type="button" id="requestOtpBtn">
+      Omba OTP
+    </button>
+
+    <div id="otpMessage" class="msg hidden"></div>
+
+    <form id="verifyOtpForm">
+      <label>Ingiza OTP ya tarakimu 6</label>
+      <input
+        id="otpCode"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        pattern="[0-9]{6}"
+        maxlength="6"
+        required
+        placeholder="000000"
+      >
+
+      <button type="submit">Thibitisha OTP</button>
+    </form>
+  </div>
 </section>
+ 
 
 <section id="buyPanel" class="hidden">
   <div class="panel">
