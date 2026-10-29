@@ -1061,7 +1061,20 @@ const cost = Number($("vCost").value);
     say("Picha imezidi MB 5. Chagua picha ndogo.");  
     return;  
   }  
-  
+ 
+if (
+  previewFile &&
+  !["video/mp4", "video/webm"].includes(previewFile.type)
+) {
+  say("Chagua kavideo cha MP4 au WebM pekee.");
+  return;
+}
+
+if (previewFile && previewFile.size > 15 * 1024 * 1024) {
+  say("Kavideo kamezidi MB 15. Chagua faili fupi zaidi.");
+  return;
+}
+ 
   if (!file && !editingVideoId) {  
     say("Tafadhali chagua picha ya cover kutoka kwenye simu.");  
     return;  
