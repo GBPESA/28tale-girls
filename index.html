@@ -217,32 +217,72 @@ footer {
     <p class="muted">Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.</p>  
     <div id="videoList" class="grid"></div>  
   </div>  
-</section>  <section id="authPanel" class="hidden">  
-  <div class="panel">  
-    <h2>Jisajili</h2>  
-    <form id="signupForm">  
-      <label>Jina lako</label>  
-      <input id="signupName" required maxlength="80" autocomplete="name" placeholder="Jina kamili">  <label>Email</label>  
-  <input id="signupEmail" type="email" required autocomplete="email" placeholder="Barua pepe">  
+</section>  
+<section id="authPanel" class="hidden">
+  <div class="panel">
+    <h2>Jisajili 28TALE GIRLS</h2>
 
-  <label>Nenosiri (angalau herufi 6)</label>  
-  <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">  
+    <form id="signupForm">
+      <label>Jina lako</label>
+      <input
+        id="signupName"
+        required
+        maxlength="80"
+        autocomplete="name"
+        placeholder="Andika jina lako"
+      >
 
-  <button type="submit">Fungua akaunti</button>  
-</form>
+      <label>Nenosiri (angalau herufi 6)</label>
+      <input
+        id="signupPassword"
+        type="password"
+        minlength="6"
+        required
+        autocomplete="new-password"
+        placeholder="Tengeneza nenosiri"
+      >
 
-  </div>    <div class="panel">  
-    <h2>Ingia</h2>  
-    <form id="loginForm">  
-      <label>Email</label>  
-      <input id="loginEmail" type="email" required autocomplete="username">  <label>Nenosiri</label>  
-  <input id="loginPassword" type="password" required autocomplete="current-password">  
+      <button type="submit">Jisajili</button>
+    </form>
 
-  <button type="submit">Ingia</button>  
-</form>  
-<button id="resetBtn" type="button" style="background:#493348;margin-top:10px">  
-  Nimesahau nenosiri  
-</button>
+    <div id="newAccountBox" class="msg hidden">
+      <p>Akaunti yako imefunguliwa.</p>
+      <label>Namba yako ya akaunti</label>
+      <h2 id="newAccountNumber"></h2>
+      <button type="button" id="copyAccountBtn">
+        Nakili namba ya akaunti
+      </button>
+      <p class="muted">
+        Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.
+      </p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Ingia kwenye akaunti</h2>
+
+    <form id="loginForm">
+      <label>Namba ya akaunti</label>
+      <input
+        id="loginAccount"
+        required
+        maxlength="20"
+        autocomplete="username"
+        placeholder="28TG-000001"
+      >
+
+      <label>Nenosiri</label>
+      <input
+        id="loginPassword"
+        type="password"
+        required
+        autocomplete="current-password"
+      >
+
+      <button type="submit">Ingia</button>
+    </form>
+  </div>
+</section>
 
   </div>  
 </section>  <section id="buyPanel" class="hidden">  
@@ -642,38 +682,184 @@ $("loginForm").addEventListener("submit", async event => {
     tab("videosPanel");  
     say("Umeingia kwenye akaunti yako.", true);  
   } catch (error) {  
-    showError("Kuingia kumeshindikana:", error);  
-  } finally {  
-    button.disabled = false;  
-  }  
-});  
-  
-/* KUSAHAU NENOSIRI */  
-$("resetBtn").addEventListener("click", async () => {  
-  if (!configured()) {  
-    say("Supabase haijaunganishwa.");  
-    return;  
-  }  
-  
-  const email = $("loginEmail").value.trim();  
-  
-  if (!email) {  
-    say("Andika email yako kwenye sehemu ya Ingia kwanza.");  
-    return;  
-  }  
-  
-  try {  
-    const { error } = await db.auth.resetPasswordForEmail(email, {  
-      redirectTo: window.location.href  
-    });  
-  
-    if (error) throw error;  
-  
-    say("Tumetuma maelekezo ya kubadilisha nenosiri kwenye email yako.", true);  
-  } catch (error) {  
-    showError("Imeshindwa kutuma maelekezo:", error);  
-  }  
-});  
+
+/* USAJILI NA LOGIN KWA NAMBA YA AKAUNTI */
+
+*/
+
+function accountLoginEmail(accountNumber) {
+  const normalized = accountNumber.trim().toUpperCase();
+
+  if (!/^28TG-\d{6}$/.test(normalized)) {
+    throw new Error(
+      "Namba ya akaunti si sahihi. Mfano: 28TG-000001"
+    );
+  }
+
+  return normalized.toLowerCase() + "@login.28tale.invalid";
+}
+
+/* USAJILI */
+$("signupForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!configured()) {
+    say("Supabase haijaunganishwa.");
+    return;
+  }
+
+  const button = $("signupForm").querySelector(
+    'button[type="submit"]'
+  );
+
+  button.disabled = true;
+
+  try {
+    const name = $("signupName").value.trim();
+    const password = $("signupPassword").value;
+
+    if (!name) {
+      throw new Error("Andika jina lako.");
+    }
+
+    if (password.length < 6) {
+      throw new Error("Nenosiri liwe na herufi 6 au zaidi.");
+    }
+
+    /*
+      Hifadhi namba kwanza kupitia function yako ya database.
+    */
+    const { data: reservedNumber, error: reserveError } =
+      await db.rpc("reserve_28tale_account_number");
+
+    if (reserveError) throw reserveError;
+
+    const accountNumber = String(reservedNumber || "")
+      .trim()
+      .toUpperCase();
+
+    if (!/^28TG-\d{6}$/.test(accountNumber)) {
+      throw new Error(
+        "Database haikurudisha namba sahihi ya akaunti."
+      );
+    }
+
+    const loginEmail = accountLoginEmail(accountNumber);
+
+    const { data, error } = await db.auth.signUp({
+      email: loginEmail,
+      password,
+      options: {
+        data: {
+          full_name: name,
+          account_number: accountNumber
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    if (!data.session) {
+      throw new Error(
+        "Akaunti imetengenezwa lakini session haijapatikana. " +
+        "Kagua mpangilio wa email confirmation wa Supabase."
+      );
+    }
+
+    /*
+      Thibitisha kwamba profile imeundwa na ina namba
+      ile ile iliyohifadhiwa wakati wa usajili.
+    */
+    const { data: profile, error: profileError } = await db
+      .from("profiles")
+      .select("account_number")
+      .eq("id", data.user.id)
+      .maybeSingle();
+
+    if (profileError) throw profileError;
+
+    if (profile?.account_number !== accountNumber) {
+      throw new Error(
+        "Profile haijahifadhi namba ile ile ya akaunti. " +
+        "Usijisajili tena. Database inahitaji kurekebishwa " +
+        "ili profile trigger ihifadhi account_number ya metadata."
+      );
+    }
+
+    currentUser = data.user;
+
+    $("newAccountNumber").textContent = accountNumber;
+    $("newAccountBox").classList.remove("hidden");
+
+    await refreshAuth();
+    tab("videosPanel");
+
+    say(
+      "Akaunti imefunguliwa. Namba yako ni " + accountNumber,
+      true
+    );
+
+  } catch (error) {
+    showError("Usajili umeshindikana:", error);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* KUNAKILI NAMBA YA AKAUNTI */
+$("copyAccountBtn").addEventListener("click", async () => {
+  const number = $("newAccountNumber").textContent;
+
+  if (!number) return;
+
+  try {
+    await navigator.clipboard.writeText(number);
+    say("Namba ya akaunti imenakiliwa.", true);
+  } catch {
+    window.prompt("Nakili namba yako ya akaunti:", number);
+  }
+});
+
+/* LOGIN */
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!configured()) {
+    say("Supabase haijaunganishwa.");
+    return;
+  }
+
+  const button = $("loginForm").querySelector(
+    'button[type="submit"]'
+  );
+
+  button.disabled = true;
+
+  try {
+    const accountNumber = $("loginAccount").value.trim();
+    const password = $("loginPassword").value;
+
+    const email = accountLoginEmail(accountNumber);
+
+    const { error } = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    await refreshAuth();
+    tab("videosPanel");
+
+    say("Umeingia kwenye akaunti yako.", true);
+
+  } catch (error) {
+    showError("Kuingia kumeshindikana:", error);
+  } finally {
+    button.disabled = false;
+  }
+});
+
   
 /* KUWASILISHA OMBI LA MALIPO */  
 $("paymentForm").addEventListener("submit", async event => {  
