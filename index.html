@@ -223,24 +223,14 @@ footer {
   <h2>Jisajili</h2>
 
   <form id="signupForm">
-    <label>Jina lako</label>
+    <label>Jina lako kamili</label>
     <input
       id="signupName"
       type="text"
       required
       maxlength="80"
       autocomplete="name"
-      placeholder="Jina kamili"
-    >
-
-    <label>Namba ya simu</label>
-    <input
-      id="signupPhone"
-      type="tel"
-      required
-      autocomplete="tel"
-      inputmode="tel"
-      placeholder="07XXXXXXXX"
+      placeholder="Andika jina lako"
     >
 
     <label>Nenosiri (angalau herufi 6)</label>
@@ -250,24 +240,44 @@ footer {
       minlength="6"
       required
       autocomplete="new-password"
+      placeholder="Tengeneza nenosiri"
     >
 
-    <button type="submit">Fungua akaunti</button>
+    <button type="submit">Endelea na usajili</button>
   </form>
+
+  <div id="otpPanel" hidden>
+    <label>OTP ya usajili</label>
+    <input
+      id="signupOTP"
+      type="text"
+      inputmode="numeric"
+      autocomplete="one-time-code"
+      pattern="[0-9]{6}"
+      minlength="6"
+      maxlength="6"
+      placeholder="Ingiza tarakimu 6"
+    >
+
+    <button id="verifyOTPBtn" type="button">
+      Thibitisha OTP
+    </button>
+  </div>
+
+  <p id="signupMessage" role="status"></p>
 </div>
 
 <div class="panel">
-  <h2>Ingia</h2>
+  <h2>Ingia kwenye akaunti</h2>
 
   <form id="loginForm">
-    <label>Namba ya simu</label>
+    <label>Namba ya akaunti</label>
     <input
-      id="loginPhone"
-      type="tel"
+      id="loginAccount"
+      type="text"
       required
-      autocomplete="tel"
-      inputmode="tel"
-      placeholder="07XXXXXXXX"
+      autocomplete="username"
+      placeholder="28TG-000001"
     >
 
     <label>Nenosiri</label>
@@ -276,16 +286,21 @@ footer {
       type="password"
       required
       autocomplete="current-password"
+      placeholder="Ingiza nenosiri lako"
     >
 
     <button id="loginBtn" type="submit">Ingia</button>
   </form>
-</div>
 
-<button id="resetBtn" type="button" style="background:#493348;margin-top:10px">  
-  Nimesahau nenosiri  
-</button>
+  <p id="loginMessage" role="status"></p>
 
+  <button
+    id="resetBtn"
+    type="button"
+    style="background:#493348;margin-top:10px"
+  >
+    Nimesahau nenosiri
+  </button>
   </div>  
 </section>  <section id="buyPanel" class="hidden">  
   <div class="panel">  
@@ -616,129 +631,174 @@ async function watchVideo(id, button) {
   }  
 }  
   
-/* USAJILI */  
 
-  
-/* KUINGIA */
+/* 28TALE GIRLS — USAJILI NA LOGIN
+   Inahitaji Supabase client yako iitwe db.
+   Hii hutumia utambulisho wa ndani wa Supabase Auth.
+*/
 
-function normalizeTanzaniaPhone(value) {
-  let phone = String(value || "").replace(/[\s()-]/g, "");
+let pending28TaleSignup = null;
 
-  if (phone.startsWith("+255")) {
-    phone = phone;
-  } else if (phone.startsWith("255")) {
-    phone = "+" + phone;
-  } else if (/^0[67]\d{8}$/.test(phone)) {
-    phone = "+255" + phone.slice(1);
-  } else {
-    throw new Error(
-      "Weka namba sahihi ya Tanzania, mfano 0712345678."
-    );
-  }
+const ACCOUNT_PREFIX = "28TG-";
+const INTERNAL_DOMAIN = "28tale.invalid";
 
-  if (!/^\+255[67]\d{8}$/.test(phone)) {
-    throw new Error(
-      "Namba si sahihi. Tumia mfano 0712345678."
-    );
-  }
+function makeAccountNumber() {
+  const randomPart = crypto.randomUUID()
+    .replace(/-/g, "")
+    .slice(0, 12)
+    .toUpperCase();
 
-  return phone;
+  return ACCOUNT_PREFIX + randomPart;
 }
 
-/* USAJILI KWA NAMBA YA SIMU */
-if ($("signupForm")) {
-  $("signupForm").addEventListener("submit", async event => {
-    event.preventDefault();
+function makeInternalEmail(accountNumber) {
+  return accountNumber.toLowerCase() + "@" + INTERNAL_DOMAIN;
+}
 
-    const name = $("signupName").value.trim();
-    const password = $("signupPassword").value;
+function show28Message(id, message) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = message;
+}
 
-    let phone;
+/* HATUA YA 1: ANZA USAJILI */
+document.getElementById("signupForm")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    try {
-      phone = normalizeTanzaniaPhone($("signupPhone").value);
-    } catch (error) {
-      alert(error.message);
-      return;
-    }
+  const name = document.getElementById("signupName")?.value.trim();
+  const password = document.getElementById("signupPassword")?.value;
 
-    if (password.length < 6) {
-      alert("Nenosiri lazima liwe na angalau herufi 6.");
-      return;
-    }
+  if (!name || !password) {
+    show28Message("signupMessage", "Jaza jina na nenosiri.");
+    return;
+  }
 
-    const button = $("signupForm").querySelector(
-      'button[type="submit"]'
-    );
+  if (password.length < 6) {
+    show28Message("signupMessage", "Nenosiri liwe na herufi au tarakimu angalau 6.");
+    return;
+  }
 
-    if (button) button.disabled = true;
+  const accountNumber = makeAccountNumber();
+  const internalEmail = makeInternalEmail(accountNumber);
 
-    try {
-      const { data, error } = await db.auth.signUp({
-        phone,
-        password,
-        options: {
-          data: { full_name: name }
-        }
-      });
+  // OTP ya tarakimu 6 kwa hatua ya usajili kwenye kifaa hiki.
+  const otp = String(crypto.getRandomInt
+    ? crypto.getRandomInt(100000, 1000000)
+    : Math.floor(100000 + Math.random() * 900000));
 
-      if (error) throw error;
+  pending28TaleSignup = {
+    name,
+    password,
+    accountNumber,
+    internalEmail,
+    otp,
+    expiresAt: Date.now() + 5 * 60 * 1000
+  };
 
-      if (data.session) {
-        alert("Usajili umefanikiwa.");
-        await refreshSession();
-        showPanel("videosPanel");
-      } else {
-        alert(
-          "Akaunti imepokelewa, lakini huenda inahitaji " +
-          "uthibitisho wa simu kulingana na mipangilio ya Supabase."
-        );
+  const otpPanel = document.getElementById("otpPanel");
+  if (otpPanel) otpPanel.hidden = false;
+
+  show28Message(
+    "signupMessage",
+    "OTP yako ya majaribio ni: " + otp +
+    ". Inaisha baada ya dakika 5. Ingiza OTP kuthibitisha."
+  );
+});
+
+/* HATUA YA 2: THIBITISHA OTP NA TENGENEZA AKAUNTI */
+document.getElementById("verifyOTPBtn")?.addEventListener("click", async () => {
+  if (!pending28TaleSignup) {
+    show28Message("signupMessage", "Anza usajili kwanza.");
+    return;
+  }
+
+  const enteredOTP = document.getElementById("signupOTP")?.value.trim();
+
+  if (Date.now() > pending28TaleSignup.expiresAt) {
+    pending28TaleSignup = null;
+    show28Message("signupMessage", "OTP imeisha muda. Anza usajili upya.");
+    return;
+  }
+
+  if (enteredOTP !== pending28TaleSignup.otp) {
+    show28Message("signupMessage", "OTP si sahihi.");
+    return;
+  }
+
+  if (!db?.auth) {
+    show28Message("signupMessage", "Supabase client haijaanzishwa.");
+    return;
+  }
+
+  show28Message("signupMessage", "Inatengeneza akaunti...");
+
+  const { data, error } = await db.auth.signUp({
+    email: pending28TaleSignup.internalEmail,
+    password: pending28TaleSignup.password,
+    options: {
+      data: {
+        full_name: pending28TaleSignup.name,
+        account_number: pending28TaleSignup.accountNumber
       }
-    } catch (error) {
-      alert("Usajili umeshindikana: " + error.message);
-    } finally {
-      if (button) button.disabled = false;
     }
   });
-}
 
-/* LOGIN KWA NAMBA YA SIMU */
-if ($("loginForm")) {
-  $("loginForm").addEventListener("submit", async event => {
-    event.preventDefault();
+  if (error) {
+    show28Message("signupMessage", "Usajili umeshindikana: " + error.message);
+    return;
+  }
 
-    let phone;
+  const accountNumber = pending28TaleSignup.accountNumber;
+  pending28TaleSignup = null;
 
-    try {
-      phone = normalizeTanzaniaPhone($("loginPhone").value);
-    } catch (error) {
-      alert(error.message);
-      return;
-    }
+  show28Message(
+    "signupMessage",
+    "Ombi la usajili limepokelewa. Namba ya akaunti uliyotengewa: " +
+    accountNumber +
+    ". Ikiwa uthibitishaji wa Supabase unahitajika, akaunti haitakuwa tayari kuingia mpaka utaratibu huo ukamilike."
+  );
 
-    const password = $("loginPassword").value;
-    const button = $("loginBtn");
+  document.getElementById("signupForm")?.reset();
+  document.getElementById("signupOTP")?.value = "";
+  const panel = document.getElementById("otpPanel");
+  if (panel) panel.hidden = true;
+});
 
-    if (button) button.disabled = true;
+/* HATUA YA 3: LOGIN KWA NAMBA YA AKAUNTI */
+document.getElementById("loginForm")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    try {
-      const { error } = await db.auth.signInWithPassword({
-        phone,
-        password
-      });
+  const accountNumber = document.getElementById("loginAccount")?.value
+    .trim().toUpperCase();
+  const password = document.getElementById("loginPassword")?.value;
 
-      if (error) throw error;
+  if (!accountNumber || !password) {
+    show28Message("loginMessage", "Weka namba ya akaunti na nenosiri.");
+    return;
+  }
 
-      await refreshSession();
-      showPanel("videosPanel");
-      alert("Umeingia kikamilifu.");
-    } catch (error) {
-      alert("Kuingia kumeshindikana: " + error.message);
-    } finally {
-      if (button) button.disabled = false;
-    }
+  show28Message("loginMessage", "Inaingia...");
+
+  const internalEmail = makeInternalEmail(accountNumber);
+
+  const { data, error } = await db.auth.signInWithPassword({
+    email: internalEmail,
+    password
   });
-}
+
+  if (error) {
+    show28Message("loginMessage", "Imeshindikana kuingia. Kagua namba na nenosiri.");
+    return;
+  }
+
+  show28Message("loginMessage", "Umeingia kwenye akaunti.");
+
+  // Ruhusu mfumo wako uliopo kusasisha UI baada ya login.
+  if (typeof loadApp === "function") {
+    await loadApp();
+  } else if (typeof initApp === "function") {
+    await initApp();
+  }
+});
 
 /* KUWASILISHA OMBI LA MALIPO */  
 $("paymentForm").addEventListener("submit", async event => {  
