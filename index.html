@@ -613,61 +613,10 @@ async function watchVideo(id, button) {
   }  
 }  
 
-/* USAJILI NA LOGIN KWA NAMBA YA AKAUNTI */
 
-*/
-
-function accountLoginEmail(accountNumber) {
-  const normalized = accountNumber.trim().toUpperCase();
-
-  if (!/^28TG-\d{6}$/.test(normalized)) {
-    throw new Error(
-      "Namba ya akaunti si sahihi. Mfano: 28TG-000001"
-    );
-  }
-
-  return normalized.toLowerCase() + "@login.28tale.invalid";
-}
-
-/* USAJILI */
-$("signupForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!configured()) {
-    say("Supabase haijaunganishwa.");
-    return;
-  }
-
-  const button = $("signupForm").querySelector(
-    'button[type="submit"]'
-  );
-
-  button.disabled = true;
-
-  try {
-    const name = $("signupName").value.trim();
-    const password = $("signupPassword").value;
-
-    if (!name) {
-      throw new Error("Andika jina lako.");
-    }
-
-    if (password.length < 6) {
-      throw new Error("Nenosiri liwe na herufi 6 au zaidi.");
-    }
-
-    /*
-      Hifadhi namba kwanza kupitia function yako ya database.
-    */
-    const { data: reservedNumber, error: reserveError } =
-      await db.rpc("reserve_28tale_account_number");
-
-/* ==========================================
-   28TALE GIRLS
-   USAJILI NA LOGIN KWA NAMBA YA AKAUNTI
-   Hakuna email inayoonekana kwenye fomu
-   Hakuna SMS wala Edge Functions
-========================================== */
+/* ======================================
+   28TALE GIRLS: USAJILI NA LOGIN
+====================================== */
 
 function accountLoginEmail(accountNumber) {
   const account = String(accountNumber || "")
@@ -683,7 +632,6 @@ function accountLoginEmail(accountNumber) {
   return account.toLowerCase() + "@login.28tale.invalid";
 }
 
-
 /* USAJILI */
 $("signupForm").addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -696,24 +644,17 @@ $("signupForm").addEventListener("submit", async (event) => {
   const button = $("signupForm").querySelector(
     'button[type="submit"]'
   );
-
   button.disabled = true;
 
   try {
     const name = $("signupName").value.trim();
     const password = $("signupPassword").value;
 
-    if (!name) {
-      throw new Error("Tafadhali andika jina lako.");
+    if (!name) throw new Error("Andika jina lako.");
+    if (password.length < 6) {
+      throw new Error("Nenosiri liwe na herufi 6 au zaidi.");
     }
 
-    if (password.length < 8) {
-      throw new Error(
-        "Nenosiri liwe na herufi au alama angalau 8."
-      );
-    }
-
-    // Hifadhi namba mpya ya akaunti
     const { data: reservedNumber, error: reserveError } =
       await db.rpc("reserve_28tale_account_number");
 
@@ -723,18 +664,11 @@ $("signupForm").addEventListener("submit", async (event) => {
       .trim()
       .toUpperCase();
 
-    if (!/^28TG-\d{6}$/.test(accountNumber)) {
-      throw new Error(
-        "Imeshindwa kupata namba sahihi ya akaunti."
-      );
-    }
-
     const loginEmail = accountLoginEmail(accountNumber);
 
-    // Fungua akaunti ya Auth
     const { data, error } = await db.auth.signUp({
       email: loginEmail,
-      password: password,
+      password,
       options: {
         data: {
           full_name: name,
@@ -744,19 +678,17 @@ $("signupForm").addEventListener("submit", async (event) => {
     });
 
     if (error) throw error;
-
     if (!data.user) {
-      throw new Error("Usajili haujakamilika.");
+      throw new Error("Supabase haikuunda akaunti.");
     }
 
     if (!data.session) {
       say(
-        "Akaunti imeundwa, lakini Supabase inahitaji uthibitishaji kabla ya login. Kagua mipangilio ya Authentication; usijisajili tena."
+        "Akaunti imeundwa lakini session haipo. Usijisajili tena; kagua Authentication."
       );
       return;
     }
 
-    // Hakikisha profile ina namba ile ile
     const { data: profile, error: profileError } = await db
       .from("profiles")
       .select("account_number")
@@ -765,23 +697,23 @@ $("signupForm").addEventListener("submit", async (event) => {
 
     if (profileError) throw profileError;
 
-    if (!profile || profile.account_number !== accountNumber) {
+    if (profile?.account_number !== accountNumber) {
       await db.auth.signOut();
-
       throw new Error(
-        "Namba ya akaunti haikulingana na profile. Wasiliana na Admin."
+        "Namba ya akaunti haikulingana na profile."
       );
     }
+
+    $("newAccountNumber").textContent = accountNumber;
+    $("newAccountBox").classList.remove("hidden");
 
     await refreshAuth();
     tab("videosPanel");
 
     say(
-      "Usajili umefanikiwa! Namba yako ya akaunti ni " +
-        accountNumber,
+      "Usajili umefanikiwa. Namba yako ni " + accountNumber,
       true
     );
-
   } catch (error) {
     showError("Usajili umeshindikana:", error);
   } finally {
@@ -789,8 +721,20 @@ $("signupForm").addEventListener("submit", async (event) => {
   }
 });
 
+/* NAKILI NAMBA YA AKAUNTI */
+$("copyAccountBtn").addEventListener("click", async () => {
+  const account = $("newAccountNumber").textContent.trim();
+  if (!account) return;
 
-/* LOGIN KWA NAMBA YA AKAUNTI */
+  try {
+    await navigator.clipboard.writeText(account);
+    say("Namba ya akaunti imenakiliwa.", true);
+  } catch {
+    window.prompt("Nakili namba yako ya akaunti:", account);
+  }
+});
+
+/* LOGIN */
 $("loginForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -802,34 +746,26 @@ $("loginForm").addEventListener("submit", async (event) => {
   const button = $("loginForm").querySelector(
     'button[type="submit"]'
   );
-
   button.disabled = true;
 
   try {
     const accountNumber = $("loginAccount").value
       .trim()
       .toUpperCase();
-
     const password = $("loginPassword").value;
-
-    if (!password) {
-      throw new Error("Tafadhali andika nenosiri.");
-    }
 
     const loginEmail = accountLoginEmail(accountNumber);
 
     const { data, error } = await db.auth.signInWithPassword({
       email: loginEmail,
-      password: password
+      password
     });
 
     if (error) throw error;
-
     if (!data.user) {
       throw new Error("Imeshindwa kuthibitisha akaunti.");
     }
 
-    // Hakikisha akaunti ni ya mtumiaji aliyeingia
     const { data: profile, error: profileError } = await db
       .from("profiles")
       .select("account_number")
@@ -843,17 +779,14 @@ $("loginForm").addEventListener("submit", async (event) => {
       profile.account_number !== accountNumber
     ) {
       await db.auth.signOut();
-
       throw new Error(
-        "Namba ya akaunti haijalingana na taarifa za mfumo."
+        "Namba ya akaunti haijalingana na profile."
       );
     }
 
     await refreshAuth();
     tab("videosPanel");
-
     say("Umeingia kwenye akaunti yako.", true);
-
   } catch (error) {
     showError("Kuingia kumeshindikana:", error);
   } finally {
@@ -861,7 +794,6 @@ $("loginForm").addEventListener("submit", async (event) => {
   }
 });
 
-  
 /* KUWASILISHA OMBI LA MALIPO */  
 $("paymentForm").addEventListener("submit", async event => {  
   event.preventDefault();  
