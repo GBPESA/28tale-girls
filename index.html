@@ -663,8 +663,7 @@ async function loadVideos() {
   
   const { data, error } = await db  
     .from("videos")  
-    .select("id,title,image_url,video_url,description,token_cost,is_published")  
-    .eq("is_published", true)  
+    .select("id,title,image_url,video_url,description,token_cost,is_published,preview_video_url", true)  
     .order("created_at", { ascending: false });  
   
   if (error) {  
@@ -687,9 +686,31 @@ async function loadVideos() {
         <h3>${esc(video.title)}</h3>  
         <p>${esc(video.description || "")}</p>  
         <p>Gharama: ${Number(video.token_cost)} tokeni</p>  
-        <button type="button" data-watch="${esc(video.id)}">  
-          ▶ TAZAMA · TOKENI ${Number(video.token_cost)}  
-        </button>  
+        
+<button
+  type="button"
+  class="watch-button"
+  data-watch="${esc(video.id)}"
+>
+  ${
+    video.preview_video_url
+      ? `<video
+          class="watch-preview"
+          src="${esc(video.preview_video_url)}"
+          muted
+          autoplay
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Kavideo cha ${esc(video.title)}"
+        ></video>`
+      : `<span class="watch-preview-placeholder">▶</span>`
+  }
+  <span class="watch-button-text">
+    ▶ TAZAMA · TOKENI ${Number(video.token_cost)}
+  </span>
+</button>
+  
       </div>  
     </article>  
   `).join("") || '<p class="muted">Bado hakuna video zilizowekwa.</p>';  
