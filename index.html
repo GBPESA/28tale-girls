@@ -1209,8 +1209,10 @@ async function loadAdminVideos() {
       const video = data.find(item => String(item.id) === button.dataset.edit);  
       if (!video) return;  
   
-      editingVideoId = video.id;  
-      editingImageUrl = video.image_url || "";  
+      editingVideoId = video.id;
+editingImageUrl = video.image_url || "";
+editingPreviewUrl = video.preview_video_url || "";
+$("vPreview").value = ""; 
   
       $("vTitle").value = video.title || "";  
       $("vImage").value = "";  
