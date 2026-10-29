@@ -241,6 +241,50 @@ footer {
 .wa-channel-mini:active {
   transform: scale(.99);
 }
+
+/* Kavideo ndani ya kitufe cha kutazama */
+.watch-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  width: 100%;
+  min-height: 66px;
+  padding: 7px;
+  text-align: left;
+  overflow: hidden;
+}
+
+.watch-preview {
+  display: block;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #382438;
+}
+
+.watch-preview-placeholder {
+  display: grid;
+  place-items: center;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 52px;
+  border-radius: 8px;
+  background: #493348;
+  color: #ffd166;
+  font-size: 22px;
+}
+
+.watch-button-text {
+  display: block;
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+  font-size: 12px;
+}
   
 </style>  <meta property="og:type" content="website">  
 <meta property="og:title" content="HOT VIDEO 🔞🔥">  
@@ -391,7 +435,20 @@ footer {
 
   <label>Chagua picha ya cover kutoka kwenye simu</label>  
   <input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">  
-  <small>Picha ya JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>  
+  <small>Picha ya JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>
+      
+<label>Chagua kavideo ka kucheza kwa kitufe hiki</label>
+<input
+  id="vPreview"
+  type="file"
+  accept="video/mp4,video/webm"
+>
+<small>
+  Chagua MP4 au WebM, hadi MB 15.
+  Kavideo ni tofauti kwa kila video.
+  Ukihariri bila kuchagua faili jipya, cha zamani kitabaki.
+</small>
+
 
   <label>Link ya video ya nje (https://)</label>  
   <input id="vUrl" type="url" required placeholder="https://...">  
@@ -436,8 +493,10 @@ const $ = id => document.getElementById(id);
 let db = null;  
 let currentUser = null;  
 let isAdmin = false;  
-let editingVideoId = null;  
-let editingImageUrl = "";  
+let editingVideoId = null;
+let editingImageUrl = "";
+let editingPreviewUrl = "";
+  
   
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({  
   "&":"&amp;",  
@@ -931,8 +990,10 @@ async function loadMyPayments() {
   
 /* KUSAFISHA FOMU YA VIDEO */  
 function clearVideoForm() {  
-  editingVideoId = null;  
-  editingImageUrl = "";  
+  editingVideoId = null;
+editingImageUrl = "";
+editingPreviewUrl = "";
+$("vPreview").value = "";  
   
   $("videoForm").reset();  
   $("vCost").value = 1;  
