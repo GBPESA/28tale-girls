@@ -1035,10 +1035,12 @@ $("videoForm").addEventListener("submit", async event => {
     return;  
   }  
   
-  const file = $("vImage").files[0];  
-  const title = $("vTitle").value.trim();  
-  const videoUrl = $("vUrl").value.trim();  
-  const cost = Number($("vCost").value);  
+  
+const file = $("vImage").files[0];
+const previewFile = $("vPreview").files[0];
+const title = $("vTitle").value.trim();
+const videoUrl = $("vUrl").value.trim();  
+const cost = Number($("vCost").value);  
   
   if (!title || !videoUrl.startsWith("https://")) {  
     say("Weka jina na link sahihi ya video inayoanza na https://");  
