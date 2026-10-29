@@ -243,24 +243,26 @@ footer {
 }
 
 /* Kavideo ndani ya kitufe cha kutazama */
+
 .watch-button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 9px;
+  gap: 8px;
   width: 100%;
-  min-height: 66px;
-  padding: 7px;
+  min-height: 62px;
+  padding: 6px 8px;
   text-align: left;
   overflow: hidden;
+  white-space: normal;
 }
 
 .watch-preview {
   display: block;
-  flex: 0 0 58px;
-  width: 58px;
-  height: 52px;
-  border-radius: 8px;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 48px;
+  border-radius: 7px;
   object-fit: cover;
   background: #382438;
 }
@@ -268,23 +270,23 @@ footer {
 .watch-preview-placeholder {
   display: grid;
   place-items: center;
-  flex: 0 0 58px;
-  width: 58px;
-  height: 52px;
-  border-radius: 8px;
+  flex: 0 0 54px;
+  width: 54px;
+  height: 48px;
+  border-radius: 7px;
   background: #493348;
   color: #ffd166;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .watch-button-text {
-  display: block;
-  min-width: 0;
   flex: 1;
-  overflow-wrap: anywhere;
-  line-height: 1.35;
+  min-width: 0;
   font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
+
   
 </style>  <meta property="og:type" content="website">  
 <meta property="og:title" content="HOT VIDEO 🔞🔥">  
@@ -706,11 +708,6 @@ async function loadVideos() {
         ></video>`
       : `<span class="watch-preview-placeholder">▶</span>`
   }
-  
-if (!previewFile && !editingVideoId) {
-  say("Chagua kavideo cha kucheza kutoka kwenye simu.");
-  return;
-}
 
   <span class="watch-button-text">
     ▶ TAZAMA · TOKENI ${Number(video.token_cost)}
