@@ -1142,15 +1142,18 @@ if (previewFile) {
       throw new Error("Picha haijapatikana. Chagua picha tena.");  
     }  
   
-    const video = {  
-      title,  
-      image_url: imageUrl,  
-      video_url: videoUrl,  
-      token_cost: cost,  
-      description: $("vDesc").value.trim(),  
-      is_published: $("vPublished").checked,  
-      updated_at: new Date().toISOString()  
-    };  
+    
+const video = {
+  title,
+  image_url: imageUrl,
+  video_url: videoUrl,
+  preview_video_url: previewVideoUrl || null,
+  token_cost: cost,
+  description: $("vDesc").value.trim(),
+  is_published: $("vPublished").checked,
+  updated_at: new Date().toISOString()
+};
+  
   
     const result = editingVideoId  
       ? await db.from("videos").update(video).eq("id", editingVideoId)  
