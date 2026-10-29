@@ -706,6 +706,12 @@ async function loadVideos() {
         ></video>`
       : `<span class="watch-preview-placeholder">▶</span>`
   }
+  
+if (!previewFile && !editingVideoId) {
+  say("Chagua kavideo cha kucheza kutoka kwenye simu.");
+  return;
+}
+
   <span class="watch-button-text">
     ▶ TAZAMA · TOKENI ${Number(video.token_cost)}
   </span>
