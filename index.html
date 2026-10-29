@@ -1084,7 +1084,8 @@ if (previewFile && previewFile.size > 15 * 1024 * 1024) {
   button.disabled = true;  
   
   try {  
-    let imageUrl = editingImageUrl;  
+    let imageUrl = editingImageUrl;
+let previewVideoUrl = editingPreviewUrl;  
   
     if (file) {  
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");  
