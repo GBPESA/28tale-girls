@@ -280,10 +280,7 @@ footer {
 
       <button type="submit">Ingia</button>
     </form>
-  </div>
-</section>
-
-  </div>  
+    
 </section>  <section id="buyPanel" class="hidden">  
   <div class="panel">  
     <h2>Nunua tokeni</h2>  
@@ -484,7 +481,7 @@ async function refreshAuth() {
     if (currentUser) {  
       const { data: profile, error: profileError } = await db  
         .from("profiles")  
-        .select("role,full_name")  
+        .select("role,full_name,account_number") 
         .eq("id", currentUser.id)  
         .maybeSingle();  
   
