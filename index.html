@@ -1108,6 +1108,36 @@ let previewVideoUrl = editingPreviewUrl;
       imageUrl = publicData.publicUrl;  
     }  
   
+if (previewFile) {
+  const safePreviewName = previewFile.name.replace(
+    /[^a-zA-Z0-9._-]/g,
+    "_"
+  );
+
+  const previewPath =
+    currentUser.id +
+    "/" +
+    Date.now() +
+    "_" +
+    safePreviewName;
+
+  const { error: previewUploadError } = await db.storage
+    .from("video-button-previews")
+    .upload(previewPath, previewFile, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: previewFile.type
+    });
+
+  if (previewUploadError) throw previewUploadError;
+
+  const { data: previewPublicData } = db.storage
+    .from("video-button-previews")
+    .getPublicUrl(previewPath);
+
+  previewVideoUrl = previewPublicData.publicUrl;
+}
+
     if (!imageUrl) {  
       throw new Error("Picha haijapatikana. Chagua picha tena.");  
     }  
