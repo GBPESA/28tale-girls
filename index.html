@@ -498,7 +498,7 @@ async function refreshAuth() {
   
       say(  
         "Umeingia kama " +  
-        (profile?.full_name || currentUser.email),  
+        (profile?.full_name || profile?.account_number || "Mtumiaji"),  
         true  
       );  
     } else {  
