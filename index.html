@@ -287,6 +287,58 @@ footer {
   overflow-wrap: anywhere;
 }
 
+/* UJUMBE WA OFA UNAOTEMBEA */
+.referral-marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  background: #190d20;
+  border: 1px solid #e84b91;
+  border-radius: 10px;
+  padding: 12px 0;
+  margin: 10px 0 14px;
+  box-shadow: 0 0 12px #e84b9170;
+}
+
+.referral-track {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  white-space: nowrap;
+  animation: referralScroll 27s linear infinite;
+}
+
+.referral-track span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  padding-right: 3px;
+  animation: referralColors 2.5s linear infinite;
+  text-shadow: 0 0 8px currentColor;
+}
+
+@keyframes referralScroll {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes referralColors {
+  0% { color: #ff4d6d; }
+  20% { color: #ffd166; }
+  40% { color: #35e7ff; }
+  60% { color: #baff39; }
+  80% { color: #d78bff; }
+  100% { color: #ff4d6d; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .referral-track,
+  .referral-track span {
+    animation: none;
+  }
+}
+
   
 </style>  <meta property="og:type" content="website">  
 <meta property="og:title" content="HOT VIDEO 🔞🔥">  
