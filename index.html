@@ -1099,70 +1099,81 @@ async function refreshWallet() {
 }  
   
 /* KUPAKIA VIDEO */  
-async function loadVideos() {  
-  if (!configured()) return;  
-  
-  const { data, error } = await db  
-    .from("videos")  
-    .select("id,title,image_url,video_url,description,token_cost,is_published,preview_video_url")  
-    .order("created_at", { ascending: false });  
-  
-  if (error) {  
-    $("videoList").innerHTML =  
-      '<p class="muted">Imeshindwa kupakia video. Kagua mipangilio ya Supabase.</p>';  
-    console.error("loadVideos:", error);  
-    return;  
-  }  
-  
-  $("videoList").innerHTML = (data || []).map(video => `  
-    <article class="card">  
-      <img  
-        src="${esc(video.image_url)}"  
-        alt="${esc(video.title)}"  
-        loading="lazy"  
-        referrerpolicy="no-referrer"  
-        onerror="this.style.display='none'">  
-  
-      <div class="cardbody">  
-        <h3>${esc(video.title)}</h3>  
-        <p>${esc(video.description || "")}</p>  
-        <p>Gharama: ${Number(video.token_cost)} tokeni</p>  
-        
-<button
-  type="button"
-  class="watch-button"
-  data-watch="${esc(video.id)}"
->
-  ${
-    video.preview_video_url
-      ? `<video
-          class="watch-preview"
-          src="${esc(video.preview_video_url)}"
-          muted
-          autoplay
-          loop
-          playsinline
-          preload="metadata"
-          aria-label="Kavideo cha ${esc(video.title)}"
-        ></video>`
-      : `<span class="watch-preview-placeholder">▶</span>`
+
+async function loadVideos() {
+  if (!configured()) return;
+
+  const { data, error } = await db
+    .from("videos")
+    .select("id,title,image_url,video_url,description,token_cost,is_published,preview_video_url")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    $("videoList").innerHTML =
+      `<p class="muted">${esc(
+        currentLanguage === "en"
+          ? "Failed to load videos. Check Supabase settings."
+          : currentLanguage === "fr"
+          ? "Échec du chargement des vidéos. Vérifiez les paramètres Supabase."
+          : currentLanguage === "ar"
+          ? "تعذر تحميل الفيديوهات. تحقق من إعدادات Supabase."
+          : "Imeshindwa kupakia video. Kagua mipangilio ya Supabase."
+      )}</p>`;
+    console.error("loadVideos:", error);
+    return;
   }
 
-  <span class="watch-button-text">
-    ▶UHONDO MZIMA TAZAMA KWA · TOKENI ${Number(video.token_cost)}
-  </span>
-</button>
-  
-      </div>  
-    </article>  
-  `).join("") || '<p class="muted">Bado hakuna video zilizowekwa.</p>';  
-  
-  $("videoList").querySelectorAll("[data-watch]").forEach(button => {  
-    button.addEventListener("click", () => {  
-      watchVideo(button.dataset.watch, button);  
-    });  
-  });  
-}  
+  $("videoList").innerHTML = (data || []).map(video => `
+    <article class="card">
+      <img
+        src="${esc(video.image_url)}"
+        alt="${esc(video.title)}"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        onerror="this.style.display='none'">
+
+      <div class="cardbody">
+        <h3>${esc(video.title)}</h3>
+
+        <p>${esc(video.description || "")}</p>
+
+        <p>${tr("cost")} ${Number(video.token_cost)} ${tr("tokens")}</p>
+
+        <button
+          type="button"
+          class="watch-button"
+          data-watch="${esc(video.id)}"
+        >
+          ${
+            video.preview_video_url
+              ? `<video
+                  class="watch-preview"
+                  src="${esc(video.preview_video_url)}"
+                  muted
+                  autoplay
+                  loop
+                  playsinline
+                  preload="metadata"
+                  aria-label="${esc(video.title)}"
+                ></video>`
+              : `<span class="watch-preview-placeholder">▶</span>`
+          }
+
+          <span class="watch-button-text">
+            ▶ ${tr("watch")} · ${Number(video.token_cost)} ${tr("tokens")}
+          </span>
+        </button>
+      </div>
+    </article>
+  `).join("") || `<p class="muted">${tr("noVideos")}</p>`;
+
+  $("videoList").querySelectorAll("[data-watch]").forEach(button => {
+    button.addEventListener("click", () => {
+      watchVideo(button.dataset.watch, button);
+    });
+  });
+}
+ 
   
 /* KUTAZAMA VIDEO KWA KUTUMIA RPC YA SUPABASE */  
 async function watchVideo(id, button) {  
