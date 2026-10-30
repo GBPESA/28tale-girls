@@ -576,6 +576,19 @@ const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({
   '"':"&quot;",  
   "'":"&#39;"  
 }[char]));  
+
+/* HERUFI ZA UJUMBE WA OFA */
+const referralOfferText =
+  "🎁 🔥 SHARE LINK YAKO KWA MARAFIKI 10 AU VIKUNDI 10 — WAKIJIUNGA NA KUJISAJILI KUPITIA LINK YAKO, UNAPATA TOKENI 10 BURE! 🔥 🎁";
+
+const ticker = $("referralTicker");
+
+if (ticker) {
+  const fullText = referralOfferText + "     ✨     ";
+  ticker.innerHTML = Array.from(fullText).map((char, index) =>
+    `<span style="animation-delay:${(index % 12) * 0.12}s">${esc(char)}</span>`
+  ).join("");
+}
   
 function say(message, good = false) {  
   $("notice").innerHTML =  
