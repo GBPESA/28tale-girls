@@ -830,19 +830,22 @@ function translateSystemMessage(message) {
   return systemMessages[language]?.[message] || message;
   }
 
-function setLanguage(language) {
-  if (!translations[language]) return;
+applyLanguage();
 
-  currentLanguage = language;
+if (typeof loadVideos === "function") {
+  loadVideos();
+}
 
-  try {
-    localStorage.setItem("28tale_language", language);
-  } catch (error) {
-    console.warn("Lugha haijahifadhiwa:", error);
+if (typeof currentUser !== "undefined" && currentUser) {
+  if (typeof loadMyPayments === "function") {
+    loadMyPayments();
   }
 
-  applyLanguage();
-}
+  if (typeof isAdmin !== "undefined" && isAdmin) {
+    loadAdminVideos();
+    loadAdminPayments();
+  }
+  }
 
 document.addEventListener("change", event => {
   if (event.target.id === "languageSelect") {
