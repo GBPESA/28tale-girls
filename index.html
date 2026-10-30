@@ -548,19 +548,7 @@ const PAYMENT_NUMBER = "0661683804";
   
 /* MUHIMU: HII NDIYO $ ILIYOKUWA IMEKOSA */  
 const $ = id => document.getElementById(id);  
-/* HERUFI ZA UJUMBE WA OFA */
-const referralOfferText =
-  "🎁 🔥 SHARE LINK YAKO KWA MARAFIKI 10 AU VIKUNDI 10 — WAKIJIUNGA NA KUJISAJILI KUPITIA LINK YAKO, UNAPATA TOKENI 10 BURE! 🔥 🎁";
 
-const ticker = $("referralTicker");
-
-if (ticker) {
-  const fullText = referralOfferText + "     ✨     ";
-  ticker.innerHTML = Array.from(fullText).map((char, index) =>
-    `<span style="animation-delay:${(index % 12) * 0.12}s">${esc(char)}</span>`
-  ).join("");
-}
-  
 let db = null;  
 let currentUser = null;  
 let isAdmin = false;  
