@@ -705,6 +705,69 @@ const translations = {
 };
 
 let currentLanguage = localStorage.getItem("28tale_language") || "sw";
+  const dynamicText = {
+  sw: {
+    watch: "ANGALIA VIDEO",
+    cost: "Gharama:",
+    tokens: "tokeni",
+    insufficient: "Salio lako la tokeni halitoshi.",
+    loading: "Inapakia...",
+    noVideos: "Hakuna video zilizowekwa kwa sasa.",
+    description: "Maelezo",
+    edit: "Hariri",
+    delete: "Futa",
+    published: "Imechapishwa",
+    unpublished: "Haijachapishwa"
+  },
+
+  en: {
+    watch: "WATCH VIDEO",
+    cost: "Cost:",
+    tokens: "tokens",
+    insufficient: "You do not have enough tokens.",
+    loading: "Loading...",
+    noVideos: "No videos available at the moment.",
+    description: "Description",
+    edit: "Edit",
+    delete: "Delete",
+    published: "Published",
+    unpublished: "Unpublished"
+  },
+
+  fr: {
+    watch: "REGARDER LA VIDÉO",
+    cost: "Coût :",
+    tokens: "jetons",
+    insufficient: "Vous n'avez pas assez de jetons.",
+    loading: "Chargement...",
+    noVideos: "Aucune vidéo disponible pour le moment.",
+    description: "Description",
+    edit: "Modifier",
+    delete: "Supprimer",
+    published: "Publié",
+    unpublished: "Non publié"
+  },
+
+  ar: {
+    watch: "مشاهدة الفيديو",
+    cost: "التكلفة:",
+    tokens: "رموز",
+    insufficient: "رصيدك من الرموز غير كافٍ.",
+    loading: "جارٍ التحميل...",
+    noVideos: "لا توجد مقاطع فيديو متاحة حاليًا.",
+    description: "الوصف",
+    edit: "تعديل",
+    delete: "حذف",
+    published: "منشور",
+    unpublished: "غير منشور"
+  }
+};
+
+function tr(key) {
+  return dynamicText[currentLanguage]?.[key]
+    || dynamicText.sw[key]
+    || key;
+  }
 
 function applyLanguage() {
   const language = translations[currentLanguage]
