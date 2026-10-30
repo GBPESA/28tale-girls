@@ -924,6 +924,29 @@ $("signupForm").addEventListener("submit", async (event) => {
         "Namba ya akaunti haikulingana na profile."
       );
     }
+    
+let referralNotice = "";
+
+const inviterAccount = new URLSearchParams(
+  window.location.search
+).get("ref");
+
+if (inviterAccount) {
+  const { data: referralMessage, error: referralError } =
+    await db.rpc("register_28tale_referral", {
+      p_inviter_account_number: inviterAccount
+    });
+
+  if (referralError) {
+    console.error("Referral error:", referralError);
+    referralNotice =
+      " Akaunti imefunguliwa, lakini mwaliko haukuhesabiwa: " +
+      referralError.message;
+  } else {
+    referralNotice = " " + String(referralMessage || "");
+  }
+}
+
 
     $("newAccountNumber").textContent = accountNumber;
     $("newAccountBox").classList.remove("hidden");
