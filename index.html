@@ -955,9 +955,12 @@ if (inviterAccount) {
     tab("videosPanel");
 
     say(
-      "Usajili umefanikiwa. Namba yako ni " + accountNumber,
-      true
-    );
+  "Usajili umefanikiwa. Namba yako ni " +
+  accountNumber +
+  "." +
+  referralNotice,
+  true
+);
   } catch (error) {
     showError("Usajili umeshindikana:", error);
   } finally {
