@@ -749,6 +749,86 @@ function applyLanguage() {
     }
   });
 }
+  /* TAFSIRI ZA UJUMBE WA MFUMO */
+
+const systemMessages = {
+  sw: {
+    "Ingia kwanza.": "Ingia kwanza.",
+    "Ingia au jisajili kwanza.": "Ingia au jisajili kwanza.",
+    "Ingia au jisajili ili kutumia tokeni.": "Ingia au jisajili ili kutumia tokeni.",
+    "Umetoka kwenye akaunti.": "Umetoka kwenye akaunti.",
+    "Supabase haijaunganishwa.": "Supabase haijaunganishwa.",
+    "Andika jina lako.": "Andika jina lako.",
+    "Nenosiri liwe na herufi 6 au zaidi.": "Nenosiri liwe na herufi 6 au zaidi.",
+    "Akaunti imefunguliwa.": "Akaunti imefunguliwa.",
+    "Namba ya akaunti imenakiliwa.": "Namba ya akaunti imenakiliwa.",
+    "Umeingia kwenye akaunti yako.": "Umeingia kwenye akaunti yako.",
+    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.",
+    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.",
+    "Video imefutwa.": "Video imefutwa.",
+    "Video na picha yake vimehifadhiwa!": "Video na picha yake vimehifadhiwa!",
+    "Hali ya video imebadilishwa.": "Hali ya video imebadilishwa."
+  },
+
+  en: {
+    "Ingia kwanza.": "Please log in first.",
+    "Ingia au jisajili kwanza.": "Please log in or register first.",
+    "Ingia au jisajili ili kutumia tokeni.": "Log in or register to use tokens.",
+    "Umetoka kwenye akaunti.": "You have logged out.",
+    "Supabase haijaunganishwa.": "Supabase is not connected.",
+    "Andika jina lako.": "Enter your name.",
+    "Nenosiri liwe na herufi 6 au zaidi.": "Password must contain at least 6 characters.",
+    "Akaunti imefunguliwa.": "Your account has been created.",
+    "Namba ya akaunti imenakiliwa.": "Account number copied.",
+    "Umeingia kwenye akaunti yako.": "You have logged in successfully.",
+    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "You do not have enough tokens. Buy tokens and wait for admin approval.",
+    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Your payment request has been submitted. Tokens will be added after admin approval.",
+    "Video imefutwa.": "Video deleted.",
+    "Video na picha yake vimehifadhiwa!": "Video and its cover image have been saved!",
+    "Hali ya video imebadilishwa.": "Video status updated."
+  },
+
+  fr: {
+    "Ingia kwanza.": "Veuillez d'abord vous connecter.",
+    "Ingia au jisajili kwanza.": "Veuillez vous connecter ou créer un compte.",
+    "Ingia au jisajili ili kutumia tokeni.": "Connectez-vous ou inscrivez-vous pour utiliser les jetons.",
+    "Umetoka kwenye akaunti.": "Vous êtes déconnecté.",
+    "Supabase haijaunganishwa.": "Supabase n'est pas connecté.",
+    "Andika jina lako.": "Saisissez votre nom.",
+    "Nenosiri liwe na herufi 6 au zaidi.": "Le mot de passe doit contenir au moins 6 caractères.",
+    "Akaunti imefunguliwa.": "Votre compte a été créé.",
+    "Namba ya akaunti imenakiliwa.": "Numéro de compte copié.",
+    "Umeingia kwenye akaunti yako.": "Vous êtes connecté.",
+    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "Vous n'avez pas assez de jetons. Achetez-en et attendez la validation de l'administrateur.",
+    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Votre demande de paiement a été envoyée. Les jetons seront ajoutés après validation.",
+    "Video imefutwa.": "Vidéo supprimée.",
+    "Video na picha yake vimehifadhiwa!": "La vidéo et sa couverture ont été enregistrées !",
+    "Hali ya video imebadilishwa.": "Le statut de la vidéo a été modifié."
+  },
+
+  ar: {
+    "Ingia kwanza.": "يرجى تسجيل الدخول أولاً.",
+    "Ingia au jisajili kwanza.": "يرجى تسجيل الدخول أو إنشاء حساب أولاً.",
+    "Ingia au jisajili ili kutumia tokeni.": "سجّل الدخول أو أنشئ حساباً لاستخدام الرموز.",
+    "Umetoka kwenye akaunti.": "تم تسجيل خروجك.",
+    "Supabase haijaunganishwa.": "لم يتم الاتصال بـ Supabase.",
+    "Andika jina lako.": "أدخل اسمك.",
+    "Nenosiri liwe na herufi 6 au zaidi.": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+    "Akaunti imefunguliwa.": "تم إنشاء حسابك.",
+    "Namba ya akaunti imenakiliwa.": "تم نسخ رقم الحساب.",
+    "Umeingia kwenye akaunti yako.": "تم تسجيل الدخول بنجاح.",
+    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "رصيدك من الرموز غير كافٍ. اشترِ رموزاً وانتظر موافقة المسؤول.",
+    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "تم إرسال طلب الدفع. ستتم إضافة الرموز بعد موافقة المسؤول.",
+    "Video imefutwa.": "تم حذف الفيديو.",
+    "Video na picha yake vimehifadhiwa!": "تم حفظ الفيديو وصورة الغلاف!",
+    "Hali ya video imebadilishwa.": "تم تحديث حالة الفيديو."
+  }
+};
+
+function translateSystemMessage(message) {
+  const language = currentLanguage || "sw";
+  return systemMessages[language]?.[message] || message;
+  }
 
 function setLanguage(language) {
   if (!translations[language]) return;
