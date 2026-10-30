@@ -881,10 +881,10 @@ if (ticker) {
   ).join("");
 }
   
-function say(message, good = false) {  
-  $("notice").innerHTML =  
-    `<span class="${good ? "good" : "bad"}">${esc(message)}</span>`;  
-}  
+function say(message, good = false) {
+  $("notice").innerHTML =
+    `<span class="${good ? "good" : "bad"}">${esc(translateSystemMessage(message))}</span>`;
+  }  
   
 function configured() {  
   return !!db &&  
