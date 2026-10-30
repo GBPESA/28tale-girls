@@ -548,6 +548,18 @@ const PAYMENT_NUMBER = "0661683804";
   
 /* MUHIMU: HII NDIYO $ ILIYOKUWA IMEKOSA */  
 const $ = id => document.getElementById(id);  
+/* HERUFI ZA UJUMBE WA OFA */
+const referralOfferText =
+  "🎁 🔥 SHARE LINK YAKO KWA MARAFIKI 10 AU VIKUNDI 10 — WAKIJIUNGA NA KUJISAJILI KUPITIA LINK YAKO, UNAPATA TOKENI 10 BURE! 🔥 🎁";
+
+const ticker = $("referralTicker");
+
+if (ticker) {
+  const fullText = referralOfferText + "     ✨     ";
+  ticker.innerHTML = Array.from(fullText).map((char, index) =>
+    `<span style="animation-delay:${(index % 12) * 0.12}s">${esc(char)}</span>`
+  ).join("");
+}
   
 let db = null;  
 let currentUser = null;  
@@ -1430,33 +1442,50 @@ try {
   showError("Hitilafu wakati wa kuanzisha tovuti:", error);  
 }  
     
-/* KUSHIRIKI LINK YA 28TALE GIRLS */  
-$("shareBtn").addEventListener("click", async () => {  
-  const shareData = {  
-    title: "28TALE GIRLS",  
-    text: "Karibu 28TALE GIRLS! Tembelea tovuti na ushiriki na marafiki.",  
-    url: window.location.href  
-  };  
-  
-  try {  
-    if (navigator.share) {  
-      await navigator.share(shareData);  
-    } else {  
-      const link = window.location.href;  
-  
-      if (navigator.clipboard && window.isSecureContext) {  
-        await navigator.clipboard.writeText(link);  
-        alert("Link imenakiliwa! Sasa unaweza kuituma kwa WhatsApp.");  
-      } else {  
-        window.prompt("Nakili link hii ya tovuti:", link);  
-      }  
-    }  
-  } catch (error) {  
-    if (error.name !== "AbortError") {  
-      alert("Imeshindikana kushiriki. Jaribu kunakili link ya tovuti.");  
-    }  
-  }  
-});  
+
+/* KUSHIRIKI LINK BINAFSI YA MWALIKO */
+$("shareBtn").addEventListener("click", async () => {
+  if (!currentUser) {
+    tab("authPanel");
+    say("Ingia kwanza ili upate link yako binafsi ya mwaliko.");
+    return;
+  }
+
+  try {
+    const { data: profile, error } = await db
+      .from("profiles")
+      .select("account_number")
+      .eq("id", currentUser.id)
+      .maybeSingle();
+
+    if (error) throw error;
+
+    if (!profile?.account_number) {
+      throw new Error("Namba ya akaunti haijapatikana.");
+    }
+
+    const inviteUrl = new URL(window.location.href);
+    inviteUrl.searchParams.set("ref", profile.account_number);
+
+    const shareData = {
+      title: "28TALE GIRLS",
+      text: "Karibu 28TALE GIRLS! Jiunge kupitia link yangu. Nikifikisha watu 10 waliojisajili kupitia link hii, napata zawadi ya tokeni 10!",
+      url: inviteUrl.toString()
+    };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(inviteUrl.toString());
+      alert("Link yako binafsi imenakiliwa. Itume kwa marafiki!");
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      showError("Imeshindikana kupata link ya mwaliko:", error);
+    }
+  }
+});
+ 
   
 /* KUHESABU WATUMIAJI KWA ADMIN */  
 async function loadUserCount() {  
