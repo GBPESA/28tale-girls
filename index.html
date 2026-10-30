@@ -893,22 +893,30 @@ function translateSystemMessage(message) {
   return systemMessages[language]?.[message] || message;
   }
 
-applyLanguage();
 
-if (typeof loadVideos === "function") {
-  loadVideos();
+function setLanguage(language) {
+  if (!translations[language]) {
+    language = "sw";
+  }
+
+  currentLanguage = language;
+  localStorage.setItem("28tale_language", language);
+
+  applyLanguage();
+
+  if (typeof db !== "undefined" && db) {
+    loadVideos();
+
+    if (currentUser) {
+      loadMyPayments();
+
+      if (isAdmin) {
+        loadAdminVideos();
+        loadAdminPayments();
+      }
+    }
+  }
 }
-
-if (typeof currentUser !== "undefined" && currentUser) {
-  if (typeof loadMyPayments === "function") {
-    loadMyPayments();
-  }
-
-  if (typeof isAdmin !== "undefined" && isAdmin) {
-    loadAdminVideos();
-    loadAdminPayments();
-  }
-  }
 
 document.addEventListener("change", event => {
   if (event.target.id === "languageSelect") {
@@ -916,7 +924,6 @@ document.addEventListener("change", event => {
   }
 });
 
-applyLanguage();
 
 let db = null;  
 let currentUser = null;  
@@ -924,6 +931,7 @@ let isAdmin = false;
 let editingVideoId = null;
 let editingImageUrl = "";
 let editingPreviewUrl = "";
+  applyLanguage();
   
   
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({  
