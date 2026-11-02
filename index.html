@@ -1147,46 +1147,40 @@ async function loadVideos() {
   });
 }
  
-  
-/* KUTAZAMA VIDEO KWA KUTUMIA RPC YA SUPABASE */  
-async function watchVideo(id, button) {  
-  if (!currentUser) {  
-    tab("authPanel");  
-    say("Ingia au jisajili kwanza.");  
-    return;  
-  }  
-  
-  button.disabled = true;  
-  
-  try {  
-    const { data, error } = await db.rpc(  
-      "consume_28tale_video_token",  
-      { p_video_id: id }  
-    );  
-  
-    if (error) throw error;  
-  
-    const row = Array.isArray(data) ? data[0] : data;  
-  
-    if (!row?.video_url) {  
-      throw new Error("Mfumo haukurudisha link ya video.");  
-    }  
-  
-    $("balance").textContent = row.remaining_tokens;  
-    window.location.href = row.video_url;  
-  } catch (error) {  
-    const message = error.message || "Hitilafu imetokea.";  
-  
-    if (message.toLowerCase().includes("tokeni hazitoshi")) {  
-      tab("buyPanel");  
-      say("Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.");  
-    } else {  
-      showError("Video haijafunguliwa:", error);  
-    }  
-  
-    button.disabled = false;  
-  }  
-}  
+/* KUFUNGUA LINK YA MALIPO YA KILA VIDEO */
+
+async function watchVideo(id, button) {
+  if (!currentUser) {
+    tab("authPanel");
+    say("Ingia au jisajili kwanza.");
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    const { data, error } = await db
+      .from("videos")
+      .select("video_url")
+      .eq("id", id)
+      .eq("is_published", true)
+      .single();
+
+    if (error) throw error;
+
+    const paymentUrl = String(data?.video_url || "").trim();
+
+    if (!paymentUrl.startsWith("https://")) {
+      throw new Error("Link ya malipo haijapatikana.");
+    }
+
+    window.location.href = paymentUrl;
+
+  } catch (error) {
+    showError("Imeshindwa kufungua link ya malipo:", error);
+    button.disabled = false;
+  }
+  }
 
 
 /* ======================================
