@@ -513,10 +513,6 @@ footer {
 
 <div id="adminVideoList"></div>
 
-  </div>    <div class="panel">  
-    <h2>Maombi ya malipo</h2>  
-    <button id="refreshPayments" type="button">Sasisha maombi</button>  
-    <div id="adminPayments"></div>  
   </div>  
 </section>  <footer>28TALE GIRLS 🔞· Tumia huduma kwa uwajibikaji.</footer>  
 </main>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>  
@@ -1397,73 +1393,7 @@ $("loginForm").addEventListener("submit", async (event) => {
   } finally {
     button.disabled = false;
   }
-});
-
-/* KUWASILISHA OMBI LA MALIPO */  
-$("paymentForm").addEventListener("submit", async event => {  
-  event.preventDefault();  
-  
-  if (!currentUser) {  
-    tab("authPanel");  
-    say("Ingia kwanza.");  
-    return;  
-  }  
-  
-  const amount = Number($("amount").value);  
-  
-  if (!Number.isInteger(amount) || amount < 100 || amount % 100 !== 0) {  
-    say("Kiasi kiwe TSh 100 au zaidi na kigawanyike kwa 100.");  
-    return;  
-  }  
-  
-  const button = $("paymentForm").querySelector('button[type="submit"]');  
-  button.disabled = true;  
-  
-  try {  
-    const { error } = await db.rpc("submit_28tale_payment", {  
-      p_payer_phone: $("payerPhone").value.trim(),  
-      p_amount_tzs: amount,  
-      p_transaction_reference: $("reference").value.trim()  
-    });  
-  
-    if (error) throw error;  
-  
-    $("paymentForm").reset();  
-    $("tokenPreview").textContent = "10";  
-  
-    say("Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.", true);  
-    await loadMyPayments();  
-  } catch (error) {  
-    showError("Ombi la malipo limeshindikana:", error);  
-  } finally {  
-    button.disabled = false;  
-  }  
-});  
-  
-/* MAOMBI YA MALIPO YA MTUMIAJI */  
-async function loadMyPayments() {  
-  if (!currentUser || !db) return;  
-  
-  const { data, error } = await db  
-    .from("payment_requests")  
-    .select("id,amount_tzs,requested_tokens,transaction_reference,status,created_at")  
-    .eq("user_id", currentUser.id)  
-    .order("created_at", { ascending: false })  
-    .limit(30);  
-  
-  if (error) {  
-    $("myPayments").innerHTML = `<p>${esc(error.message)}</p>`;  
-    return;  
-  }  
-  
-  $("myPayments").innerHTML = (data || []).map(payment => `  
-    <div class="item">  
-      TSh ${Number(payment.amount_tzs)} · tokeni ${Number(payment.requested_tokens)}<br>  
-      Reference: ${esc(payment.transaction_reference)}<br>  
-      Hali: <b>${esc(payment.status)}</b>  
-    </div>  
-  `).join("") || '<p class="muted">Bado hujatuma ombi.</p>';  
-}  
+}); 
   
 /* KUSAFISHA FOMU YA VIDEO */  
 function clearVideoForm() {  
@@ -1730,78 +1660,7 @@ $("vPreview").value = "";
       await loadAdminVideos();  
     };  
   });  
-}  
-  
-/* MAOMBI YA MALIPO KWA ADMIN */  
-async function loadAdminPayments() {  
-  if (!isAdmin || !db) return;  
-  
-  const { data, error } = await db  
-    .from("payment_requests")  
-    .select("id,user_id,payer_phone,amount_tzs,requested_tokens,transaction_reference,status,created_at")  
-    .order("created_at", { ascending: false })  
-    .limit(100);  
-  
-  if (error) {  
-    $("adminPayments").innerHTML = esc(error.message);  
-    return;  
-  }  
-  
-  $("adminPayments").innerHTML = (data || []).map(payment => `  
-    <div class="item">  
-      <b>TSh ${Number(payment.amount_tzs)} · tokeni ${Number(payment.requested_tokens)}</b><br>  
-      Simu: ${esc(payment.payer_phone)}<br>  
-      Reference: ${esc(payment.transaction_reference)}<br>  
-      Hali: ${esc(payment.status)}<br>  
-      <small>User ID: ${esc(payment.user_id)}</small>  
-  
-      ${payment.status === "pending" ? `  
-        <div class="row" style="margin-top:8px">  
-          <button type="button" data-approve="${esc(payment.id)}">Thibitisha</button>  
-          <button type="button" data-reject="${esc(payment.id)}" style="background:#493348">Kataa</button>  
-        </div>  
-      ` : ""}  
-    </div>  
-  `).join("") || '<p class="muted">Hakuna maombi ya malipo.</p>';  
-  
-  $("adminPayments").querySelectorAll("[data-approve]").forEach(button => {  
-    button.onclick = () => reviewPayment(button.dataset.approve, "approved");  
-  });  
-  
-  $("adminPayments").querySelectorAll("[data-reject]").forEach(button => {  
-    button.onclick = () => reviewPayment(button.dataset.reject, "rejected");  
-  });  
-}  
-  
-async function reviewPayment(id, decision) {  
-  const label = decision === "approved"  
-    ? "kuthibitisha na kuongeza tokeni"  
-    : "kukataa ombi";  
-  
-  if (!confirm("Unataka " + label + "? Hakikisha umepokea pesa kweli.")) {  
-    return;  
-  }  
-  
-  try {  
-    const { data, error } = await db.rpc("admin_review_28tale_payment", {  
-      p_payment_id: id,  
-      p_decision: decision  
-    });  
-  
-    if (error) throw error;  
-  
-    say(data || "Ombi limefanyiwa kazi.", true);  
-  
-    await loadAdminPayments();  
-    await loadMyPayments();  
-    await refreshWallet();  
-  } catch (error) {  
-    showError("Imeshindwa kushughulikia ombi:", error);  
-  }  
-}  
-  
-/* VITufe VYA KUSASISHA */  
-$("refreshPayments").addEventListener("click", loadAdminPayments);  
+}   
   
 /* KUANZISHA SUPABASE */  
 try {  
