@@ -1052,24 +1052,7 @@ async function refreshAuth() {
     showError("Imeshindwa kukagua akaunti:", error);  
   }  
 }  
-  
-/* SALIO LA TOKENI */  
-async function refreshWallet() {  
-  if (!currentUser || !db) return;  
-  
-  const { data, error } = await db  
-    .from("wallets")  
-    .select("tokens")  
-    .eq("user_id", currentUser.id)  
-    .maybeSingle();  
-  
-  if (error) {  
-    showError("Imeshindwa kusoma salio:", error);  
-    return;  
-  }  
-  
-  $("balance").textContent = data?.tokens ?? 0;  
-}  
+   
   
 /* KUPAKIA VIDEO */  
 
@@ -1110,7 +1093,6 @@ async function loadVideos() {
 
         <p>${esc(video.description || "")}</p>
 
-        <p>${tr("cost")} ${Number(video.token_cost)} ${tr("tokens")}</p>
 
         <button
           type="button"
