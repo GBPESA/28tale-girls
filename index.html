@@ -1,1080 +1,790 @@
 <!doctype html>
-<html lang="sw">  
-<head>  
-<meta charset="utf-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1">  
-<meta name="theme-color" content="#21111d">  
-<title>28TALE GIRLS</title>  <style>  
-:root {  
-  --bg:#140d15;  
-  --panel:#211521;  
-  --pink:#e84b91;  
-  --gold:#ffd166;  
-  --text:#fff7fc;  
-  --muted:#c9b8c7;  
-  --line:#493348;  
-}  
-* { box-sizing:border-box; }  
-body {  
-  margin:0;  
-  background:var(--bg);  
-  color:var(--text);  
-  font:16px system-ui,sans-serif;  
-}  
-header {  
-  position:sticky;  
-  top:0;  
-  z-index:5;  
-  background:#1b101d;  
-  border-bottom:1px solid var(--line);  
-  padding:13px 15px;  
-  display:flex;  
-  align-items:center;  
-  gap:12px;  
-}  
-.logo {  
-  width:43px;  
-  height:43px;  
-  border-radius:13px;  
-  background:var(--pink);  
-  display:grid;  
-  place-items:center;  
-  font-weight:900;  
-}  
-h1 { font-size:19px; margin:0; }  
-header small { color:var(--muted); }  
-.balance {  
-  margin-left:auto;  
-  color:var(--gold);  
-  font-weight:800;  
-  white-space:nowrap;  
-}  
-main { max-width:850px; margin:auto; padding:16px; }  
-.tabs {  
-  display:flex;  
-  gap:8px;  
-  overflow-x:auto;  
-  margin-bottom:15px;  
-}  
-button {  
-  border:0;  
-  border-radius:11px;  
-  background:var(--pink);  
-  color:white;  
-  font-weight:800;  
-  padding:12px 14px;  
-  cursor:pointer;  
-}  
-button:disabled { opacity:.55; cursor:wait; }  
-.tab { background:#332337; white-space:nowrap; }  
-.tab.active { background:var(--pink); }  
-.panel {  
-  background:var(--panel);  
-  border:1px solid var(--line);  
-  border-radius:16px;  
-  padding:15px;  
-  margin:12px 0;  
-}  
-h2 { font-size:19px; margin:0 0 12px; }  
-p { line-height:1.5; }  
-.muted, small { color:var(--muted); }  
-input, textarea {  
-  display:block;  
-  width:100%;  
-  padding:12px;  
-  margin:7px 0 12px;  
-  border:1px solid #62465f;  
-  border-radius:10px;  
-  background:#170f19;  
-  color:white;  
-  font:inherit;  
-}  
-input[type="checkbox"] { accent-color:var(--pink); }  
-input[type="file"] { font-size:14px; }  
-label { font-size:14px; color:#ead9e8; }  
-.row { display:flex; gap:9px; }  
-.row>* { flex:1; min-width:0; }  
-  
-.grid {  
-  display:grid;  
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));  
-  gap:13px;  
-  }  
-   
-.card {  
-  overflow:hidden;  
-  background:var(--panel);  
-  border:1px solid var(--line);  
-  border-radius:15px;  
-}  
-.card img {  
-  display:block;  
-  width:100%;  
-  aspect-ratio:4/3;  
-  object-fit:cover;  
-  background:#382438;  
-}  
-.cardbody { padding:11px; }  
-.card h3 {  
-  font-size:16px;  
-  margin:0 0 7px;  
-  overflow-wrap:anywhere;  
-}  
-.card p {  
-  font-size:13px;  
-  color:var(--muted);  
-  margin:0 0 10px;  
-  overflow-wrap:anywhere;  
-}  
-.card button { width:100%; padding:11px 7px; font-size:13px; }  
-.hidden { display:none!important; }  
-.msg {  
-  padding:10px;  
-  border-radius:10px;  
-  background:#342337;  
-  margin:10px 0;  
-  overflow-wrap:anywhere;  
-}  
-.good { color:#a9f3c6; }  
-.bad { color:#ffb5c4; }  
-.item {  
-  border-top:1px solid var(--line);  
-  padding:12px 0;  
-  overflow-wrap:anywhere;  
-}  
-footer {  
-  text-align:center;  
-  padding:25px;  
-  color:var(--muted);  
-  font-size:12px;  
-}  
-@media(min-width:600px) {  
-  main { padding:22px; }  
-  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }  
-}  
-    
-/* LIVE kwenye picha zote za 28TALE GIRLS */  
-#videoList .card {  
-  position: relative;  
-  overflow: hidden;  
-}  
-  
-#videoList .card img {  
-  display: block;  
-  width: 100%;  
-}  
-  
-#videoList .card::before {  
-  content: "🔴 LIVE";  
-  position: absolute;  
-  top: 8px;  
-  left: 8px;  
-  z-index: 5;  
-  background: #e50914;  
-  color: #fff;  
-  padding: 5px 9px;  
-  border-radius: 5px;  
-  font-size: 11px;  
-  font-weight: 800;  
-  letter-spacing: 0.5px;  
-  animation: livePulse 1.3s infinite;  
-  pointer-events: none;  
-}  
-  
-@keyframes livePulse {  
-  0%, 100% { opacity: 1; }  
-  50% { opacity: 0.55; }  
-}  
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#21111d">
+<title>28TALE GIRLS</title>
 
+<meta property="og:type" content="website">
+<meta property="og:title" content="28TALE GIRLS">
+<meta property="og:description" content="Karibu 28TALE GIRLS. Video collection.">
+<meta property="og:url" content="https://gbpesa.github.io/28tale-girls/">
+<meta property="og:image" content="https://raw.githubusercontent.com/GBPESA/28tale-girls/7d9d289562d72c0a2627ab81abb7ca7419bf3fe2/file_0000000006a88211af920e540f69a143.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+:root {
+  --bg:#140d15;
+  --panel:#211521;
+  --pink:#e84b91;
+  --gold:#ffd166;
+  --text:#fff7fc;
+  --muted:#c9b8c7;
+  --line:#493348;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px system-ui,sans-serif;
+}
+header {
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#1b101d;
+  border-bottom:1px solid var(--line);
+  padding:13px 15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo {
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  background:var(--pink);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+h1 { font-size:19px; margin:0; }
+header small { color:var(--muted); }
+main { max-width:850px; margin:auto; padding:16px; }
+.tabs {
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:15px;
+}
+button {
+  border:0;
+  border-radius:11px;
+  background:var(--pink);
+  color:white;
+  font-weight:800;
+  padding:12px 14px;
+  cursor:pointer;
+}
+button:disabled { opacity:.55; cursor:wait; }
+.tab { background:#332337; white-space:nowrap; }
+.tab.active { background:var(--pink); }
+.panel {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+  margin:12px 0;
+}
+h2 { font-size:19px; margin:0 0 12px; }
+p { line-height:1.5; }
+.muted, small { color:var(--muted); }
+input, textarea, select {
+  display:block;
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border:1px solid #62465f;
+  border-radius:10px;
+  background:#170f19;
+  color:white;
+  font:inherit;
+}
+input[type="checkbox"] {
+  accent-color:var(--pink);
+  display:inline;
+  width:auto;
+}
+input[type="file"] { font-size:14px; }
+label { font-size:14px; color:#ead9e8; }
+.row { display:flex; gap:9px; }
+.row>* { flex:1; min-width:0; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:13px;
+}
+.card {
+  position:relative;
+  overflow:hidden;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+}
+.card img {
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#382438;
+}
+.cardbody { padding:11px; }
+.card h3 {
+  font-size:16px;
+  margin:0 0 7px;
+  overflow-wrap:anywhere;
+}
+.card p {
+  font-size:13px;
+  color:var(--muted);
+  margin:0 0 10px;
+  overflow-wrap:anywhere;
+}
+.card button { width:100%; padding:11px 7px; font-size:13px; }
+.hidden { display:none!important; }
+.msg {
+  padding:10px;
+  border-radius:10px;
+  background:#342337;
+  margin:10px 0;
+  overflow-wrap:anywhere;
+}
+.good { color:#a9f3c6; }
+.bad { color:#ffb5c4; }
+.item {
+  border-top:1px solid var(--line);
+  padding:12px 0;
+  overflow-wrap:anywhere;
+}
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:12px;
+}
+#videoList .card::before {
+  content:"🔴 LIVE";
+  position:absolute;
+  top:8px;
+  left:8px;
+  z-index:2;
+  background:#e50914;
+  color:#fff;
+  padding:5px 9px;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:800;
+  animation:livePulse 1.3s infinite;
+  pointer-events:none;
+}
+@keyframes livePulse {
+  0%,100% { opacity:1; }
+  50% { opacity:.55; }
+}
 .wa-channel-mini {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 10px 0 14px;
-  padding: 11px 12px;
-  border: 1px solid #27c96f;
-  border-radius: 12px;
-  background: linear-gradient(110deg, #123c29, #17683d);
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 3px 10px #0003;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  margin:10px 0 14px;
+  padding:11px 12px;
+  border:1px solid #27c96f;
+  border-radius:12px;
+  background:linear-gradient(110deg,#123c29,#17683d);
+  color:#fff;
+  text-decoration:none;
 }
-
 .wa-channel-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #20c866;
-  color: #fff;
-  font-size: 23px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#20c866;
+  font-size:23px;
 }
-
-.wa-channel-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.wa-channel-text strong {
-  display: block;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
+.wa-channel-text { flex:1; min-width:0; }
+.wa-channel-text strong { display:block; font-size:12px; }
 .wa-channel-text small {
-  display: block;
-  margin-top: 3px;
-  font-size: 11px;
-  color: #d5f8e1;
+  display:block;
+  margin-top:3px;
+  font-size:11px;
+  color:#d5f8e1;
 }
-
-.wa-channel-arrow {
-  font-size: 26px;
-  flex-shrink: 0;
-}
-
-.wa-channel-mini:active {
-  transform: scale(.99);
-}
-
-/* Kavideo ndani ya kitufe cha kutazama */
-
+.wa-channel-arrow { font-size:26px; }
 .watch-button {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  width: 100%;
-  min-height: 62px;
-  padding: 6px 8px;
-  text-align: left;
-  overflow: hidden;
-  white-space: normal;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  width:100%;
+  min-height:62px;
+  padding:6px 8px;
+  text-align:left;
+  overflow:hidden;
+  white-space:normal;
 }
-
 .watch-preview {
-  display: block;
-  flex: 0 0 54px;
-  width: 54px;
-  height: 48px;
-  border-radius: 7px;
-  object-fit: cover;
-  background: #382438;
+  display:block;
+  flex:0 0 54px;
+  width:54px;
+  height:48px;
+  border-radius:7px;
+  object-fit:cover;
+  background:#382438;
 }
-
 .watch-preview-placeholder {
-  display: grid;
-  place-items: center;
-  flex: 0 0 54px;
-  width: 54px;
-  height: 48px;
-  border-radius: 7px;
-  background: #493348;
-  color: #ffd166;
-  font-size: 20px;
+  display:grid;
+  place-items:center;
+  flex:0 0 54px;
+  width:54px;
+  height:48px;
+  border-radius:7px;
+  background:#493348;
+  color:#ffd166;
+  font-size:20px;
 }
-
 .watch-button-text {
-  flex: 1;
-  min-width: 0;
-  font-size: 12px;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
+  flex:1;
+  min-width:0;
+  font-size:12px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
 }
-
-/* UJUMBE WA OFA UNAOTEMBEA */
 .referral-marquee {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  background: #190d20;
-  border: 1px solid #e84b91;
-  border-radius: 10px;
-  padding: 12px 0;
-  margin: 10px 0 14px;
-  box-shadow: 0 0 12px #e84b9170;
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  background:#190d20;
+  border:1px solid #e84b91;
+  border-radius:10px;
+  padding:12px 0;
+  margin:10px 0 14px;
+  box-shadow:0 0 12px #e84b9170;
 }
-
 .referral-track {
-  display: inline-flex;
-  align-items: center;
-  width: max-content;
-  white-space: nowrap;
-  animation: referralScroll 27s linear infinite;
+  display:inline-flex;
+  width:max-content;
+  white-space:nowrap;
+  animation:referralScroll 27s linear infinite;
 }
-
 .referral-track span {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: .4px;
-  padding-right: 3px;
-  animation: referralColors 2.5s linear infinite;
-  text-shadow: 0 0 8px currentColor;
+  display:inline-block;
+  font-size:14px;
+  font-weight:900;
+  padding-right:3px;
+  animation:referralColors 2.5s linear infinite;
+  text-shadow:0 0 8px currentColor;
 }
-
 @keyframes referralScroll {
-  from { transform: translateX(100vw); }
-  to { transform: translateX(-100%); }
+  from { transform:translateX(100vw); }
+  to { transform:translateX(-100%); }
 }
-
 @keyframes referralColors {
-  0% { color: #ff4d6d; }
-  20% { color: #ffd166; }
-  40% { color: #35e7ff; }
-  60% { color: #baff39; }
-  80% { color: #d78bff; }
-  100% { color: #ff4d6d; }
+  0% { color:#ff4d6d; }
+  20% { color:#ffd166; }
+  40% { color:#35e7ff; }
+  60% { color:#baff39; }
+  80% { color:#d78bff; }
+  100% { color:#ff4d6d; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .referral-track,
-  .referral-track span {
-    animation: none;
-  }
+@media (prefers-reduced-motion:reduce) {
+  .referral-track,.referral-track span { animation:none; }
 }
+@media(min-width:600px) {
+  main { padding:22px; }
+  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+</style>
+</head>
 
-  
-</style>  <meta property="og:type" content="website">  
-<meta property="og:title" content="HOT VIDEO 👌🔥">  
-<meta property="og:description" content="Karibu 28TALE GIRLS. Tembelea tovuti yetu kupata video za moto za pisi kali.">  
-<meta property="og:url" content="https://gbpesa.github.io/28tale-girls/">  
-<meta property="og:image" content="https://raw.githubusercontent.com/GBPESA/28tale-girls/7d9d289562d72c0a2627ab81abb7ca7419bf3fe2/file_0000000006a88211af920e540f69a143.png">  
-<meta property="og:image:alt" content="28TALE GIRLS">  
-<meta name="twitter:card" content="summary_large_image">  </head>  <body>  
-<header>  
-  <div class="logo">28</div>  
-  <div>  
-    <h1>28TALE GIRLS</h1>  
-    <small>Video collection</small>  
-  </div>  
-  <div style="margin-left:auto;text-align:right">
-  <select id="languageSelect"
-    style="width:auto;margin:0 0 7px;padding:7px;background:#332337;color:white;border:1px solid #62465f;border-radius:8px">
-    <option value="sw">🇹🇿 Kiswahili</option>
-    <option value="en">🇬🇧 English</option>
-    <option value="fr">🇫🇷 Français</option>
-    <option value="ar">🇸🇦 العربية</option>
-  </select>
+<body>
+<header>
+  <div class="logo">28</div>
+  <div>
+    <h1>28TALE GIRLS</h1>
+    <small>Video collection</small>
+  </div>
+  <div style="margin-left:auto">
+    <select id="languageSelect" style="width:auto;margin:0;padding:7px;background:#332337">
+      <option value="sw">🇹🇿 Kiswahili</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="ar">🇸🇦 العربية</option>
+    </select>
+  </div>
+</header>
 
-  </div>  
-</header>  <main>  
-<div id="notice" class="msg">  
-  Karibu 28TALE GIRLS . Jisajili au ingia ili kutumia tokeni.  
-</div>  <nav class="tabs">  
-  <button type="button" class="tab active" data-tab="videosPanel">Video</button>  
-  <button type="button" class="tab" data-tab="authPanel">Ingia / Jisajili</button>  
-  <button type="button" class="tab hidden" id="adminTab" data-tab="adminPanel">Admin</button>  
-  <button type="button" class="tab hidden" id="logoutBtn">Toka</button>  
-  <button type="button" class="tab" id="shareBtn">📤 Shiriki</button>  
-</nav>  <section id="videosPanel">
-  
-<div class="referral-marquee">
-  <div class="referral-track" id="referralTicker"></div>
-</div>
+<main>
+  <div id="notice" class="msg">
+    Karibu 28TALE GIRLS. Jisajili au ingia ili kuendelea.
+  </div>
 
-  
-<!-- WHATSAPP GIRLS NUMBERS -->
-<a
-  href="https://whatsapp.com/channel/0029Vb9Z4fd3LdQYoqR1fg2n"
-  target="_blank"
-  rel="noopener noreferrer"
-  class="wa-channel-mini"
->
-  <span class="wa-channel-icon">✆</span>
-  <span class="wa-channel-text">
-    <strong>WHATSAPP NUMBER ZA MADEMU WA VIDEO CALL</strong>
-    <small>BONYEZA KUWAPIGIA WAKIWA UCHI KITANDANI</small>
-  </span>
-  <span class="wa-channel-arrow">›</span>
-</a>
+  <nav class="tabs">
+    <button type="button" class="tab active" data-tab="videosPanel">Video</button>
+    <button type="button" class="tab" data-tab="authPanel">Ingia / Jisajili</button>
+    <button type="button" class="tab hidden" id="adminTab" data-tab="adminPanel">Admin</button>
+    <button type="button" class="tab hidden" id="logoutBtn">Toka</button>
+    <button type="button" class="tab" id="shareBtn">📤 Shiriki</button>
+  </nav>
 
-  <div class="panel">  
-    <h2>Video zote</h2>  
-    <p class="muted">Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.</p>  
-    <div id="videoList" class="grid"></div>  
-  </div>  
-</section>  
-<section id="authPanel" class="hidden">
-  <div class="panel">
-    <h2>Jisajili 28TALE GIRLS 🔞</h2>
-
-    <form id="signupForm">
-      <label>Jina lako</label>
-      <input
-        id="signupName"
-        required
-        maxlength="80"
-        autocomplete="name"
-        placeholder="Andika jina lako"
-      >
-
-      <label>Nenosiri (angalau herufi 6)</label>
-      <input
-        id="signupPassword"
-        type="password"
-        minlength="6"
-        required
-        autocomplete="new-password"
-        placeholder="Tengeneza nenosiri"
-      >
-
-      <button type="submit">Jisajili</button>
-    </form>
-
-    <div id="newAccountBox" class="msg hidden">
-      <p>Akaunti yako imefunguliwa.</p>
-      <label>Namba yako ya akaunti</label>
-      <h2 id="newAccountNumber"></h2>
-      <button type="button" id="copyAccountBtn">
-        Nakili namba ya akaunti
-      </button>
-      <p class="muted">
-        Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.
-      </p>
+  <section id="videosPanel">
+    <div class="referral-marquee">
+      <div class="referral-track" id="referralTicker"></div>
     </div>
-  </div>
 
-  <div class="panel">
-    <h2>Ingia kwenye akaunti</h2>
+    <a
+      href="https://whatsapp.com/channel/0029Vb9Z4fd3LdQYoqR1fg2n"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="wa-channel-mini"
+    >
+      <span class="wa-channel-icon">✆</span>
+      <span class="wa-channel-text">
+        <strong>WHATSAPP CHANNEL YA 28TALE GIRLS</strong>
+        <small>Bonyeza hapa kujiunga na channel yetu</small>
+      </span>
+      <span class="wa-channel-arrow">›</span>
+    </a>
 
-    <form id="loginForm">
-      <label>Namba ya akaunti</label>
-      <input
-        id="loginAccount"
-        required
-        maxlength="20"
-        autocomplete="username"
-        placeholder="28TG-000001"
-      >
+    <div class="panel">
+      <h2 data-i18n="allVideos">Video zote</h2>
+      <p class="muted" data-i18n="videoInstruction">
+        Chagua video unayotaka. Bonyeza kitufe ili kuendelea kwenye link ya malipo.
+      </p>
+      <div id="videoList" class="grid"></div>
+    </div>
+  </section>
 
-      <label>Nenosiri</label>
-      <input
-        id="loginPassword"
-        type="password"
-        required
-        autocomplete="current-password"
-      >
+  <section id="authPanel" class="hidden">
+    <div class="panel">
+      <h2 data-i18n="registerTitle">Jisajili 28TALE GIRLS</h2>
 
-      <button type="submit">Ingia</button>
-        </form>
-  </div>
-</section>  <section id="adminPanel" class="hidden">  <div class="panel">  
-  <h2>👥 Watumiaji Waliojiunga</h2>  
-  <p>Jumla ya watumiaji: <b id="userCount">0</b></p>  
-  <button type="button" id="refreshUserCount">Sasisha idadi</button>  
-</div>    <div class="panel">  
-    <h2 id="videoFormHeading">Ongeza video</h2>  <form id="videoForm">  
-  <label>Jina la video</label>  
-  <input id="vTitle" required maxlength="180">  
+      <form id="signupForm">
+        <label data-i18n="yourName">Jina lako</label>
+        <input id="signupName" required maxlength="80"
+          autocomplete="name" placeholder="Andika jina lako">
 
-  <label>Chagua picha ya cover kutoka kwenye simu</label>  
-  <input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">  
-  <small>Picha ya JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>
-      
-<label>Chagua kavideo ka kucheza kwa kitufe hiki</label>
-<input
-  id="vPreview"
-  type="file"
-  accept="video/mp4,video/webm"
->
-<small>
-  Chagua MP4 au WebM, hadi MB 15.
-  Kavideo ni tofauti kwa kila video.
-  Ukihariri bila kuchagua faili jipya, cha zamani kitabaki.
-</small>
+        <label data-i18n="password">Nenosiri (angalau herufi 6)</label>
+        <input id="signupPassword" type="password" minlength="6"
+          required autocomplete="new-password">
 
+        <button type="submit" data-i18n="register">Jisajili</button>
+      </form>
 
-  <label>Link ya video ya nje (https://)</label>  
-  <input id="vUrl" type="url" required placeholder="https://...">  
+      <div id="newAccountBox" class="msg hidden">
+        <p data-i18n="accountCreated">Akaunti yako imefunguliwa.</p>
+        <label data-i18n="accountNumber">Namba yako ya akaunti</label>
+        <h2 id="newAccountNumber"></h2>
+        <button type="button" id="copyAccountBtn" data-i18n="copyAccount">
+          Nakili namba ya akaunti
+        </button>
+        <p class="muted" data-i18n="saveAccount">
+          Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.
+        </p>
+      </div>
+    </div>
 
-  <label>Gharama ya tokeni</label>  
-  <input id="vCost" type="number" min="1" step="1" value="1" required>  
+    <div class="panel">
+      <h2 data-i18n="loginTitle">Ingia kwenye akaunti</h2>
+      <form id="loginForm">
+        <label data-i18n="accountNumber">Namba ya akaunti</label>
+        <input id="loginAccount" required maxlength="20"
+          autocomplete="username" placeholder="28TG-000001">
 
-  <label>Maelezo</label>  
-  <textarea id="vDesc" rows="2"></textarea>  
+        <label data-i18n="password">Nenosiri</label>
+        <input id="loginPassword" type="password"
+          required autocomplete="current-password">
 
-  <label>  
-    <input id="vPublished" type="checkbox" checked style="display:inline;width:auto;margin:0 6px 0 0">  
-    Ichapishe sasa  
-  </label>  
+        <button type="submit" data-i18n="login">Ingia</button>
+      </form>
+    </div>
+  </section>
 
-  <br><br>  
-  <button type="submit">Hifadhi video</button>  
-  <button id="cancelEdit" type="button" class="hidden" style="background:#493348;margin-left:6px">  
-    Ghairi kuhariri  
-  </button>  
-</form>  
+  <section id="adminPanel" class="hidden">
+    <div class="panel">
+      <h2 data-i18n="registeredUsers">Watumiaji Waliojiunga</h2>
+      <p><span data-i18n="totalUsers">Jumla ya watumiaji:</span>
+        <b id="userCount">0</b>
+      </p>
+      <button type="button" id="refreshUserCount" data-i18n="refreshCount">
+        Sasisha idadi
+      </button>
+    </div>
 
-<div id="adminVideoList"></div>
+    <div class="panel">
+      <h2 id="videoFormHeading">Ongeza video</h2>
 
-  </div>  
-</section>  <footer>28TALE GIRLS 🔞· Tumia huduma kwa uwajibikaji.</footer>  
-</main>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script>  
-"use strict";  
-  
-/* MIPANGILIO YA SUPABASE */  
-const SUPABASE_URL = "https://gwwphhrppvluwutycrap.supabase.co";  
-const SUPABASE_ANON_KEY = "sb_publishable_Evs4rVusXd_GX_2OsgIkIQ_txwf8ynE";  
-const PAYMENT_NUMBER = "0661683804";  
-  
-/* MUHIMU: HII NDIYO $ ILIYOKUWA IMEKOSA */  
+      <form id="videoForm">
+        <label data-i18n="videoTitle">Jina la video</label>
+        <input id="vTitle" required maxlength="180">
+
+        <label data-i18n="coverImage">Chagua picha ya cover kutoka kwenye simu</label>
+        <input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">
+        <small>JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>
+
+        <label data-i18n="previewVideo">Chagua kavideo ka kucheza kwenye kitufe</label>
+        <input id="vPreview" type="file" accept="video/mp4,video/webm">
+        <small>MP4 au WebM, hadi MB 15. Ukihariri bila kuchagua faili jipya, cha zamani kitabaki.</small>
+
+        <label data-i18n="paymentLink">Link ya malipo ya video hii (https://)</label>
+        <input id="vUrl" type="url" required
+          placeholder="https://Weka-link-ya-malipo-hapa">
+        <small data-i18n="paymentLinkHelp">
+          Kila video ina link yake ya malipo. Baada ya kulipa, link hii itampeleka mtumiaji kwenye video.
+        </small>
+
+        <label data-i18n="description">Maelezo</label>
+        <textarea id="vDesc" rows="2"></textarea>
+
+        <label>
+          <input id="vPublished" type="checkbox" checked>
+          <span data-i18n="publishNow">Ichapishe sasa</span>
+        </label>
+
+        <br><br>
+        <button type="submit" data-i18n="saveVideo">Hifadhi video</button>
+        <button id="cancelEdit" type="button" class="hidden"
+          style="background:#493348;margin-left:6px" data-i18n="cancel">
+          Ghairi kuhariri
+        </button>
+      </form>
+
+      <div id="adminVideoList"></div>
+    </div>
+  </section>
+
+  <footer>28TALE GIRLS · Tumia huduma kwa uwajibikaji.</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
+
+/* MIPANGILIO YA SUPABASE */
+const SUPABASE_URL = "https://gwwphhrppvluwutycrap.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Evs4rVusXd_GX_2OsgIkIQ_txwf8ynE";
+
 const $ = id => document.getElementById(id);
-  /* MFUMO WA LUGHA WA 28TALE GIRLS */
+
+let db = null;
+let currentUser = null;
+let isAdmin = false;
+let editingVideoId = null;
+let editingImageUrl = "";
+let editingPreviewUrl = "";
+let currentLanguage = localStorage.getItem("28tale_language") || "sw";
 
 const translations = {
   sw: {
-    "Video collection":"Video collection",
-    "Tokeni:":"Tokeni:",
-    "Video":"Video",
-    "Ingia / Jisajili":"Ingia / Jisajili",
-    "Nunua tokeni":"Nunua tokeni",
-    "Admin":"Admin",
-    "Toka":"Toka",
-    "📤 Shiriki":"📤 Shiriki",
-    "Video zote":"Video zote",
-    "Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.":"Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.",
-    "Jisajili 28TALE GIRLS 🔞":"Jisajili 28TALE GIRLS 🔞",
-    "Jina lako":"Jina lako",
-    "Nenosiri":"Nenosiri",
-    "Jisajili":"Jisajili",
-    "Ingia kwenye akaunti":"Ingia kwenye akaunti",
-    "Namba ya akaunti":"Namba ya akaunti",
-    "Ingia":"Ingia",
-    "Bei:":"Bei:",
-    "Namba ya malipo:":"Namba ya malipo:",
-    "Maombi yangu":"Maombi yangu",
-    "Hifadhi video":"Hifadhi video",
-    "Ongeza video":"Ongeza video",
-    "Maombi ya malipo":"Maombi ya malipo",
-    "Sasisha maombi":"Sasisha maombi",
-    "Thibitisha":"Thibitisha",
-    "Kataa":"Kataa",
-    "Hariri":"Hariri",
-    "Futa":"Futa",
-    "Chapisha":"Chapisha",
-    "Ficha":"Ficha",
-    "Simamia video":"Simamia video",
-    "Watumiaji Waliojiunga":"Watumiaji Waliojiunga"
+    allVideos:"Video zote",
+    videoInstruction:"Chagua video unayotaka. Bonyeza kitufe ili kuendelea kwenye link ya malipo.",
+    registerTitle:"Jisajili 28TALE GIRLS",
+    yourName:"Jina lako",
+    password:"Nenosiri (angalau herufi 6)",
+    register:"Jisajili",
+    accountCreated:"Akaunti yako imefunguliwa.",
+    accountNumber:"Namba ya akaunti",
+    copyAccount:"Nakili namba ya akaunti",
+    saveAccount:"Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.",
+    loginTitle:"Ingia kwenye akaunti",
+    login:"Ingia",
+    registeredUsers:"Watumiaji Waliojiunga",
+    totalUsers:"Jumla ya watumiaji:",
+    refreshCount:"Sasisha idadi",
+    videoTitle:"Jina la video",
+    coverImage:"Chagua picha ya cover kutoka kwenye simu",
+    previewVideo:"Chagua kavideo ka kucheza kwenye kitufe",
+    paymentLink:"Link ya malipo ya video hii (https://)",
+    paymentLinkHelp:"Kila video ina link yake ya malipo. Baada ya kulipa, link hii itampeleka mtumiaji kwenye video.",
+    description:"Maelezo",
+    publishNow:"Ichapishe sasa",
+    saveVideo:"Hifadhi video",
+    cancel:"Ghairi kuhariri",
+    watch:"ANGALIA / LIPA",
+    noVideos:"Hakuna video zilizowekwa kwa sasa.",
+    edit:"Hariri",
+    delete:"Futa",
+    publish:"Chapisha",
+    hide:"Ficha",
+    published:"Imechapishwa",
+    hidden:"Imefichwa",
+    loading:"Inapakia..."
   },
-
   en: {
-    "Video collection":"Video collection",
-    "Tokeni:":"Tokens:",
-    "Video":"Videos",
-    "Ingia / Jisajili":"Login / Register",
-    "Nunua tokeni":"Buy tokens",
-    "Admin":"Admin",
-    "Toka":"Logout",
-    "📤 Shiriki":"📤 Share",
-    "Video zote":"All videos",
-    "Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.":"Choose a video. The system will verify your tokens before opening it.",
-    "Jisajili 28TALE GIRLS 🔞":"Register for 28TALE GIRLS 🔞",
-    "Jina lako":"Your name",
-    "Nenosiri":"Password",
-    "Jisajili":"Register",
-    "Ingia kwenye akaunti":"Login to your account",
-    "Namba ya akaunti":"Account number",
-    "Ingia":"Login",
-    "Bei:":"Price:",
-    "Namba ya malipo:":"Payment number:",
-    "Maombi yangu":"My payment requests",
-    "Hifadhi video":"Save video",
-    "Ongeza video":"Add video",
-    "Maombi ya malipo":"Payment requests",
-    "Sasisha maombi":"Refresh requests",
-    "Thibitisha":"Approve",
-    "Kataa":"Reject",
-    "Hariri":"Edit",
-    "Futa":"Delete",
-    "Chapisha":"Publish",
-    "Ficha":"Hide",
-    "Simamia video":"Manage videos",
-    "Watumiaji Waliojiunga":"Registered users"
+    allVideos:"All videos",
+    videoInstruction:"Choose a video. Press the button to continue to its payment link.",
+    registerTitle:"Register for 28TALE GIRLS",
+    yourName:"Your name",
+    password:"Password (at least 6 characters)",
+    register:"Register",
+    accountCreated:"Your account has been created.",
+    accountNumber:"Account number",
+    copyAccount:"Copy account number",
+    saveAccount:"Save this number. You will use it with your password to log in.",
+    loginTitle:"Login to your account",
+    login:"Login",
+    registeredUsers:"Registered users",
+    totalUsers:"Total users:",
+    refreshCount:"Refresh count",
+    videoTitle:"Video title",
+    coverImage:"Choose cover image from your phone",
+    previewVideo:"Choose a short preview video for the button",
+    paymentLink:"Payment link for this video (https://)",
+    paymentLinkHelp:"Each video has its own payment link. After payment, this link takes the user to the video.",
+    description:"Description",
+    publishNow:"Publish now",
+    saveVideo:"Save video",
+    cancel:"Cancel editing",
+    watch:"WATCH / PAY",
+    noVideos:"No videos available at the moment.",
+    edit:"Edit",
+    delete:"Delete",
+    publish:"Publish",
+    hide:"Hide",
+    published:"Published",
+    hidden:"Hidden",
+    loading:"Loading..."
   },
-
   fr: {
-    "Video collection":"Collection de vidéos",
-    "Tokeni:":"Jetons :",
-    "Video":"Vidéos",
-    "Ingia / Jisajili":"Connexion / Inscription",
-    "Nunua tokeni":"Acheter des jetons",
-    "Admin":"Admin",
-    "Toka":"Déconnexion",
-    "📤 Shiriki":"📤 Partager",
-    "Video zote":"Toutes les vidéos",
-    "Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.":"Choisissez une vidéo. Le système vérifiera vos jetons avant de l'ouvrir.",
-    "Jisajili 28TALE GIRLS 🔞":"S'inscrire à 28TALE GIRLS 🔞",
-    "Jina lako":"Votre nom",
-    "Nenosiri":"Mot de passe",
-    "Jisajili":"S'inscrire",
-    "Ingia kwenye akaunti":"Se connecter à votre compte",
-    "Namba ya akaunti":"Numéro de compte",
-    "Ingia":"Connexion",
-    "Bei:":"Prix :",
-    "Namba ya malipo:":"Numéro de paiement :",
-    "Maombi yangu":"Mes demandes de paiement",
-    "Hifadhi video":"Enregistrer la vidéo",
-    "Ongeza video":"Ajouter une vidéo",
-    "Maombi ya malipo":"Demandes de paiement",
-    "Sasisha maombi":"Actualiser les demandes",
-    "Thibitisha":"Approuver",
-    "Kataa":"Refuser",
-    "Hariri":"Modifier",
-    "Futa":"Supprimer",
-    "Chapisha":"Publier",
-    "Ficha":"Masquer",
-    "Simamia video":"Gérer les vidéos",
-    "Watumiaji Waliojiunga":"Utilisateurs inscrits"
+    allVideos:"Toutes les vidéos",
+    videoInstruction:"Choisissez une vidéo. Appuyez pour continuer vers son lien de paiement.",
+    registerTitle:"Inscription à 28TALE GIRLS",
+    yourName:"Votre nom",
+    password:"Mot de passe (6 caractères minimum)",
+    register:"S'inscrire",
+    accountCreated:"Votre compte a été créé.",
+    accountNumber:"Numéro de compte",
+    copyAccount:"Copier le numéro de compte",
+    saveAccount:"Enregistrez ce numéro pour vous connecter avec votre mot de passe.",
+    loginTitle:"Connexion à votre compte",
+    login:"Connexion",
+    registeredUsers:"Utilisateurs inscrits",
+    totalUsers:"Nombre total :",
+    refreshCount:"Actualiser",
+    videoTitle:"Titre de la vidéo",
+    coverImage:"Choisir une image de couverture",
+    previewVideo:"Choisir une courte vidéo d'aperçu",
+    paymentLink:"Lien de paiement de cette vidéo (https://)",
+    paymentLinkHelp:"Chaque vidéo possède son propre lien de paiement. Après paiement, ce lien mène à la vidéo.",
+    description:"Description",
+    publishNow:"Publier maintenant",
+    saveVideo:"Enregistrer la vidéo",
+    cancel:"Annuler la modification",
+    watch:"REGARDER / PAYER",
+    noVideos:"Aucune vidéo disponible.",
+    edit:"Modifier",
+    delete:"Supprimer",
+    publish:"Publier",
+    hide:"Masquer",
+    published:"Publié",
+    hidden:"Masqué",
+    loading:"Chargement..."
   },
-
   ar: {
-    "Video collection":"مجموعة الفيديوهات",
-    "Tokeni:":"الرصيد:",
-    "Video":"الفيديوهات",
-    "Ingia / Jisajili":"تسجيل الدخول / إنشاء حساب",
-    "Nunua tokeni":"شراء الرموز",
-    "Admin":"المسؤول",
-    "Toka":"تسجيل الخروج",
-    "📤 Shiriki":"📤 مشاركة",
-    "Video zote":"جميع الفيديوهات",
-    "Chagua video. Mfumo utathibitisha tokeni kabla ya kufungua video.":"اختر فيديو. سيتحقق النظام من رصيدك قبل فتحه.",
-    "Jisajili 28TALE GIRLS 🔞":"إنشاء حساب 28TALE GIRLS 🔞",
-    "Jina lako":"اسمك",
-    "Nenosiri":"كلمة المرور",
-    "Jisajili":"إنشاء حساب",
-    "Ingia kwenye akaunti":"تسجيل الدخول إلى حسابك",
-    "Namba ya akaunti":"رقم الحساب",
-    "Ingia":"دخول",
-    "Bei:":"السعر:",
-    "Namba ya malipo:":"رقم الدفع:",
-    "Maombi yangu":"طلبات الدفع الخاصة بي",
-    "Hifadhi video":"حفظ الفيديو",
-    "Ongeza video":"إضافة فيديو",
-    "Maombi ya malipo":"طلبات الدفع",
-    "Sasisha maombi":"تحديث الطلبات",
-    "Thibitisha":"تأكيد",
-    "Kataa":"رفض",
-    "Hariri":"تعديل",
-    "Futa":"حذف",
-    "Chapisha":"نشر",
-    "Ficha":"إخفاء",
-    "Simamia video":"إدارة الفيديوهات",
-    "Watumiaji Waliojiunga":"المستخدمون المسجلون"
-  }
-};
-
-let currentLanguage = localStorage.getItem("28tale_language") || "sw";
-  const dynamicText = {
-  sw: {
-    watch: "ANGALIA VIDEO",
-    cost: "Gharama:",
-    tokens: "tokeni",
-    insufficient: "Salio lako la tokeni halitoshi.",
-    loading: "Inapakia...",
-    noVideos: "Hakuna video zilizowekwa kwa sasa.",
-    description: "Maelezo",
-    edit: "Hariri",
-    delete: "Futa",
-    published: "Imechapishwa",
-    unpublished: "Haijachapishwa"
-  },
-
-  en: {
-    watch: "WATCH VIDEO",
-    cost: "Cost:",
-    tokens: "tokens",
-    insufficient: "You do not have enough tokens.",
-    loading: "Loading...",
-    noVideos: "No videos available at the moment.",
-    description: "Description",
-    edit: "Edit",
-    delete: "Delete",
-    published: "Published",
-    unpublished: "Unpublished"
-  },
-
-  fr: {
-    watch: "REGARDER LA VIDÉO",
-    cost: "Coût :",
-    tokens: "jetons",
-    insufficient: "Vous n'avez pas assez de jetons.",
-    loading: "Chargement...",
-    noVideos: "Aucune vidéo disponible pour le moment.",
-    description: "Description",
-    edit: "Modifier",
-    delete: "Supprimer",
-    published: "Publié",
-    unpublished: "Non publié"
-  },
-
-  ar: {
-    watch: "مشاهدة الفيديو",
-    cost: "التكلفة:",
-    tokens: "رموز",
-    insufficient: "رصيدك من الرموز غير كافٍ.",
-    loading: "جارٍ التحميل...",
-    noVideos: "لا توجد مقاطع فيديو متاحة حاليًا.",
-    description: "الوصف",
-    edit: "تعديل",
-    delete: "حذف",
-    published: "منشور",
-    unpublished: "غير منشور"
+    allVideos:"جميع الفيديوهات",
+    videoInstruction:"اختر فيديو واضغط للانتقال إلى رابط الدفع الخاص به.",
+    registerTitle:"إنشاء حساب 28TALE GIRLS",
+    yourName:"اسمك",
+    password:"كلمة المرور (6 أحرف على الأقل)",
+    register:"إنشاء حساب",
+    accountCreated:"تم إنشاء حسابك.",
+    accountNumber:"رقم الحساب",
+    copyAccount:"نسخ رقم الحساب",
+    saveAccount:"احفظ هذا الرقم لتسجيل الدخول مع كلمة المرور.",
+    loginTitle:"تسجيل الدخول إلى حسابك",
+    login:"دخول",
+    registeredUsers:"المستخدمون المسجلون",
+    totalUsers:"إجمالي المستخدمين:",
+    refreshCount:"تحديث العدد",
+    videoTitle:"عنوان الفيديو",
+    coverImage:"اختر صورة الغلاف من هاتفك",
+    previewVideo:"اختر فيديو معاينة قصير للزر",
+    paymentLink:"رابط الدفع لهذا الفيديو (https://)",
+    paymentLinkHelp:"لكل فيديو رابط دفع خاص. بعد الدفع، ينقلك الرابط إلى الفيديو.",
+    description:"الوصف",
+    publishNow:"انشر الآن",
+    saveVideo:"حفظ الفيديو",
+    cancel:"إلغاء التعديل",
+    watch:"مشاهدة / دفع",
+    noVideos:"لا توجد فيديوهات حالياً.",
+    edit:"تعديل",
+    delete:"حذف",
+    publish:"نشر",
+    hide:"إخفاء",
+    published:"منشور",
+    hidden:"مخفي",
+    loading:"جارٍ التحميل..."
   }
 };
 
 function tr(key) {
-  return dynamicText[currentLanguage]?.[key]
-    || dynamicText.sw[key]
-    || key;
-  }
+  return translations[currentLanguage]?.[key] ||
+    translations.sw[key] || key;
+}
 
 function applyLanguage() {
-  const language = translations[currentLanguage]
-    ? currentLanguage
-    : "sw";
-
+  const language = translations[currentLanguage] ? currentLanguage : "sw";
   currentLanguage = language;
-
   document.documentElement.lang = language;
-  document.documentElement.dir =
-    language === "ar" ? "rtl" : "ltr";
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  $("languageSelect").value = language;
 
-  document.querySelectorAll("#languageSelect").forEach(select => {
-    select.value = language;
-  });
-
-  document.querySelectorAll("body *").forEach(element => {
-    if (element.children.length === 0) {
-      if (!element.dataset.originalText) {
-        element.dataset.originalText = element.textContent;
-      }
-
-      const original = element.dataset.originalText.trim();
-
-      if (translations[language][original]) {
-        element.textContent = translations[language][original];
-      } else if (translations.sw[original]) {
-        element.textContent = translations.sw[original];
-      }
-    }
-
-    if (element.placeholder) {
-      if (!element.dataset.originalPlaceholder) {
-        element.dataset.originalPlaceholder = element.placeholder;
-      }
-
-      const originalPlaceholder = element.dataset.originalPlaceholder;
-
-      element.placeholder =
-        translations[language][originalPlaceholder] ||
-        originalPlaceholder;
-    }
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    element.textContent = tr(key);
   });
 }
-  /* TAFSIRI ZA UJUMBE WA MFUMO */
-
-const systemMessages = {
-  sw: {
-    "Ingia kwanza.": "Ingia kwanza.",
-    "Ingia au jisajili kwanza.": "Ingia au jisajili kwanza.",
-    "Ingia au jisajili ili kutumia tokeni.": "Ingia au jisajili ili kutumia tokeni.",
-    "Umetoka kwenye akaunti.": "Umetoka kwenye akaunti.",
-    "Supabase haijaunganishwa.": "Supabase haijaunganishwa.",
-    "Andika jina lako.": "Andika jina lako.",
-    "Nenosiri liwe na herufi 6 au zaidi.": "Nenosiri liwe na herufi 6 au zaidi.",
-    "Akaunti imefunguliwa.": "Akaunti imefunguliwa.",
-    "Namba ya akaunti imenakiliwa.": "Namba ya akaunti imenakiliwa.",
-    "Umeingia kwenye akaunti yako.": "Umeingia kwenye akaunti yako.",
-    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.",
-    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.",
-    "Video imefutwa.": "Video imefutwa.",
-    "Video na picha yake vimehifadhiwa!": "Video na picha yake vimehifadhiwa!",
-    "Hali ya video imebadilishwa.": "Hali ya video imebadilishwa."
-  },
-
-  en: {
-    "Ingia kwanza.": "Please log in first.",
-    "Ingia au jisajili kwanza.": "Please log in or register first.",
-    "Ingia au jisajili ili kutumia tokeni.": "Log in or register to use tokens.",
-    "Umetoka kwenye akaunti.": "You have logged out.",
-    "Supabase haijaunganishwa.": "Supabase is not connected.",
-    "Andika jina lako.": "Enter your name.",
-    "Nenosiri liwe na herufi 6 au zaidi.": "Password must contain at least 6 characters.",
-    "Akaunti imefunguliwa.": "Your account has been created.",
-    "Namba ya akaunti imenakiliwa.": "Account number copied.",
-    "Umeingia kwenye akaunti yako.": "You have logged in successfully.",
-    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "You do not have enough tokens. Buy tokens and wait for admin approval.",
-    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Your payment request has been submitted. Tokens will be added after admin approval.",
-    "Video imefutwa.": "Video deleted.",
-    "Video na picha yake vimehifadhiwa!": "Video and its cover image have been saved!",
-    "Hali ya video imebadilishwa.": "Video status updated."
-  },
-
-  fr: {
-    "Ingia kwanza.": "Veuillez d'abord vous connecter.",
-    "Ingia au jisajili kwanza.": "Veuillez vous connecter ou créer un compte.",
-    "Ingia au jisajili ili kutumia tokeni.": "Connectez-vous ou inscrivez-vous pour utiliser les jetons.",
-    "Umetoka kwenye akaunti.": "Vous êtes déconnecté.",
-    "Supabase haijaunganishwa.": "Supabase n'est pas connecté.",
-    "Andika jina lako.": "Saisissez votre nom.",
-    "Nenosiri liwe na herufi 6 au zaidi.": "Le mot de passe doit contenir au moins 6 caractères.",
-    "Akaunti imefunguliwa.": "Votre compte a été créé.",
-    "Namba ya akaunti imenakiliwa.": "Numéro de compte copié.",
-    "Umeingia kwenye akaunti yako.": "Vous êtes connecté.",
-    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "Vous n'avez pas assez de jetons. Achetez-en et attendez la validation de l'administrateur.",
-    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "Votre demande de paiement a été envoyée. Les jetons seront ajoutés après validation.",
-    "Video imefutwa.": "Vidéo supprimée.",
-    "Video na picha yake vimehifadhiwa!": "La vidéo et sa couverture ont été enregistrées !",
-    "Hali ya video imebadilishwa.": "Le statut de la vidéo a été modifié."
-  },
-
-  ar: {
-    "Ingia kwanza.": "يرجى تسجيل الدخول أولاً.",
-    "Ingia au jisajili kwanza.": "يرجى تسجيل الدخول أو إنشاء حساب أولاً.",
-    "Ingia au jisajili ili kutumia tokeni.": "سجّل الدخول أو أنشئ حساباً لاستخدام الرموز.",
-    "Umetoka kwenye akaunti.": "تم تسجيل خروجك.",
-    "Supabase haijaunganishwa.": "لم يتم الاتصال بـ Supabase.",
-    "Andika jina lako.": "أدخل اسمك.",
-    "Nenosiri liwe na herufi 6 au zaidi.": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
-    "Akaunti imefunguliwa.": "تم إنشاء حسابك.",
-    "Namba ya akaunti imenakiliwa.": "تم نسخ رقم الحساب.",
-    "Umeingia kwenye akaunti yako.": "تم تسجيل الدخول بنجاح.",
-    "Tokeni hazitoshi. Nunua tokeni na subiri admin athibitishe.": "رصيدك من الرموز غير كافٍ. اشترِ رموزاً وانتظر موافقة المسؤول.",
-    "Ombi limetumwa. Tokeni zitaongezwa baada ya admin kuthibitisha.": "تم إرسال طلب الدفع. ستتم إضافة الرموز بعد موافقة المسؤول.",
-    "Video imefutwa.": "تم حذف الفيديو.",
-    "Video na picha yake vimehifadhiwa!": "تم حفظ الفيديو وصورة الغلاف!",
-    "Hali ya video imebadilishwa.": "تم تحديث حالة الفيديو."
-  }
-};
-
-function translateSystemMessage(message) {
-  const language = currentLanguage || "sw";
-  return systemMessages[language]?.[message] || message;
-  }
-
 
 function setLanguage(language) {
-  if (!translations[language]) {
-    language = "sw";
-  }
-
-  currentLanguage = language;
-  localStorage.setItem("28tale_language", language);
-
+  currentLanguage = translations[language] ? language : "sw";
+  localStorage.setItem("28tale_language", currentLanguage);
   applyLanguage();
-
-  if (typeof db !== "undefined" && db) {
-    loadVideos();
-
-    if (currentUser) {
-      loadMyPayments();
-
-      if (isAdmin) {
-        loadAdminVideos();
-        loadAdminPayments();
-      }
-    }
-  }
+  loadVideos();
+  if (isAdmin) loadAdminVideos();
 }
 
-document.addEventListener("change", event => {
-  if (event.target.id === "languageSelect") {
-    setLanguage(event.target.value);
-  }
+$("languageSelect").addEventListener("change", event => {
+  setLanguage(event.target.value);
 });
 
-
-let db = null;  
-let currentUser = null;  
-let isAdmin = false;  
-let editingVideoId = null;
-let editingImageUrl = "";
-let editingPreviewUrl = "";
-  applyLanguage();
-  
-  
-const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({  
-  "&":"&amp;",  
-  "<":"&lt;",  
-  ">":"&gt;",  
-  '"':"&quot;",  
-  "'":"&#39;"  
-}[char]));  
-
-/* HERUFI ZA UJUMBE WA OFA */
-const referralOfferText =
-  "🎁 🔥 SHARE LINK YAKO KWA MARAFIKI 10 AU VIKUNDI 10 — WAKIJIUNGA NA KUJISAJILI KUPITIA LINK YAKO, UNAPATA TOKENI 10 BURE! 🔥 🎁";
-
-const ticker = $("referralTicker");
-
-if (ticker) {
-  const fullText = referralOfferText + "     ✨     ";
-  ticker.innerHTML = Array.from(fullText).map((char, index) =>
-    `<span style="animation-delay:${(index % 12) * 0.12}s">${esc(char)}</span>`
-  ).join("");
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[char]));
 }
-  
+
 function say(message, good = false) {
   $("notice").innerHTML =
-    `<span class="${good ? "good" : "bad"}">${esc(translateSystemMessage(message))}</span>`;
-  }  
-  
-function configured() {  
-  return !!db &&  
-    SUPABASE_URL.startsWith("https://") &&  
-    !SUPABASE_URL.includes("WEKA_") &&  
-    !SUPABASE_ANON_KEY.includes("WEKA_");  
-}  
-  
-function showError(prefix, error) {  
-  console.error(prefix, error);  
-  say(prefix + (error?.message ? " " + error.message : ""));  
-}  
-  
-/* KUBADILISHA SEHEMU ZA TOVUTI */  
-function tab(id) {  
-  const target = $(id);  
-  
-  if (!target) {  
-    say("Sehemu haijapatikana: " + id);  
-    return;  
-  }  
-  
-  document.querySelectorAll("main section").forEach(section => {  
-    section.classList.add("hidden");  
-  });  
-  
-  target.classList.remove("hidden");  
-  
-  document.querySelectorAll(".tabs [data-tab]").forEach(button => {  
-    button.classList.toggle("active", button.dataset.tab === id);  
-  });  
-}  
-  
-$("payNumber").textContent = PAYMENT_NUMBER;  
-  
-/* VITufe VYA MENYU */  
-document.querySelector(".tabs").addEventListener("click", async event => {  
-  const button = event.target.closest("button[data-tab]");  
-  if (!button) return;  
-  
-  tab(button.dataset.tab);  
-  
-  if (button.dataset.tab === "buyPanel" && currentUser) {  
-    await loadMyPayments();  
-  }  
-  
-    
-if (button.dataset.tab === "adminPanel" && isAdmin) {  
-  await loadAdminVideos();  
-  await loadAdminPayments();  
-  await loadUserCount();  
-}  
-   
-});  
-  
-$("logoutBtn").addEventListener("click", async () => {  
-  if (!db) return;  
-  
-  const { error } = await db.auth.signOut();  
-  if (error) {  
-    showError("Imeshindwa kutoka:", error);  
-    return;  
-  }  
-  
-  currentUser = null;  
-  isAdmin = false;  
-  $("balance").textContent = "0";  
-  $("adminTab").classList.add("hidden");  
-  $("logoutBtn").classList.add("hidden");  
-  
-  tab("videosPanel");  
-  say("Umetoka kwenye akaunti.", true);  
-  await loadVideos();  
-});  
-  
-/* HESABU YA TOKENI KWENYE FOMU YA MALIPO */  
-$("amount").addEventListener("input", () => {  
-  const amount = Number($("amount").value) || 0;  
-  $("tokenPreview").textContent =  
-    Math.max(0, Math.floor(amount / 100));  
-});  
-  
-/* KUANGALIA AKAUNTI ILIYOINGIA */  
-async function refreshAuth() {  
-  if (!configured()) {  
-    say("Supabase haijaunganishwa. Kagua URL na public key.");  
-    return;  
-  }  
-  
-  try {  
-    const { data, error } = await db.auth.getSession();  
-    if (error) throw error;  
-  
-    currentUser = data.session?.user || null;  
-    isAdmin = false;  
-  
-    $("logoutBtn").classList.toggle("hidden", !currentUser);  
-    $("adminTab").classList.add("hidden");  
-  
-    if (currentUser) {  
-      const { data: profile, error: profileError } = await db  
-        .from("profiles")  
-        .select("role,full_name,account_number") 
-        .eq("id", currentUser.id)  
-        .maybeSingle();  
-  
-      if (profileError) throw profileError;  
-  
-      isAdmin = profile?.role === "admin";  
-      $("adminTab").classList.toggle("hidden", !isAdmin);  
-  
-      await refreshWallet();  
-  
-      say(  
-        "Umeingia kama " +  
-        (profile?.full_name || profile?.account_number || "Mtumiaji"),  
-        true  
-      );  
-    } else {  
-      $("balance").textContent = "0";  
-      say("Ingia au jisajili ili kutumia tokeni.");  
-    }  
-  
-    await loadVideos();  
-  } catch (error) {  
-    showError("Imeshindwa kukagua akaunti:", error);  
-  }  
-}  
-   
-  
-/* KUPAKIA VIDEO */  
+    `<span class="${good ? "good" : "bad"}">${esc(message)}</span>`;
+}
 
+function configured() {
+  return !!db &&
+    SUPABASE_URL.startsWith("https://") &&
+    !!SUPABASE_ANON_KEY;
+}
+
+function showError(prefix, error) {
+  console.error(prefix, error);
+  say(prefix + (error?.message ? " " + error.message : ""));
+}
+
+function tab(id) {
+  const target = $(id);
+  if (!target) {
+    say("Sehemu haijapatikana: " + id);
+    return;
+  }
+
+  document.querySelectorAll("main section").forEach(section => {
+    section.classList.add("hidden");
+  });
+
+  target.classList.remove("hidden");
+
+  document.querySelectorAll(".tabs [data-tab]").forEach(button => {
+    button.classList.toggle("active", button.dataset.tab === id);
+  });
+
+  if (id === "adminPanel" && isAdmin) {
+    loadAdminVideos();
+    loadUserCount();
+  }
+}
+
+/* UJUMBE UNAOTEMBEA */
+const referralText =
+  "✨ KARIBU 28TALE GIRLS — SHIRIKI LINK YAKO NA MARAFIKI WAKUJIUNGE! ✨";
+
+$("referralTicker").innerHTML =
+  Array.from(referralText).map((char, index) =>
+    `<span style="animation-delay:${(index % 12) * 0.12}s">${esc(char)}</span>`
+  ).join("");
+
+/* MENYU */
+document.querySelector(".tabs").addEventListener("click", event => {
+  const button = event.target.closest("button[data-tab]");
+  if (button) tab(button.dataset.tab);
+});
+
+/* KUTOKA */
+$("logoutBtn").addEventListener("click", async () => {
+  if (!db) return;
+
+  const { error } = await db.auth.signOut();
+  if (error) {
+    showError("Imeshindwa kutoka:", error);
+    return;
+  }
+
+  currentUser = null;
+  isAdmin = false;
+  $("adminTab").classList.add("hidden");
+  $("logoutBtn").classList.add("hidden");
+
+  tab("videosPanel");
+  say("Umetoka kwenye akaunti.", true);
+  await loadVideos();
+});
+
+/* KUANGALIA AKAUNTI */
+async function refreshAuth() {
+  if (!configured()) {
+    say("Supabase haijaunganishwa. Kagua URL na public key.");
+    return;
+  }
+
+  try {
+    const { data, error } = await db.auth.getSession();
+    if (error) throw error;
+
+    currentUser = data.session?.user || null;
+    isAdmin = false;
+
+    $("logoutBtn").classList.toggle("hidden", !currentUser);
+    $("adminTab").classList.add("hidden");
+
+    if (currentUser) {
+      const { data: profile, error: profileError } = await db
+        .from("profiles")
+        .select("role,full_name,account_number")
+        .eq("id", currentUser.id)
+        .maybeSingle();
+
+      if (profileError) throw profileError;
+
+      isAdmin = profile?.role === "admin";
+      $("adminTab").classList.toggle("hidden", !isAdmin);
+
+      say(
+        "Umeingia kama " +
+        (profile?.full_name || profile?.account_number || "Mtumiaji"),
+        true
+      );
+    } else {
+      say("Karibu 28TALE GIRLS. Ingia au jisajili ili kuendelea.");
+    }
+
+    await loadVideos();
+  } catch (error) {
+    showError("Imeshindwa kukagua akaunti:", error);
+  }
+}
+
+/* KUPAKIA VIDEO ZILIZOCHAPISHWA */
 async function loadVideos() {
   if (!configured()) return;
 
+  $("videoList").innerHTML =
+    `<p class="muted">${esc(tr("loading"))}</p>`;
+
   const { data, error } = await db
     .from("videos")
-    .select("id,title,image_url,video_url,description,token_cost,is_published,preview_video_url")
+    .select("id,title,image_url,video_url,description,is_published,preview_video_url")
+    .eq("is_published", true)
     .order("created_at", { ascending: false });
 
   if (error) {
     $("videoList").innerHTML =
-      `<p class="muted">${esc(
-        currentLanguage === "en"
-          ? "Failed to load videos. Check Supabase settings."
-          : currentLanguage === "fr"
-          ? "Échec du chargement des vidéos. Vérifiez les paramètres Supabase."
-          : currentLanguage === "ar"
-          ? "تعذر تحميل الفيديوهات. تحقق من إعدادات Supabase."
-          : "Imeshindwa kupakia video. Kagua mipangilio ya Supabase."
-      )}</p>`;
+      `<p class="muted">${esc(error.message)}</p>`;
     console.error("loadVideos:", error);
     return;
   }
@@ -1090,9 +800,9 @@ async function loadVideos() {
 
       <div class="cardbody">
         <h3>${esc(video.title)}</h3>
-
-        <p>${esc(video.description || "")}</p>
-
+        ${video.description
+          ? `<p>${esc(video.description)}</p>`
+          : ""}
 
         <button
           type="button"
@@ -1113,14 +823,11 @@ async function loadVideos() {
                 ></video>`
               : `<span class="watch-preview-placeholder">▶</span>`
           }
-
-          <span class="watch-button-text">
-            ▶ ${tr("watch")} · ${Number(video.token_cost)} ${tr("tokens")}
-          </span>
+          <span class="watch-button-text">▶ ${esc(tr("watch"))}</span>
         </button>
       </div>
     </article>
-  `).join("") || `<p class="muted">${tr("noVideos")}</p>`;
+  `).join("") || `<p class="muted">${esc(tr("noVideos"))}</p>`;
 
   $("videoList").querySelectorAll("[data-watch]").forEach(button => {
     button.addEventListener("click", () => {
@@ -1128,9 +835,8 @@ async function loadVideos() {
     });
   });
 }
- 
-/* KUFUNGUA LINK YA MALIPO YA KILA VIDEO */
 
+/* KUFUNGUA LINK YA MALIPO YA KILA VIDEO */
 async function watchVideo(id, button) {
   if (!currentUser) {
     tab("authPanel");
@@ -1152,39 +858,40 @@ async function watchVideo(id, button) {
 
     const paymentUrl = String(data?.video_url || "").trim();
 
-    if (!paymentUrl.startsWith("https://")) {
-      throw new Error("Link ya malipo haijapatikana.");
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(paymentUrl);
+    } catch {
+      throw new Error("Link ya malipo si sahihi.");
     }
 
-    window.location.href = paymentUrl;
+    if (parsedUrl.protocol !== "https:") {
+      throw new Error("Link ya malipo lazima ianze na https://");
+    }
+
+    window.location.href = parsedUrl.href;
 
   } catch (error) {
     showError("Imeshindwa kufungua link ya malipo:", error);
     button.disabled = false;
   }
-  }
+}
 
-
-/* ======================================
-   28TALE GIRLS: USAJILI NA LOGIN
-====================================== */
-
+/* NAMBA YA AKAUNTI KUWA EMAIL YA LOGIN */
 function accountLoginEmail(accountNumber) {
   const account = String(accountNumber || "")
     .trim()
     .toUpperCase();
 
   if (!/^28TG-\d{6}$/.test(account)) {
-    throw new Error(
-      "Namba ya akaunti si sahihi. Mfano: 28TG-000003"
-    );
+    throw new Error("Namba ya akaunti si sahihi. Mfano: 28TG-000003");
   }
 
   return account.toLowerCase() + "@login.28tale.invalid";
 }
 
 /* USAJILI */
-$("signupForm").addEventListener("submit", async (event) => {
+$("signupForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   if (!configured()) {
@@ -1192,9 +899,7 @@ $("signupForm").addEventListener("submit", async (event) => {
     return;
   }
 
-  const button = $("signupForm").querySelector(
-    'button[type="submit"]'
-  );
+  const button = $("signupForm").querySelector('button[type="submit"]');
   button.disabled = true;
 
   try {
@@ -1229,14 +934,10 @@ $("signupForm").addEventListener("submit", async (event) => {
     });
 
     if (error) throw error;
-    if (!data.user) {
-      throw new Error("Supabase haikuunda akaunti.");
-    }
+    if (!data.user) throw new Error("Supabase haikuunda akaunti.");
 
     if (!data.session) {
-      say(
-        "Akaunti imeundwa lakini session haipo. Usijisajili tena; kagua Authentication."
-      );
+      say("Akaunti imeundwa lakini session haipo. Kagua mipangilio ya Authentication.");
       return;
     }
 
@@ -1250,33 +951,8 @@ $("signupForm").addEventListener("submit", async (event) => {
 
     if (profile?.account_number !== accountNumber) {
       await db.auth.signOut();
-      throw new Error(
-        "Namba ya akaunti haikulingana na profile."
-      );
+      throw new Error("Namba ya akaunti haikulingana na profile.");
     }
-    
-let referralNotice = "";
-
-const inviterAccount = new URLSearchParams(
-  window.location.search
-).get("ref");
-
-if (inviterAccount) {
-  const { data: referralMessage, error: referralError } =
-    await db.rpc("register_28tale_referral", {
-      p_inviter_account_number: inviterAccount
-    });
-
-  if (referralError) {
-    console.error("Referral error:", referralError);
-    referralNotice =
-      " Akaunti imefunguliwa, lakini mwaliko haukuhesabiwa: " +
-      referralError.message;
-  } else {
-    referralNotice = " " + String(referralMessage || "");
-  }
-}
-
 
     $("newAccountNumber").textContent = accountNumber;
     $("newAccountBox").classList.remove("hidden");
@@ -1284,13 +960,8 @@ if (inviterAccount) {
     await refreshAuth();
     tab("videosPanel");
 
-    say(
-  "Usajili umefanikiwa. Namba yako ni " +
-  accountNumber +
-  "." +
-  referralNotice,
-  true
-);
+    say("Usajili umefanikiwa. Namba yako ni " + accountNumber + ".", true);
+
   } catch (error) {
     showError("Usajili umeshindikana:", error);
   } finally {
@@ -1312,7 +983,7 @@ $("copyAccountBtn").addEventListener("click", async () => {
 });
 
 /* LOGIN */
-$("loginForm").addEventListener("submit", async (event) => {
+$("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   if (!configured()) {
@@ -1320,17 +991,12 @@ $("loginForm").addEventListener("submit", async (event) => {
     return;
   }
 
-  const button = $("loginForm").querySelector(
-    'button[type="submit"]'
-  );
+  const button = $("loginForm").querySelector('button[type="submit"]');
   button.disabled = true;
 
   try {
-    const accountNumber = $("loginAccount").value
-      .trim()
-      .toUpperCase();
+    const accountNumber = $("loginAccount").value.trim().toUpperCase();
     const password = $("loginPassword").value;
-
     const loginEmail = accountLoginEmail(accountNumber);
 
     const { data, error } = await db.auth.signInWithPassword({
@@ -1339,9 +1005,7 @@ $("loginForm").addEventListener("submit", async (event) => {
     });
 
     if (error) throw error;
-    if (!data.user) {
-      throw new Error("Imeshindwa kuthibitisha akaunti.");
-    }
+    if (!data.user) throw new Error("Imeshindwa kuthibitisha akaunti.");
 
     const { data: profile, error: profileError } = await db
       .from("profiles")
@@ -1351,314 +1015,309 @@ $("loginForm").addEventListener("submit", async (event) => {
 
     if (profileError) throw profileError;
 
-    if (
-      !profile ||
-      profile.account_number !== accountNumber
-    ) {
+    if (!profile || profile.account_number !== accountNumber) {
       await db.auth.signOut();
-      throw new Error(
-        "Namba ya akaunti haijalingana na profile."
-      );
+      throw new Error("Namba ya akaunti haijalingana na profile.");
     }
 
     await refreshAuth();
     tab("videosPanel");
     say("Umeingia kwenye akaunti yako.", true);
+
   } catch (error) {
     showError("Kuingia kumeshindikana:", error);
   } finally {
     button.disabled = false;
   }
-}); 
-  
-/* KUSAFISHA FOMU YA VIDEO */  
-function clearVideoForm() {  
+});
+
+/* KUSAFISHA FOMU YA VIDEO */
+function clearVideoForm() {
   editingVideoId = null;
-editingImageUrl = "";
-editingPreviewUrl = "";
-$("vPreview").value = "";  
-  
-  $("videoForm").reset();  
-  $("vCost").value = 1;  
-  $("vPublished").checked = true;  
-  $("cancelEdit").classList.add("hidden");  
-  $("videoFormHeading").textContent = "Ongeza video";  
-  $("vImage").required = true;  
-}  
-  
-$("cancelEdit").addEventListener("click", clearVideoForm);  
-  
-/* KUONGEZA AU KUHARIRI VIDEO NA PICHA */  
-$("videoForm").addEventListener("submit", async event => {  
-  event.preventDefault();  
-  
-  if (!isAdmin || !currentUser) {  
-    say("Admin pekee ndiye anayeweza kuweka video.");  
-    return;  
-  }  
-  
-  
-const file = $("vImage").files[0];
-const previewFile = $("vPreview").files[0];
-const title = $("vTitle").value.trim();
-const videoUrl = $("vUrl").value.trim();  
-const cost = Number($("vCost").value);  
-  
-  if (!title || !videoUrl.startsWith("https://")) {  
-    say("Weka jina na link sahihi ya video inayoanza na https://");  
-    return;  
-  }  
-  
-  if (!Number.isInteger(cost) || cost < 1) {  
-    say("Gharama ya tokeni lazima iwe angalau 1.");  
-    return;  
-  }  
-  
-  if (file && !["image/jpeg", "image/png", "image/webp"].includes(file.type)) {  
-    say("Chagua picha ya JPG, PNG au WebP pekee.");  
-    return;  
-  }  
-  
-  if (file && file.size > 5 * 1024 * 1024) {  
-    say("Picha imezidi MB 5. Chagua picha ndogo.");  
-    return;  
-  }  
- 
-if (
-  previewFile &&
-  !["video/mp4", "video/webm"].includes(previewFile.type)
-) {
-  say("Chagua kavideo cha MP4 au WebM pekee.");
-  return;
+  editingImageUrl = "";
+  editingPreviewUrl = "";
+
+  $("videoForm").reset();
+  $("vPreview").value = "";
+  $("vPublished").checked = true;
+  $("cancelEdit").classList.add("hidden");
+  $("videoFormHeading").textContent = "Ongeza video";
+  $("vImage").required = true;
 }
 
-if (previewFile && previewFile.size > 15 * 1024 * 1024) {
-  say("Kavideo kamezidi MB 15. Chagua faili fupi zaidi.");
-  return;
-}
- 
-  if (!file && !editingVideoId) {  
-    say("Tafadhali chagua picha ya cover kutoka kwenye simu.");  
-    return;  
-  }  
-  
-  const button = $("videoForm").querySelector('button[type="submit"]');  
-  button.disabled = true;  
-  
-  try {  
+$("cancelEdit").addEventListener("click", clearVideoForm);
+
+/* KUONGEZA AU KUHARIRI VIDEO */
+$("videoForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!isAdmin || !currentUser) {
+    say("Admin pekee ndiye anayeweza kuweka video.");
+    return;
+  }
+
+  const file = $("vImage").files[0];
+  const previewFile = $("vPreview").files[0];
+  const title = $("vTitle").value.trim();
+  const paymentUrl = $("vUrl").value.trim();
+
+  if (!title) {
+    say("Weka jina la video.");
+    return;
+  }
+
+  let parsedPaymentUrl;
+  try {
+    parsedPaymentUrl = new URL(paymentUrl);
+  } catch {
+    say("Weka link sahihi ya malipo inayoanza na https://");
+    return;
+  }
+
+  if (parsedPaymentUrl.protocol !== "https:") {
+    say("Link ya malipo lazima ianze na https://");
+    return;
+  }
+
+  if (file && !["image/jpeg","image/png","image/webp"].includes(file.type)) {
+    say("Chagua picha ya JPG, PNG au WebP pekee.");
+    return;
+  }
+
+  if (file && file.size > 5 * 1024 * 1024) {
+    say("Picha imezidi MB 5. Chagua picha ndogo.");
+    return;
+  }
+
+  if (previewFile && !["video/mp4","video/webm"].includes(previewFile.type)) {
+    say("Chagua kavideo cha MP4 au WebM pekee.");
+    return;
+  }
+
+  if (previewFile && previewFile.size > 15 * 1024 * 1024) {
+    say("Kavideo kamezidi MB 15. Chagua faili fupi zaidi.");
+    return;
+  }
+
+  if (!file && !editingVideoId) {
+    say("Tafadhali chagua picha ya cover kutoka kwenye simu.");
+    return;
+  }
+
+  const button = $("videoForm").querySelector('button[type="submit"]');
+  button.disabled = true;
+
+  try {
     let imageUrl = editingImageUrl;
-let previewVideoUrl = editingPreviewUrl;  
-  
-    if (file) {  
-      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");  
-      const path = currentUser.id + "/" + Date.now() + "_" + safeName;  
-  
-      const { error: uploadError } = await db.storage  
-        .from("video-covers")  
-        .upload(path, file, {  
-          cacheControl: "3600",  
-          upsert: false,  
-          contentType: file.type  
-        });  
-  
-      if (uploadError) throw uploadError;  
-  
-      const { data: publicData } = db.storage  
-        .from("video-covers")  
-        .getPublicUrl(path);  
-  
-      imageUrl = publicData.publicUrl;  
-    }  
-  
-if (previewFile) {
-  const safePreviewName = previewFile.name.replace(
-    /[^a-zA-Z0-9._-]/g,
-    "_"
-  );
+    let previewVideoUrl = editingPreviewUrl;
 
-  const previewPath =
-    currentUser.id +
-    "/" +
-    Date.now() +
-    "_" +
-    safePreviewName;
+    if (file) {
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = currentUser.id + "/" + Date.now() + "_" + safeName;
 
-  const { error: previewUploadError } = await db.storage
-    .from("video-button-previews")
-    .upload(previewPath, previewFile, {
-      cacheControl: "3600",
-      upsert: false,
-      contentType: previewFile.type
-    });
+      const { error: uploadError } = await db.storage
+        .from("video-covers")
+        .upload(path, file, {
+          cacheControl:"3600",
+          upsert:false,
+          contentType:file.type
+        });
 
-  if (previewUploadError) throw previewUploadError;
+      if (uploadError) throw uploadError;
 
-  const { data: previewPublicData } = db.storage
-    .from("video-button-previews")
-    .getPublicUrl(previewPath);
+      const { data: publicData } = db.storage
+        .from("video-covers")
+        .getPublicUrl(path);
 
-  previewVideoUrl = previewPublicData.publicUrl;
+      imageUrl = publicData.publicUrl;
+    }
+
+    if (previewFile) {
+      const safePreviewName = previewFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const previewPath =
+        currentUser.id + "/" + Date.now() + "_" + safePreviewName;
+
+      const { error: previewUploadError } = await db.storage
+        .from("video-button-previews")
+        .upload(previewPath, previewFile, {
+          cacheControl:"3600",
+          upsert:false,
+          contentType:previewFile.type
+        });
+
+      if (previewUploadError) throw previewUploadError;
+
+      const { data: previewPublicData } = db.storage
+        .from("video-button-previews")
+        .getPublicUrl(previewPath);
+
+      previewVideoUrl = previewPublicData.publicUrl;
+    }
+
+    if (!imageUrl) {
+      throw new Error("Picha haijapatikana. Chagua picha tena.");
+    }
+
+    const video = {
+      title,
+      image_url:imageUrl,
+      video_url:parsedPaymentUrl.href,
+      preview_video_url:previewVideoUrl || null,
+      description:$("vDesc").value.trim(),
+      is_published:$("vPublished").checked,
+      updated_at:new Date().toISOString()
+    };
+
+    /*
+      token_cost imeachwa kama legacy column kwa usalama wa
+      schema ya zamani. Haionekani wala haitumiki na mfumo huu.
+      Ikiwa column yako ni NOT NULL bila default, thamani 1
+      inahifadhi uoanifu wa insert ya zamani.
+    */
+    video.token_cost = 1;
+
+    const result = editingVideoId
+      ? await db.from("videos").update(video).eq("id", editingVideoId)
+      : await db.from("videos").insert(video);
+
+    if (result.error) throw result.error;
+
+    say("Video imehifadhiwa kikamilifu.", true);
+    clearVideoForm();
+    await loadVideos();
+    await loadAdminVideos();
+
+  } catch (error) {
+    showError("Imeshindikana kuhifadhi video:", error);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+/* ORODHA YA VIDEO ZA ADMIN */
+async function loadAdminVideos() {
+  if (!isAdmin || !db) return;
+
+  const { data, error } = await db
+    .from("videos")
+    .select("*")
+    .order("created_at", { ascending:false });
+
+  if (error) {
+    $("adminVideoList").innerHTML = esc(error.message);
+    return;
+  }
+
+  $("adminVideoList").innerHTML =
+    '<h2 style="margin-top:22px">Simamia video</h2>' +
+    (data || []).map(video => `
+      <div class="item">
+        <b>${esc(video.title)}</b><br>
+        <small>${video.is_published ? esc(tr("published")) : esc(tr("hidden"))}</small>
+
+        <div class="row" style="margin-top:8px">
+          <button type="button" data-edit="${esc(video.id)}">${esc(tr("edit"))}</button>
+          <button type="button" data-pub="${esc(video.id)}"
+            data-value="${!video.is_published}" style="background:#493348">
+            ${video.is_published ? esc(tr("hide")) : esc(tr("publish"))}
+          </button>
+          <button type="button" data-del="${esc(video.id)}"
+            style="background:#9d304f">${esc(tr("delete"))}</button>
+        </div>
+      </div>
+    `).join("") || '<p class="muted">Hakuna video.</p>';
+
+  $("adminVideoList").querySelectorAll("[data-edit]").forEach(button => {
+    button.onclick = () => {
+      const video = data.find(item => String(item.id) === button.dataset.edit);
+      if (!video) return;
+
+      editingVideoId = video.id;
+      editingImageUrl = video.image_url || "";
+      editingPreviewUrl = video.preview_video_url || "";
+
+      $("vPreview").value = "";
+      $("vTitle").value = video.title || "";
+      $("vImage").value = "";
+      $("vImage").required = false;
+      $("vUrl").value = video.video_url || "";
+      $("vDesc").value = video.description || "";
+      $("vPublished").checked = !!video.is_published;
+      $("videoFormHeading").textContent = "Hariri video";
+      $("cancelEdit").classList.remove("hidden");
+
+      window.scrollTo({ top:0, behavior:"smooth" });
+      say("Unahariri video. Unaweza kuchagua picha mpya au kubakiza ya zamani.", true);
+    };
+  });
+
+  $("adminVideoList").querySelectorAll("[data-pub]").forEach(button => {
+    button.onclick = async () => {
+      const { error:updateError } = await db
+        .from("videos")
+        .update({
+          is_published:button.dataset.value === "true",
+          updated_at:new Date().toISOString()
+        })
+        .eq("id", button.dataset.pub);
+
+      if (updateError) {
+        showError("Imeshindwa kubadilisha hali ya video:", updateError);
+        return;
+      }
+
+      say("Hali ya video imebadilishwa.", true);
+      await loadVideos();
+      await loadAdminVideos();
+    };
+  });
+
+  $("adminVideoList").querySelectorAll("[data-del]").forEach(button => {
+    button.onclick = async () => {
+      if (!confirm("Una uhakika unataka kufuta video hii?")) return;
+
+      const { error:deleteError } = await db
+        .from("videos")
+        .delete()
+        .eq("id", button.dataset.del);
+
+      if (deleteError) {
+        showError("Imeshindwa kufuta video:", deleteError);
+        return;
+      }
+
+      say("Video imefutwa.", true);
+
+      if (String(editingVideoId) === button.dataset.del) {
+        clearVideoForm();
+      }
+
+      await loadVideos();
+      await loadAdminVideos();
+    };
+  });
 }
 
-    if (!imageUrl) {  
-      throw new Error("Picha haijapatikana. Chagua picha tena.");  
-    }  
-  
-    
-const video = {
-  title,
-  image_url: imageUrl,
-  video_url: videoUrl,
-  preview_video_url: previewVideoUrl || null,
-  description: $("vDesc").value.trim(),
-  is_published: $("vPublished").checked,
-  updated_at: new Date().toISOString()
-};
-  
-  
-    const result = editingVideoId  
-      ? await db.from("videos").update(video).eq("id", editingVideoId)  
-      : await db.from("videos").insert(video);  
-  
-    if (result.error) throw result.error;  
-  
-    say("Video na picha yake vimehifadhiwa!", true);  
-  
-    clearVideoForm();  
-    await loadVideos();  
-    await loadAdminVideos();  
-  } catch (error) {  
-    showError("Imeshindikana kuhifadhi video:", error);  
-  } finally {  
-    button.disabled = false;  
-  }  
-});  
-  
-/* ORODHA YA VIDEO ZA ADMIN */  
-async function loadAdminVideos() {  
-  if (!isAdmin || !db) return;  
-  
-  const { data, error } = await db  
-    .from("videos")  
-    .select("*")  
-    .order("created_at", { ascending: false });  
-  
-  if (error) {  
-    $("adminVideoList").innerHTML = esc(error.message);  
-    return;  
-  }  
-  
-  $("adminVideoList").innerHTML =  
-    '<h2 style="margin-top:22px">Simamia video</h2>' +  
-    (data || []).map(video => `  
-      <div class="item">  
-        <b>${esc(video.title)}</b><br>  
-        <small>${Number(video.token_cost)} tokeni · ${video.is_published ? "Imechapishwa" : "Imefichwa"}</small>  
-  
-        <div class="row" style="margin-top:8px">  
-          <button type="button" data-edit="${esc(video.id)}">Hariri</button>  
-          <button type="button" data-pub="${esc(video.id)}" data-value="${!video.is_published}" style="background:#493348">  
-            ${video.is_published ? "Ficha" : "Chapisha"}  
-          </button>  
-          <button type="button" data-del="${esc(video.id)}" style="background:#9d304f">Futa</button>  
-        </div>  
-      </div>  
-    `).join("") || '<p class="muted">Hakuna video.</p>';  
-  
-  $("adminVideoList").querySelectorAll("[data-edit]").forEach(button => {  
-    button.onclick = () => {  
-      const video = data.find(item => String(item.id) === button.dataset.edit);  
-      if (!video) return;  
-  
-      editingVideoId = video.id;
-editingImageUrl = video.image_url || "";
-editingPreviewUrl = video.preview_video_url || "";
-$("vPreview").value = ""; 
-  
-      $("vTitle").value = video.title || "";  
-      $("vImage").value = "";  
-      $("vImage").required = false;  
-      $("vUrl").value = video.video_url || "";   
-      $("vDesc").value = video.description || "";  
-      $("vPublished").checked = !!video.is_published;  
-      $("videoFormHeading").textContent = "Hariri video";  
-      $("cancelEdit").classList.remove("hidden");  
-  
-      window.scrollTo({ top: 0, behavior: "smooth" });  
-      say("Unahariri video. Unaweza kuchagua picha mpya au kubakiza ya zamani.", true);  
-    };  
-  });  
-  
-  $("adminVideoList").querySelectorAll("[data-pub]").forEach(button => {  
-    button.onclick = async () => {  
-      const { error: updateError } = await db  
-        .from("videos")  
-        .update({  
-          is_published: button.dataset.value === "true",  
-          updated_at: new Date().toISOString()  
-        })  
-        .eq("id", button.dataset.pub);  
-  
-      if (updateError) {  
-        showError("Imeshindwa kubadilisha hali ya video:", updateError);  
-        return;  
-      }  
-  
-      say("Hali ya video imebadilishwa.", true);  
-      await loadVideos();  
-      await loadAdminVideos();  
-    };  
-  });  
-  
-  $("adminVideoList").querySelectorAll("[data-del]").forEach(button => {  
-    button.onclick = async () => {  
-      if (!confirm("Una uhakika unataka kufuta video hii?")) return;  
-  
-      const { error: deleteError } = await db  
-        .from("videos")  
-        .delete()  
-        .eq("id", button.dataset.del);  
-  
-      if (deleteError) {  
-        showError("Imeshindwa kufuta video:", deleteError);  
-        return;  
-      }  
-  
-      say("Video imefutwa.", true);  
-  
-      if (String(editingVideoId) === button.dataset.del) {  
-        clearVideoForm();  
-      }  
-  
-      await loadVideos();  
-      await loadAdminVideos();  
-    };  
-  });  
-}   
-  
-/* KUANZISHA SUPABASE */  
-try {  
-  if (  
-    window.supabase &&  
-    SUPABASE_URL.startsWith("https://") &&  
-    SUPABASE_ANON_KEY  
-  ) {  
-    db = window.supabase.createClient(  
-      SUPABASE_URL,  
-      SUPABASE_ANON_KEY  
-    );  
-  
-    refreshAuth();  
-  } else {  
-    $("videoList").innerHTML =  
-      '<p class="muted">Supabase haijaunganishwa. Kagua URL, key na intaneti.</p>';  
-  
-    say("Imeshindwa kuanzisha Supabase. Hakikisha intaneti ipo na public key ni sahihi.");  
-  }  
-} catch (error) {  
-  showError("Hitilafu wakati wa kuanzisha tovuti:", error);  
-}  
-    
+/* IDADI YA WATUMIAJI */
+async function loadUserCount() {
+  if (!isAdmin || !db) return;
+
+  $("userCount").textContent = "...";
+
+  const { count, error } = await db
+    .from("profiles")
+    .select("id", { count:"exact", head:true });
+
+  if (error) {
+    $("userCount").textContent = "Imeshindikana";
+    console.error("loadUserCount:", error);
+    return;
+  }
+
+  $("userCount").textContent = count ?? 0;
+}
+
+$("refreshUserCount").addEventListener("click", loadUserCount);
 
 /* KUSHIRIKI LINK BINAFSI YA MWALIKO */
 $("shareBtn").addEventListener("click", async () => {
@@ -1669,7 +1328,7 @@ $("shareBtn").addEventListener("click", async () => {
   }
 
   try {
-    const { data: profile, error } = await db
+    const { data:profile, error } = await db
       .from("profiles")
       .select("account_number")
       .eq("id", currentUser.id)
@@ -1685,9 +1344,9 @@ $("shareBtn").addEventListener("click", async () => {
     inviteUrl.searchParams.set("ref", profile.account_number);
 
     const shareData = {
-      title: "28TALE GIRLS",
-      text: "Karibu 28TALE GIRLS! Jiunge kupitia link yangu. Nikifikisha watu 10 waliojisajili kupitia link hii, napata zawadi ya tokeni 10!",
-      url: inviteUrl.toString()
+      title:"28TALE GIRLS",
+      text:"Karibu 28TALE GIRLS! Jiunge kupitia link yangu.",
+      url:inviteUrl.toString()
     };
 
     if (navigator.share) {
@@ -1702,29 +1361,22 @@ $("shareBtn").addEventListener("click", async () => {
     }
   }
 });
- 
-  
-/* KUHESABU WATUMIAJI KWA ADMIN */  
-async function loadUserCount() {  
-  if (!isAdmin || !db) return;  
-  
-  const countElement = $("userCount");  
-  countElement.textContent = "...";  
-  
-  const { count, error } = await db  
-    .from("profiles")  
-    .select("id", { count: "exact", head: true });  
-  
-  if (error) {  
-    countElement.textContent = "Imeshindikana";  
-    console.error("loadUserCount:", error);  
-    return;  
-  }  
-  
-  countElement.textContent = count ?? 0;  
-}  
-  
-$("refreshUserCount").addEventListener("click", loadUserCount);  
-  
-</script>  </body>  
+
+/* KUANZISHA SUPABASE */
+applyLanguage();
+
+try {
+  if (window.supabase && SUPABASE_URL.startsWith("https://") && SUPABASE_ANON_KEY) {
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    refreshAuth();
+  } else {
+    $("videoList").innerHTML =
+      '<p class="muted">Supabase haijaunganishwa. Kagua URL, key na intaneti.</p>';
+    say("Imeshindwa kuanzisha Supabase. Kagua mipangilio.");
+  }
+} catch (error) {
+  showError("Hitilafu wakati wa kuanzisha tovuti:", error);
+}
+</script>
+</body>
   </html>
