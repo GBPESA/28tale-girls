@@ -362,9 +362,6 @@ footer {
     <option value="ar">🇸🇦 العربية</option>
   </select>
 
-  <div class="balance">
-    Tokeni: <span id="balance">0</span>
-  </div>
   </div>  
 </header>  <main>  
 <div id="notice" class="msg">  
@@ -372,7 +369,6 @@ footer {
 </div>  <nav class="tabs">  
   <button type="button" class="tab active" data-tab="videosPanel">Video</button>  
   <button type="button" class="tab" data-tab="authPanel">Ingia / Jisajili</button>  
-  <button type="button" class="tab" data-tab="buyPanel">Nunua tokeni</button>  
   <button type="button" class="tab hidden" id="adminTab" data-tab="adminPanel">Admin</button>  
   <button type="button" class="tab hidden" id="logoutBtn">Toka</button>  
   <button type="button" class="tab" id="shareBtn">📤 Shiriki</button>  
@@ -468,33 +464,6 @@ footer {
       <button type="submit">Ingia</button>
         </form>
   </div>
-</section>  <section id="buyPanel" class="hidden">  
-  <div class="panel">  
-    <h2>Nunua tokeni</h2>  
-    <p>Bei: <b>TSh 100 = tokeni 1</b>. Tuma malipo kwa namba iliyo hapa chini. Admin atakagua muamala kabla ya kuongeza tokeni.</p>  <div class="msg">  
-  <b>Namba ya malipo:</b>  
-  <span id="payNumber">0661683804</span>  
-</div>  
-
-<form id="paymentForm">  
-  <label>Namba ya simu iliyotuma pesa</label>  
-  <input id="payerPhone" required inputmode="tel" placeholder="07XXXXXXXX">  
-
-  <label>Kiasi ulichotuma (TSh)</label>  
-  <input id="amount" type="number" min="100" step="100" required placeholder="1000">  
-
-  <p class="muted">Tokeni utakazopata: <b id="tokenPreview">10</b></p>  
-
-  <label>Namba ya muamala / reference</label>  
-  <input id="reference" required maxlength="100" placeholder="Weka reference ya muamala">  
-
-  <button type="submit">Tuma ombi la malipo</button>  
-</form>  
-
-<h2 style="margin-top:22px">Maombi yangu</h2>  
-<div id="myPayments"></div>
-
-  </div>  
 </section>  <section id="adminPanel" class="hidden">  <div class="panel">  
   <h2>👥 Watumiaji Waliojiunga</h2>  
   <p>Jumla ya watumiaji: <b id="userCount">0</b></p>  
