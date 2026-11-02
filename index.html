@@ -1534,7 +1534,6 @@ const video = {
   image_url: imageUrl,
   video_url: videoUrl,
   preview_video_url: previewVideoUrl || null,
-  token_cost: cost,
   description: $("vDesc").value.trim(),
   is_published: $("vPublished").checked,
   updated_at: new Date().toISOString()
@@ -1603,8 +1602,7 @@ $("vPreview").value = "";
       $("vTitle").value = video.title || "";  
       $("vImage").value = "";  
       $("vImage").required = false;  
-      $("vUrl").value = video.video_url || "";  
-      $("vCost").value = video.token_cost;  
+      $("vUrl").value = video.video_url || "";   
       $("vDesc").value = video.description || "";  
       $("vPublished").checked = !!video.is_published;  
       $("videoFormHeading").textContent = "Hariri video";  
