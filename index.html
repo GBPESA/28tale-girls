@@ -3,1074 +3,1014 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#21111d">
+<meta name="theme-color" content="#090b12">
 <title>28TALE GIRLS</title>
-<meta property="og:type" content="website">
+<meta name="description" content="Karibu 28TALE GIRLS — video collection.">
 <meta property="og:title" content="28TALE GIRLS">
-<meta property="og:description" content="Karibu 28TALE GIRLS. Video collection.">
+<meta property="og:description" content="Video collection">
 <meta property="og:url" content="https://gbpesa.github.io/28tale-girls/">
-<meta name="twitter:card" content="summary_large_image">
 
 <style>
-:root{--bg:#140d15;--panel:#211521;--pink:#e84b91;--gold:#ffd166;--text:#fff7fc;--muted:#c9b8c7;--line:#493348}
+:root{
+ --bg:#090b12;
+ --surface:#111622;
+ --surface2:#171e2d;
+ --pink:#ff397d;
+ --purple:#8b5cf6;
+ --gold:#ffd166;
+ --text:#f8f8fc;
+ --muted:#9ca6b8;
+ --line:#273044;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,sans-serif}
-header{position:sticky;top:0;z-index:5;background:#1b101d;border-bottom:1px solid var(--line);padding:13px 15px;display:flex;align-items:center;gap:12px}
-.logo{width:43px;height:43px;border-radius:13px;background:var(--pink);display:grid;place-items:center;font-weight:900}
-h1{font-size:19px;margin:0}
-header small{color:var(--muted)}
-main{max-width:900px;margin:auto;padding:16px}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:15px}
-button{border:0;border-radius:11px;background:var(--pink);color:white;font-weight:800;padding:12px 14px;cursor:pointer}
-button:disabled{opacity:.55;cursor:wait}
-.tab{background:#332337;white-space:nowrap}
-.tab.active{background:var(--pink)}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;margin:12px 0}
-h2{font-size:19px;margin:0 0 12px}
-p{line-height:1.5}
-.muted,small{color:var(--muted)}
-input,textarea,select{display:block;width:100%;padding:12px;margin:7px 0 12px;border:1px solid #62465f;border-radius:10px;background:#170f19;color:white;font:inherit}
-input[type=checkbox]{accent-color:var(--pink);display:inline;width:auto}
-input[type=file]{font-size:14px}
-label{font-size:14px;color:#ead9e8}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font:15px system-ui,-apple-system,Segoe UI,sans-serif;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0}
+header{
+ position:sticky;top:0;z-index:20;
+ display:flex;align-items:center;gap:12px;
+ padding:12px 16px;
+ background:#090b12ed;backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--line);
+}
+.logo{
+ width:45px;height:45px;flex-shrink:0;
+ display:grid;place-items:center;border-radius:15px;
+ background:linear-gradient(135deg,var(--pink),var(--purple));
+ font-size:21px;font-weight:1000;
+ box-shadow:0 5px 20px #ff397d55;
+}
+.brand h1{font-size:17px;margin:0;font-weight:950;letter-spacing:.5px}
+.brand small{font-size:11px;color:var(--muted)}
+.header-right{margin-left:auto}
+#languageSelect{
+ width:auto;margin:0;padding:8px;border-radius:10px;
+ background:var(--surface2);color:white;border:1px solid var(--line);
+}
+main{max-width:1100px;margin:auto;padding:15px}
+.hero{
+ position:relative;overflow:hidden;border-radius:22px;
+ padding:25px 20px;margin:10px 0 18px;
+ background:linear-gradient(120deg,#39142f,#19152c 58%,#10213a);
+ border:1px solid #55304f;
+}
+.hero:after{
+ content:"28";position:absolute;right:5px;bottom:-40px;
+ font-size:150px;font-weight:1000;color:#ffffff0a;
+ pointer-events:none;
+}
+.hero h2{font-size:26px;line-height:1.15;margin:0 0 9px}
+.hero p{max-width:480px;color:#e1d6e8;font-size:13px;line-height:1.6}
+.hero-label{
+ display:inline-block;background:#ff397d24;color:#ff8bb3;
+ padding:6px 10px;border-radius:30px;font-size:10px;
+ font-weight:900;letter-spacing:1px;margin-bottom:12px;
+}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap}
+.primary-btn,.secondary-btn{
+ padding:12px 16px;border-radius:12px;font-weight:850;
+}
+.primary-btn{background:linear-gradient(100deg,var(--pink),#bd3cff);color:white}
+.secondary-btn{background:#ffffff12;color:white;border:1px solid #ffffff25}
+.tabs{
+ display:flex;gap:8px;overflow-x:auto;padding:3px 0 13px;
+ scrollbar-width:none;
+}
+.tab{
+ white-space:nowrap;padding:10px 15px;border-radius:30px;
+ color:#c3c9d5;background:var(--surface2);font-weight:800;
+ border:1px solid var(--line);
+}
+.tab.active{background:var(--pink);color:white;border-color:var(--pink)}
+.section-heading{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:10px;margin:20px 0 13px;
+}
+.section-heading h2{font-size:19px;margin:0;font-weight:950}
+.section-heading small{color:var(--muted)}
+.grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;
+}
+.card{
+ min-width:0;overflow:hidden;position:relative;
+ background:var(--surface);border:1px solid var(--line);
+ border-radius:16px;transition:transform .2s,border-color .2s;
+}
+.card:active{transform:scale(.985)}
+.card-image-wrap{position:relative;background:#202638}
+.card-image{
+ display:block;width:100%;aspect-ratio:3/4;
+ object-fit:cover;background:#202638;
+}
+.live-badge{
+ position:absolute;top:9px;left:9px;
+ padding:5px 8px;border-radius:6px;
+ background:#e50914;color:white;font-size:10px;
+ font-weight:950;letter-spacing:.5px;
+}
+.card-content{padding:11px}
+.card h3{font-size:14px;line-height:1.35;margin:0 0 7px;overflow-wrap:anywhere}
+.card-description{
+ color:var(--muted);font-size:11px;line-height:1.5;
+ margin:0 0 10px;overflow-wrap:anywhere;
+}
+.watch-btn{
+ display:block;width:100%;padding:11px 8px;
+ border-radius:10px;color:white;font-weight:950;
+ font-size:12px;background:linear-gradient(100deg,var(--pink),#a63bdb);
+}
+.empty-state{
+ grid-column:1/-1;text-align:center;padding:30px 15px;
+ color:var(--muted);background:var(--surface);
+ border:1px dashed var(--line);border-radius:15px;
+}
+.panel{
+ background:var(--surface);border:1px solid var(--line);
+ border-radius:17px;padding:15px;margin:13px 0;
+}
+.panel h2{font-size:18px;margin:0 0 13px}
+label{display:block;color:#d9dce5;font-size:13px;margin:12px 0 5px}
+input,textarea,select{
+ display:block;width:100%;padding:12px;
+ border:1px solid #354057;border-radius:10px;
+ background:#0d121d;color:white;outline:none;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--pink)}
+input[type=file]{font-size:12px}
+input[type=checkbox]{display:inline;width:auto;accent-color:var(--pink)}
+.form-btn{
+ padding:12px 16px;border-radius:10px;
+ background:var(--pink);color:white;font-weight:900;
+}
+.form-btn:disabled{opacity:.5}
+.small-note{font-size:11px;color:var(--muted);line-height:1.5}
 .row{display:flex;gap:9px}
 .row>*{flex:1;min-width:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
-.card{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:15px}
-.card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#382438}
-.cardbody{padding:11px}
-.card h3{font-size:16px;margin:0 0 7px;overflow-wrap:anywhere}
-.card p{font-size:13px;color:var(--muted);margin:0 0 10px;overflow-wrap:anywhere}
-.card button{width:100%;padding:11px 7px;font-size:13px}
 .hidden{display:none!important}
-.msg{padding:10px;border-radius:10px;background:#342337;margin:10px 0;overflow-wrap:anywhere}
-.good{color:#a9f3c6}
-.bad{color:#ffb5c4}
-.item{border-top:1px solid var(--line);padding:12px 0;overflow-wrap:anywhere}
-footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
-#videoList .card::before{content:"🔴 LIVE";position:absolute;top:8px;left:8px;z-index:2;background:#e50914;color:#fff;padding:5px 9px;border-radius:5px;font-size:11px;font-weight:800;animation:livePulse 1.3s infinite;pointer-events:none}
-@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.55}}
-.wa-channel-mini{display:flex;align-items:center;gap:10px;width:100%;margin:10px 0 14px;padding:11px 12px;border:1px solid #27c96f;border-radius:12px;background:linear-gradient(110deg,#123c29,#17683d);color:#fff;text-decoration:none}
-.wa-channel-icon{display:grid;place-items:center;flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#20c866;font-size:23px}
-.wa-channel-text{flex:1;min-width:0}
-.wa-channel-text strong{display:block;font-size:12px}
-.wa-channel-text small{display:block;margin-top:3px;font-size:11px;color:#d5f8e1}
-.wa-channel-arrow{font-size:26px}
-.watch-button{display:flex;align-items:center;justify-content:flex-start;gap:8px;width:100%;min-height:62px;padding:6px 8px;text-align:left;overflow:hidden;white-space:normal}
-.watch-preview{display:block;flex:0 0 54px;width:54px;height:48px;border-radius:7px;object-fit:cover;background:#382438}
-.watch-preview-placeholder{display:grid;place-items:center;flex:0 0 54px;width:54px;height:48px;border-radius:7px;background:#493348;color:#ffd166;font-size:20px}
-.watch-button-text{flex:1;min-width:0;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
-.referral-marquee{width:100%;overflow:hidden;white-space:nowrap;background:#190d20;border:1px solid #e84b91;border-radius:10px;padding:12px 0;margin:10px 0 14px;box-shadow:0 0 12px #e84b9170}
-.referral-track{display:inline-flex;width:max-content;white-space:nowrap;animation:referralScroll 27s linear infinite}
-.referral-track span{display:inline-block;font-size:14px;font-weight:900;padding-right:3px;animation:referralColors 2.5s linear infinite;text-shadow:0 0 8px currentColor}
-@keyframes referralScroll{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-@keyframes referralColors{0%{color:#ff4d6d}20%{color:#ffd166}40%{color:#35e7ff}60%{color:#baff39}80%{color:#d78bff}100%{color:#ff4d6d}}
-@media(prefers-reduced-motion:reduce){.referral-track,.referral-track span{animation:none}}
-/* OFFERS */
-.offer-section{margin:14px 0 20px}
-.offer-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.offer-heading h2{margin:0}
-.offer-card{position:relative;overflow:hidden;border:1px solid #a64a7d;border-radius:16px;background:linear-gradient(145deg,#32182f,#211521);box-shadow:0 5px 18px #0005}
-.offer-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#382438}
+.msg{
+ padding:11px 13px;margin:12px 0;border-radius:11px;
+ background:#20283a;color:#e7eaf2;font-size:13px;
+ overflow-wrap:anywhere;
+}
+.good{color:#8ff0b5}
+.bad{color:#ff9bad}
+.item{padding:13px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.item-actions{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+.item-actions button{
+ flex:1;padding:9px 7px;border-radius:9px;
+ color:white;background:#34405a;font-weight:800;font-size:12px;
+}
+.danger{background:#a83250!important}
+.offer-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.offer-card{
+ overflow:hidden;border-radius:16px;
+ background:var(--surface);border:1px solid #65405e;
+}
+.offer-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .offer-content{padding:13px}
-.offer-tag{display:inline-block;background:#e84b91;color:white;font-size:11px;font-weight:900;padding:5px 9px;border-radius:20px;margin-bottom:8px}
-.offer-title{font-size:17px;font-weight:900;margin:0 0 6px;overflow-wrap:anywhere}
-.offer-description{font-size:13px;color:var(--muted);margin:0 0 10px}
-.offer-prices{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:9px 0 12px}
-.old-price{text-decoration:line-through;color:#c9b8c7;font-size:13px}
-.new-price{font-size:22px;font-weight:900;color:var(--gold)}
-.offer-expiry{font-size:11px;color:#ffd9e9;margin:7px 0}
-.offer-button{width:100%;background:linear-gradient(90deg,#e84b91,#b52e75);font-size:14px}
-.offer-admin-image{width:90px;height:65px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:8px}
-hr{border:0;border-top:1px solid var(--line);margin:16px 0}
-@media(min-width:600px){main{padding:22px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.offer-tag{
+ display:inline-block;padding:5px 9px;border-radius:20px;
+ background:#ff397d24;color:#ff8bb3;font-size:10px;font-weight:950;
+}
+.offer-title{font-size:16px;font-weight:950;margin:8px 0}
+.offer-description{font-size:12px;color:var(--muted)}
+.offer-price{font-size:21px;color:var(--gold);font-weight:950}
+.old-price{text-decoration:line-through;color:var(--muted);font-size:12px}
+.offer-button{width:100%;padding:11px;border-radius:10px;background:#8b5cf6;color:white;font-weight:900}
+.wa-link{
+ display:flex;align-items:center;gap:11px;text-decoration:none;
+ color:white;background:#103b2b;border:1px solid #1b8956;
+ border-radius:13px;padding:11px;margin:15px 0;
+}
+.wa-icon{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#20c866;font-size:21px}
+.wa-link small{display:block;color:#b9e9cc;font-size:11px}
+.ticker{
+ overflow:hidden;white-space:nowrap;padding:11px;margin:12px 0;
+ border:1px solid #71345b;border-radius:10px;
+ background:#211329;color:#ff9bc0;font-size:12px;font-weight:900;
+}
+.ticker span{display:inline-block;padding-left:100%;animation:scroll 22s linear infinite}
+@keyframes scroll{to{transform:translateX(-100%)}}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:30px 10px}
+@media(min-width:650px){
+ main{padding:22px}
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+ .offer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .hero{padding:35px}
+ .hero h2{font-size:34px}
+}
 </style>
 </head>
-
 <body>
+  
 <header>
-  <div class="logo">28</div>
-  <div>
-    <h1>28TALE GIRLS</h1>
-    <small>Video collection</small>
-  </div>
-  <div style="margin-left:auto">
-    <select id="languageSelect" style="width:auto;margin:0;padding:7px;background:#332337">
-      <option value="sw">🇹🇿 Kiswahili</option>
-      <option value="en">🇬🇧 English</option>
-      <option value="fr">🇫🇷 Français</option>
-      <option value="ar">🇸🇦 العربية</option>
-    </select>
-  </div>
+ <div class="logo">28</div>
+ <div class="brand">
+  <h1>28TALE GIRLS</h1>
+  <small>PREMIUM VIDEO COLLECTION</small>
+ </div>
+ <div class="header-right">
+  <select id="languageSelect">
+   <option value="sw">🇹🇿 SW</option>
+   <option value="en">🇬🇧 EN</option>
+   <option value="fr">🇫🇷 FR</option>
+  </select>
+ </div>
 </header>
 
 <main>
-  <div id="notice" class="msg">Karibu 28TALE GIRLS. Jisajili au ingia ili kuendelea.</div>
+ <div id="notice" class="msg">Karibu 28TALE GIRLS.</div>
 
-  <nav class="tabs">
-    <button type="button" class="tab active" data-tab="videosPanel">Video</button>
-    <button type="button" class="tab" data-tab="authPanel">Ingia / Jisajili</button>
-    <button type="button" class="tab hidden" id="adminTab" data-tab="adminPanel">Admin</button>
-    <button type="button" class="tab hidden" id="logoutBtn">Toka</button>
-    <button type="button" class="tab" id="shareBtn">📤 Shiriki</button>
-  </nav>
+ <section id="videosPanel">
+  <div class="hero">
+   <span class="hero-label">WELCOME TO 28TALE GIRLS</span>
+   <h2>Discover. Watch.<br>Enjoy.</h2>
+   <p>Karibu kwenye mkusanyiko wetu wa video. Chagua video unayoipenda na bonyeza kitufe cha kutazama.</p>
+   <div class="hero-actions">
+    <button class="primary-btn" onclick="document.getElementById('videoList').scrollIntoView({behavior:'smooth'})">▶ TAZAMA VIDEO</button>
+    <button class="secondary-btn" onclick="shareWebsite()">↗ SHIRIKI</button>
+   </div>
+  </div>
 
-  <section id="videosPanel">
-    <div class="referral-marquee"><div class="referral-track" id="referralTicker"></div></div>
+  <div class="ticker"><span>✨ KARIBU 28TALE GIRLS · VIDEO COLLECTION · KARIBU TENA ✨</span></div>
 
-    <a href="https://whatsapp.com/channel/0029Vb9Z4fd3LdQYoqR1fg2n"
-       target="_blank" rel="noopener noreferrer" class="wa-channel-mini">
-      <span class="wa-channel-icon">✆</span>
-      <span class="wa-channel-text">
-        <strong>WHATSAPP CHANNEL YA 28TALE GIRLS</strong>
-        <small>Bonyeza hapa kujiunga na channel yetu</small>
-      </span>
-      <span class="wa-channel-arrow">›</span>
-    </a>
+  <a class="wa-link" href="https://whatsapp.com/channel/0029Vb9Z4fd3LdQYoqR1fg2n" target="_blank" rel="noopener">
+   <span class="wa-icon">✆</span>
+   <span><b>WHATSAPP CHANNEL</b><small>Jiunge na channel yetu kupata taarifa mpya</small></span>
+  </a>
 
-    <!-- OFFERS ZITAONEKANA HAPA -->
-    <div class="offer-section" id="offersSection">
-      <div class="offer-heading">
-        <h2>🎁 OFFERS MAALUM</h2>
-        <small class="muted">Ofa za muda maalumu</small>
-      </div>
-      <div id="offersList" class="grid">
-        <p class="muted">Inapakia offer...</p>
-      </div>
+  <div id="offersSection" class="hidden">
+   <div class="section-heading">
+    <h2>🎁 OFFERS MAALUM</h2>
+    <small>Special offers</small>
+   </div>
+   <div id="offersList" class="offer-grid"></div>
+  </div>
+
+  <div class="section-heading">
+   <h2>🔥 VIDEO COLLECTION</h2>
+   <small id="videoCount">Inapakia...</small>
+  </div>
+  <div id="videoList" class="grid">
+   <div class="empty-state">Inapakia video...</div>
+  </div>
+ </section>
+
+ <!-- ADMIN LOGIN PEKEE -->
+ <section id="authPanel" class="hidden">
+  <div class="panel" style="max-width:440px;margin:35px auto">
+   <h2>🔐 ADMIN LOGIN</h2>
+   <p class="small-note">Sehemu hii ni kwa msimamizi wa 28TALE GIRLS pekee.</p>
+   <form id="loginForm">
+    <label>Namba ya akaunti ya admin</label>
+    <input id="loginAccount" required maxlength="20" placeholder="28TG-000001" autocomplete="username">
+    <label>Nenosiri</label>
+    <input id="loginPassword" type="password" required autocomplete="current-password">
+    <br>
+    <button class="form-btn" type="submit">INGIA ADMIN</button>
+   </form>
+  </div>
+ </section>
+
+ <!-- ADMIN DASHBOARD -->
+ <section id="adminPanel" class="hidden">
+  <div class="hero">
+   <span class="hero-label">CONTROL CENTER</span>
+   <h2>Admin Dashboard</h2>
+   <p>Simamia video, picha na offers zako hapa.</p>
+  </div>
+
+  <div class="panel">
+   <h2>📊 Takwimu</h2>
+   <p>Jumla ya akaunti: <b id="userCount">...</b></p>
+   <button class="form-btn" id="refreshUserCount" type="button">SASISHA</button>
+  </div>
+
+  <div class="panel">
+   <h2>☁️ Google Drive</h2>
+   <p class="small-note">Unganisha Google Drive kabla ya kupakia picha kutoka Gallery ya simu.</p>
+   <button class="form-btn" id="connectDriveBtn" type="button">UNGANISHA GOOGLE DRIVE</button>
+   <p id="driveStatus" class="small-note">Drive haijaunganishwa.</p>
+  </div>
+
+  <div class="panel">
+   <h2 id="videoFormHeading">➕ Ongeza video mpya</h2>
+   <form id="videoForm">
+    <label>Jina la video</label>
+    <input id="vTitle" required maxlength="180" placeholder="Andika jina la video">
+
+    <label>Picha ya cover kutoka Gallery</label>
+    <input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">
+    <p class="small-note">JPG, PNG au WebP. Ukubwa wa juu ni MB 5.</p>
+    <img id="imagePreview" class="hidden" style="width:120px;max-height:130px;object-fit:cover;border-radius:10px" alt="Preview ya picha">
+
+    <label>Link ya video (HTTPS)</label>
+    <input id="vUrl" type="url" required placeholder="https://...">
+
+    <label>Maelezo ya video</label>
+    <textarea id="vDesc" rows="3" placeholder="Maelezo mafupi"></textarea>
+
+    <label><input id="vPublished" type="checkbox" checked> Chapisha video sasa</label>
+    <br><br>
+    <button class="form-btn" id="saveVideoBtn" type="submit">HIFADHI VIDEO</button>
+    <button class="form-btn hidden" id="cancelEdit" type="button" style="background:#39445c">GHAIRI</button>
+   </form>
+   <div id="adminVideoList"></div>
+  </div>
+
+  <div class="panel">
+   <h2>🎁 Simamia Offers</h2>
+   <form id="offerForm">
+    <label>Jina la offer</label>
+    <input id="oTitle" required maxlength="160">
+
+    <label>Maelezo</label>
+    <textarea id="oDescription" rows="2"></textarea>
+
+    <label>Picha ya offer kutoka Gallery</label>
+    <input id="oImage" type="file" accept="image/jpeg,image/png,image/webp">
+    <img id="offerImagePreview" class="hidden" style="width:120px;max-height:100px;object-fit:cover;border-radius:10px" alt="Offer preview">
+
+    <label>Video inayohusika (si lazima)</label>
+    <select id="oVideo">
+     <option value="">Offer ya jumla</option>
+    </select>
+
+    <div class="row">
+     <div>
+      <label>Bei ya kawaida</label>
+      <input id="oOriginalPrice" type="number" min="0" required>
+     </div>
+     <div>
+      <label>Bei ya offer</label>
+      <input id="oOfferPrice" type="number" min="0" required>
+     </div>
     </div>
 
-    <div class="panel">
-      <h2 data-i18n="allVideos">Video zote</h2>
-      <p class="muted" data-i18n="videoInstruction">
-        Chagua video unayotaka. Bonyeza kitufe ili kuendelea kwenye link ya malipo.
-      </p>
-      <div id="videoList" class="grid"></div>
-    </div>
-  </section>
+    <label>Link ya malipo (HTTPS)</label>
+    <input id="oPaymentUrl" type="url" required placeholder="https://...">
 
-  <section id="authPanel" class="hidden">
-    <div class="panel">
-      <h2 data-i18n="registerTitle">Jisajili 28TALE GIRLS</h2>
-      <form id="signupForm">
-        <label data-i18n="yourName">Jina lako</label>
-        <input id="signupName" required maxlength="80" autocomplete="name" placeholder="Andika jina lako">
-        <label data-i18n="password">Nenosiri (angalau herufi 6)</label>
-        <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">
-        <button type="submit" data-i18n="register">Jisajili</button>
-      </form>
+    <label>Tarehe ya kuanza (si lazima)</label>
+    <input id="oStartsAt" type="datetime-local">
 
-      <div id="newAccountBox" class="msg hidden">
-        <p data-i18n="accountCreated">Akaunti yako imefunguliwa.</p>
-        <label data-i18n="accountNumber">Namba yako ya akaunti</label>
-        <h2 id="newAccountNumber"></h2>
-        <button type="button" id="copyAccountBtn" data-i18n="copyAccount">Nakili namba ya akaunti</button>
-        <p class="muted" data-i18n="saveAccount">Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.</p>
-      </div>
-    </div>
+    <label>Tarehe ya mwisho (si lazima)</label>
+    <input id="oEndsAt" type="datetime-local">
 
-    <div class="panel">
-      <h2 data-i18n="loginTitle">Ingia kwenye akaunti</h2>
-      <form id="loginForm">
-        <label data-i18n="accountNumber">Namba ya akaunti</label>
-        <input id="loginAccount" required maxlength="20" autocomplete="username" placeholder="28TG-000001">
-        <label data-i18n="password">Nenosiri</label>
-        <input id="loginPassword" type="password" required autocomplete="current-password">
-        <button type="submit" data-i18n="login">Ingia</button>
-      </form>
-    </div>
-  </section>
+    <label><input id="oActive" type="checkbox" checked> Offer iwe hai</label>
+    <br><br>
+    <button class="form-btn" id="saveOfferBtn" type="submit">HIFADHI OFFER</button>
+    <button class="form-btn hidden" id="cancelOfferEdit" type="button" style="background:#39445c">GHAIRI</button>
+   </form>
+   <div id="adminOfferList"></div>
+  </div>
+ </section>
 
-  <section id="adminPanel" class="hidden">
-    <div class="panel">
-      <h2 data-i18n="registeredUsers">Watumiaji Waliojiunga</h2>
-      <p><span data-i18n="totalUsers">Jumla ya watumiaji:</span> <b id="userCount">0</b></p>
-      <button type="button" id="refreshUserCount" data-i18n="refreshCount">Sasisha idadi</button>
-    </div>
-    <div class="panel">
-  <h2>☁️ GOOGLE DRIVE</h2>
-  <p class="muted">Unganisha akaunti yako ya Google ili picha na video mpya zihifadhiwe Drive.</p>
-  <button type="button" id="connectDriveBtn">UNGANISHA GOOGLE DRIVE</button>
-  <p id="driveStatus" class="msg">Google Drive haijaunganishwa.</p>
-    </div>
+ <nav class="tabs">
+  <button class="tab active" data-tab="videosPanel">🏠 Video</button>
+  <button class="tab" id="adminLoginTab" data-tab="authPanel">🔐 Admin</button>
+  <button class="tab hidden" id="adminTab" data-tab="adminPanel">⚙️ Dashboard</button>
+  <button class="tab hidden" id="logoutBtn" type="button">Toka</button>
+  <button class="tab" type="button" onclick="shareWebsite()">↗ Shiriki</button>
+ </nav>
 
-    <!-- ADMIN OFFERS -->
-    <div class="panel">
-      <h2>🎁 SIMAMIA OFFERS</h2>
-      <p class="muted">Hapa ndipo utaweka ofa zinazoonekana kwenye ukurasa wa mwanzo.</p>
-
-      <form id="offerForm">
-        <label>Jina la offer</label>
-        <input id="oTitle" required maxlength="160" placeholder="Mfano: WEEKEND SPECIAL">
-
-        <label>Maelezo ya offer</label>
-        <textarea id="oDescription" rows="2" maxlength="1000" placeholder="Andika maelezo mafupi ya offer"></textarea>
-
-        <label>Picha ya offer kutoka kwenye simu</label>
-        <input id="oImage" type="file" accept="image/jpeg,image/png,image/webp">
-        <small>JPG, PNG au WebP. Ukubwa usizidi MB 5. Unaweza kuacha picha ya zamani unapohariri.</small>
-
-        <label>Video inayohusika (si lazima)</label>
-        <select id="oVideo">
-          <option value="">Offer ya jumla / hakuna video maalumu</option>
-        </select>
-
-        <div class="row">
-          <div>
-            <label>Bei ya kawaida (TSh)</label>
-            <input id="oOriginalPrice" type="number" min="0" step="1" required placeholder="5000">
-          </div>
-          <div>
-            <label>Bei ya offer (TSh)</label>
-            <input id="oOfferPrice" type="number" min="0" step="1" required placeholder="3000">
-          </div>
-        </div>
-
-        <label>Link ya malipo ya offer (https://)</label>
-        <input id="oPaymentUrl" type="url" required placeholder="https://...">
-
-        <div class="row">
-          <div>
-            <label>Tarehe/muda wa kuanza (si lazima)</label>
-            <input id="oStartsAt" type="datetime-local">
-          </div>
-          <div>
-            <label>Tarehe/muda wa mwisho (si lazima)</label>
-            <input id="oEndsAt" type="datetime-local">
-          </div>
-        </div>
-
-        <label><input id="oActive" type="checkbox" checked> Offer iwe hai</label>
-        <br><br>
-        <button type="submit" id="saveOfferBtn">HIFADHI OFFER</button>
-        <button type="button" id="cancelOfferEdit" class="hidden" style="background:#493348">Ghairi kuhariri</button>
-      </form>
-
-      <div id="adminOfferList"></div>
-    </div>
-
-    <!-- ADMIN VIDEOS -->
-    <div class="panel">
-      <h2 id="videoFormHeading">Ongeza video</h2>
-      <form id="videoForm">
-        <label data-i18n="videoTitle">Jina la video</label>
-        <input id="vTitle" required maxlength="180">
-
-        <label data-i18n="coverImage">Chagua picha ya cover kutoka kwenye simu</label>
-        <input id="vImage" type="file" accept="image/jpeg,image/png,image/webp">
-        <small>JPG, PNG au WebP. Ukubwa usizidi MB 5.</small>
-
-        <label data-i18n="previewVideo">Chagua kavideo ka kucheza kwenye kitufe</label>
-        <input id="vPreview" type="file" accept="video/mp4,video/webm">
-        <small>MP4 au WebM, hadi MB 15. Ukihariri bila kuchagua faili jipya, cha zamani kitabaki.</small>
-
-        <label data-i18n="paymentLink">Link ya malipo ya video hii (https://)</label>
-        <input id="vUrl" type="url" required placeholder="https://Weka-link-ya-malipo-hapa">
-        <small data-i18n="paymentLinkHelp">Kila video ina link yake ya malipo. Baada ya kulipa, link hii itampeleka mtumiaji kwenye video.</small>
-
-        <label data-i18n="description">Maelezo</label>
-        <textarea id="vDesc" rows="2"></textarea>
-
-        <label><input id="vPublished" type="checkbox" checked> <span data-i18n="publishNow">Ichapishe sasa</span></label>
-        <br><br>
-        <button type="submit" data-i18n="saveVideo">Hifadhi video</button>
-        <button id="cancelEdit" type="button" class="hidden" style="background:#493348;margin-left:6px" data-i18n="cancel">Ghairi kuhariri</button>
-      </form>
-      <div id="adminVideoList"></div>
-    </div>
-  </section>
-
-  <footer>28TALE GIRLS · Tumia huduma kwa uwajibikaji.</footer>
+ <footer>28TALE GIRLS · PREMIUM VIDEO COLLECTION<br>© 2026 · Tumia huduma kwa uwajibikaji.</footer>
 </main>
-
+  
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://accounts.google.com/gsi/client"></script>
 <script>
 "use strict";
 
-/* SUPABASE */
-const SUPABASE_URL = "https://gwwphhrppvluwutycrap.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_Evs4rVusXd_GX_2OsgIkIQ_txwf8ynE";
-  /* GOOGLE DRIVE */
-const GOOGLE_CLIENT_ID =
-"542840039857-ofke27l16q58mcf9aijvl4ofq2slkrc6.apps.googleusercontent.com";
+/* MIPANGILIO */
+const SUPABASE_URL="https://gwwphhrppvluwutycrap.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_Evs4rVusXd_GX_2OsgIkIQ_txwf8ynE";
 
-const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive.file";
+const GOOGLE_CLIENT_ID="542840039857-ofke27l16q58mcf9aijvl4ofq2slkrc6.apps.googleusercontent.com";
+const DRIVE_FOLDER_ID="1yF-hzYeuSw7TSTogQElrBJ5DOFXqOAn_";
 
-let driveToken = null;
-let driveTokenExpires = 0;
-let driveTokenClient = null;
+const $=id=>document.getElementById(id);
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-function updateDriveStatus(message, good=false){
-  const box=$("driveStatus");
-  if(!box)return;
-  box.textContent=message;
-  box.className=good?"msg good":"msg";
-}
+let currentUser=null;
+let isAdmin=false;
+let driveToken=null;
+let editingVideoId=null;
+let editingImageUrl="";
+let editingOfferId=null;
+let editingOfferImageUrl="";
 
-function initGoogleDrive(){
-  if(!window.google?.accounts?.oauth2){
-    updateDriveStatus("Google login haijapakia. Hakikisha intaneti ipo.");
-    return;
-  }
-
-  driveTokenClient=google.accounts.oauth2.initTokenClient({
-    client_id:GOOGLE_CLIENT_ID,
-    scope:DRIVE_SCOPE,
-    callback:response=>{
-      if(response.error){
-        driveToken=null;
-        updateDriveStatus("Imeshindwa kuunganisha Drive: "+response.error);
-        return;
-      }
-
-      driveToken=response.access_token;
-      driveTokenExpires=Date.now()+(Number(response.expires_in||3600)*1000);
-      updateDriveStatus("Google Drive imeunganishwa kikamilifu.",true);
-      say("Google Drive imeunganishwa.",true);
-    }
-  });
-}
-
-function connectGoogleDrive(){
-  if(!isAdmin){
-    say("Admin pekee ndiye anayeweza kuunganisha Google Drive.");
-    return;
-  }
-
-  if(!driveTokenClient)initGoogleDrive();
-
-  if(!driveTokenClient){
-    say("Google login haijapakia. Jaribu tena.");
-    return;
-  }
-
-  driveTokenClient.requestAccessToken({prompt:driveToken?"":"consent"});
-}
-
-$("connectDriveBtn").addEventListener("click",connectGoogleDrive);
-
-async function uploadToGoogleDrive(file,folder){
-  if(!file) return null;
-
-  if(!driveToken || Date.now()>=driveTokenExpires){
-    throw new Error("Google Drive haijaunganishwa au muda wa ruhusa umeisha. Bonyeza UNGANISHA GOOGLE DRIVE tena.");
-  }
-
-  const metadata={
-    name:folder+"_"+Date.now()+"_"+file.name.replace(/[^a-zA-Z0-9._-]/g,"_"),
-    mimeType:file.type
-  };
-
-  const boundary="28TALE_"+Date.now();
-
-  const body=new Blob([
-    "--"+boundary+"\r\n",
-    "Content-Type: application/json; charset=UTF-8\r\n\r\n",
-    JSON.stringify(metadata)+"\r\n",
-    "--"+boundary+"\r\n",
-    "Content-Type: "+file.type+"\r\n\r\n",
-    file,
-    "\r\n--"+boundary+"--"
-  ],{type:"multipart/related; boundary="+boundary});
-
-  const response=await fetch(
-    "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,mimeType",
-    {
-      method:"POST",
-      headers:{
-        Authorization:"Bearer "+driveToken,
-        "Content-Type":"multipart/related; boundary="+boundary
-      },
-      body
-    }
-  );
-
-  const result=await response.json();
-
-  if(!response.ok){
-    throw new Error(result.error?.message||"Imeshindwa kupakia faili Google Drive.");
-  }
-
-  const permissionResponse=await fetch(
-    "https://www.googleapis.com/drive/v3/files/"+encodeURIComponent(result.id)+"/permissions",
-    {
-      method:"POST",
-      headers:{
-        Authorization:"Bearer "+driveToken,
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        type:"anyone",
-        role:"reader"
-      })
-    }
-  );
-
-  if(!permissionResponse.ok){
-    throw new Error("Faili limepakiwa lakini kushirikisha faili kwa watazamaji kumeshindikana.");
-  }
-
-  if(file.type.startsWith("image/")){
-    return "https://drive.google.com/uc?export=view&id="+result.id;
-  }
-
-  if(file.type.startsWith("video/")){
-    return "https://drive.google.com/uc?export=download&id="+result.id;
-  }
-
-  throw new Error("Aina ya faili haijaruhusiwa.");
-  }
-
-const $ = id => document.getElementById(id);
-let db = null;
-let currentUser = null;
-let isAdmin = false;
-let editingVideoId = null;
-let editingImageUrl = "";
-let editingPreviewUrl = "";
-let editingOfferId = null;
-let editingOfferImageUrl = "";
-let currentLanguage = localStorage.getItem("28tale_language") || "sw";
-
-const translations = {
-sw:{
-allVideos:"Video zote",videoInstruction:"Chagua video unayotaka. Bonyeza kitufe ili kuendelea kwenye link ya malipo.",
-registerTitle:"Jisajili 28TALE GIRLS",yourName:"Jina lako",password:"Nenosiri (angalau herufi 6)",register:"Jisajili",
-accountCreated:"Akaunti yako imefunguliwa.",accountNumber:"Namba ya akaunti",copyAccount:"Nakili namba ya akaunti",
-saveAccount:"Hifadhi namba hii. Utaitumia kuingia pamoja na nenosiri lako.",loginTitle:"Ingia kwenye akaunti",login:"Ingia",
-registeredUsers:"Watumiaji Waliojiunga",totalUsers:"Jumla ya watumiaji:",refreshCount:"Sasisha idadi",
-videoTitle:"Jina la video",coverImage:"Chagua picha ya cover kutoka kwenye simu",
-previewVideo:"Chagua kavideo ka kucheza kwenye kitufe",paymentLink:"Link ya malipo ya video hii (https://)",
-paymentLinkHelp:"Kila video ina link yake ya malipo. Baada ya kulipa, link hii itampeleka mtumiaji kwenye video.",
-description:"Maelezo",publishNow:"Ichapishe sasa",saveVideo:"Hifadhi video",cancel:"Ghairi kuhariri",
-watch:"ANGALIA FULL UTAMU 🔞👀",noVideos:"Hakuna video zilizowekwa kwa sasa.",edit:"Hariri",delete:"Futa",
-publish:"Chapisha",hide:"Ficha",published:"Imechapishwa",hidden:"Imefichwa",loading:"Inapakia..."
-},
-en:{
-allVideos:"All videos",videoInstruction:"Choose a video. Press the button to continue to its payment link.",
-registerTitle:"Register for 28TALE GIRLS",yourName:"Your name",password:"Password (at least 6 characters)",register:"Register",
-accountCreated:"Your account has been created.",accountNumber:"Account number",copyAccount:"Copy account number",
-saveAccount:"Save this number. You will use it with your password to log in.",loginTitle:"Login to your account",login:"Login",
-registeredUsers:"Registered users",totalUsers:"Total users:",refreshCount:"Refresh count",videoTitle:"Video title",
-coverImage:"Choose cover image from your phone",previewVideo:"Choose a short preview video for the button",
-paymentLink:"Payment link for this video (https://)",paymentLinkHelp:"Each video has its own payment link. After payment, this link takes the user to the video.",
-description:"Description",publishNow:"Publish now",saveVideo:"Save video",cancel:"Cancel editing",
-watch:"WATCH / PAY",noVideos:"No videos available at the moment.",edit:"Edit",delete:"Delete",
-publish:"Publish",hide:"Hide",published:"Published",hidden:"Hidden",loading:"Loading..."
-},
-fr:{
-allVideos:"Toutes les vidéos",videoInstruction:"Choisissez une vidéo. Appuyez pour continuer vers son lien de paiement.",
-registerTitle:"Inscription à 28TALE GIRLS",yourName:"Votre nom",password:"Mot de passe (6 caractères minimum)",register:"S'inscrire",
-accountCreated:"Votre compte a été créé.",accountNumber:"Numéro de compte",copyAccount:"Copier le numéro de compte",
-saveAccount:"Enregistrez ce numéro pour vous connecter avec votre mot de passe.",loginTitle:"Connexion à votre compte",login:"Connexion",
-registeredUsers:"Utilisateurs inscrits",totalUsers:"Nombre total :",refreshCount:"Actualiser",videoTitle:"Titre de la vidéo",
-coverImage:"Choisir une image de couverture",previewVideo:"Choisir une courte vidéo d'aperçu",
-paymentLink:"Lien de paiement de cette vidéo (https://)",paymentLinkHelp:"Chaque vidéo possède son propre lien de paiement. Après paiement, ce lien mène à la vidéo.",
-description:"Description",publishNow:"Publier maintenant",saveVideo:"Enregistrer la vidéo",cancel:"Annuler la modification",
-watch:"REGARDER / PAYER",noVideos:"Aucune vidéo disponible.",edit:"Modifier",delete:"Supprimer",
-publish:"Publier",hide:"Masquer",published:"Publié",hidden:"Masqué",loading:"Chargement..."
-},
-ar:{
-allVideos:"جميع الفيديوهات",videoInstruction:"اختر فيديو واضغط للانتقال إلى رابط الدفع الخاص به.",
-registerTitle:"إنشاء حساب 28TALE GIRLS",yourName:"اسمك",password:"كلمة المرور (6 أحرف على الأقل)",register:"إنشاء حساب",
-accountCreated:"تم إنشاء حسابك.",accountNumber:"رقم الحساب",copyAccount:"نسخ رقم الحساب",
-saveAccount:"احفظ هذا الرقم لتسجيل الدخول مع كلمة المرور.",loginTitle:"تسجيل الدخول إلى حسابك",login:"دخول",
-registeredUsers:"المستخدمون المسجلون",totalUsers:"إجمالي المستخدمين:",refreshCount:"تحديث العدد",videoTitle:"عنوان الفيديو",
-coverImage:"اختر صورة الغلاف من هاتفك",previewVideo:"اختر فيديو معاينة قصير للزر",
-paymentLink:"رابط الدفع لهذا الفيديو (https://)",paymentLinkHelp:"لكل فيديو رابط دفع خاص. بعد الدفع، ينقلك الرابط إلى الفيديو.",
-description:"الوصف",publishNow:"انشر الآن",saveVideo:"حفظ الفيديو",cancel:"إلغاء التعديل",
-watch:"مشاهدة / دفع",noVideos:"لا توجد فيديوهات حالياً.",edit:"تعديل",delete:"حذف",
-publish:"نشر",hide:"إخفاء",published:"منشور",hidden:"مخفي",loading:"جارٍ التحميل..."
-}
-};
-
-function tr(key){return translations[currentLanguage]?.[key]||translations.sw[key]||key}
-function applyLanguage(){
-  const lang=translations[currentLanguage]?currentLanguage:"sw";
-  currentLanguage=lang;
-  document.documentElement.lang=lang;
-  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-  $("languageSelect").value=lang;
-  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=tr(el.dataset.i18n));
-}
-function setLanguage(lang){
-  currentLanguage=translations[lang]?lang:"sw";
-  localStorage.setItem("28tale_language",currentLanguage);
-  applyLanguage();
-  loadVideos();
-  loadOffers();
-  if(isAdmin){loadAdminVideos();loadAdminOffers()}
-}
-$("languageSelect").addEventListener("change",e=>setLanguage(e.target.value));
-
-function esc(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
 function say(message,good=false){
-  $("notice").innerHTML=`<span class="${good?"good":"bad"}">${esc(message)}</span>`;
+ $("notice").innerHTML=`<span class="${good?"good":"bad"}">${escapeHtml(message)}</span>`;
 }
-function configured(){return !!db&&SUPABASE_URL.startsWith("https://")&&!!SUPABASE_ANON_KEY}
-function showError(prefix,error){
-  console.error(prefix,error);
-  say(prefix+(error?.message?" "+error.message:""));
+function escapeHtml(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
-function validHttps(value){
-  try{const u=new URL(String(value).trim());return u.protocol==="https:"?u.href:null}catch{return null}
+function safeUrl(value){
+ try{
+  const u=new URL(String(value||"").trim());
+  return u.protocol==="https:"?u.href:null;
+ }catch{return null}
+}
+function accountEmail(number){
+ const n=String(number||"").trim().toUpperCase();
+ if(!/^28TG-\d{6}$/.test(n))throw new Error("Namba ya akaunti si sahihi. Mfano 28TG-000001");
+ return n.toLowerCase()+"@login.28tale.invalid";
 }
 function tab(id){
-  const target=$(id);
-  if(!target){say("Sehemu haijapatikana: "+id);return}
-  document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
-  target.classList.remove("hidden");
-  document.querySelectorAll(".tabs [data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
-  if(id==="adminPanel"&&isAdmin){
-    loadAdminVideos();loadUserCount();loadAdminOffers();loadVideoOptions();
-  }
+ document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+ $(id).classList.remove("hidden");
+ document.querySelectorAll(".tabs [data-tab]").forEach(b=>{
+  b.classList.toggle("active",b.dataset.tab===id);
+ });
+ if(id==="adminPanel"&&isAdmin){
+  loadAdminVideos();loadAdminOffers();loadUserCount();loadVideoOptions();
+ }
 }
-
-/* TICKER */
-const referralText="✨ KARIBU 28TALE GIRLS — SHIRIKI LINK YAKO NA MARAFIKI WAJIUNGE! ✨";
-$("referralTicker").innerHTML=Array.from(referralText).map((c,i)=>
-  `<span style="animation-delay:${(i%12)*.12}s">${esc(c)}</span>`).join("");
-
-/* MENYU */
 document.querySelector(".tabs").addEventListener("click",e=>{
-  const b=e.target.closest("button[data-tab]");
-  if(b)tab(b.dataset.tab);
+ const b=e.target.closest("[data-tab]");
+ if(b)tab(b.dataset.tab);
 });
 
-/* LOGOUT */
-$("logoutBtn").addEventListener("click",async()=>{
-  if(!db)return;
-  const {error}=await db.auth.signOut();
-  if(error){showError("Imeshindwa kutoka:",error);return}
-  currentUser=null;isAdmin=false;
-  $("adminTab").classList.add("hidden");
-  $("logoutBtn").classList.add("hidden");
-  tab("videosPanel");say("Umetoka kwenye akaunti.",true);
-  await loadVideos();await loadOffers();
+/* LUGHA */
+const translations={
+ sw:{watch:"▶ TAZAMA VIDEO",empty:"Hakuna video zilizochapishwa kwa sasa.",loading:"Inapakia video..."},
+ en:{watch:"▶ WATCH VIDEO",empty:"No published videos available.",loading:"Loading videos..."},
+ fr:{watch:"▶ REGARDER",empty:"Aucune vidéo publiée.",loading:"Chargement..."}
+};
+let language="sw";
+$("languageSelect").addEventListener("change",e=>{
+ language=translations[e.target.value]?e.target.value:"sw";
+ loadVideos();loadOffers();
+});
+function text(key){return translations[language][key]||translations.sw[key]}
+
+/* GOOGLE DRIVE */
+function connectDrive(){
+ return new Promise((resolve,reject)=>{
+  if(!window.google?.accounts?.oauth2){
+   reject(new Error("Google Login bado haijapakia. Subiri sekunde chache kisha jaribu tena."));
+   return;
+  }
+  const client=google.accounts.oauth2.initTokenClient({
+   client_id:GOOGLE_CLIENT_ID,
+   scope:"https://www.googleapis.com/auth/drive.file",
+   callback:response=>{
+    if(response.error){reject(new Error(response.error));return}
+    driveToken=response.access_token;
+    $("driveStatus").textContent="Google Drive imeunganishwa.";
+    say("Google Drive imeunganishwa.",true);
+    resolve(driveToken);
+   },
+   error_callback:error=>reject(new Error(error.message||"Google login imeshindikana."))
+  });
+  client.requestAccessToken({prompt:"consent"});
+ });
+}
+$("connectDriveBtn").addEventListener("click",async()=>{
+ const b=$("connectDriveBtn");b.disabled=true;
+ try{await connectDrive()}
+ catch(e){say("Drive: "+e.message);$("driveStatus").textContent=e.message}
+ finally{b.disabled=false}
 });
 
-/* AUTH SESSION */
+async function driveUploadImage(file,folderName){
+ if(!file)throw new Error("Chagua picha kwanza.");
+ if(!["image/jpeg","image/png","image/webp"].includes(file.type))
+  throw new Error("Picha iwe JPG, PNG au WebP.");
+ if(file.size>5*1024*1024)throw new Error("Picha isizidi MB 5.");
+ if(!driveToken)await connectDrive();
+
+ const metadata={
+  name:"28TG_"+folderName+"_"+Date.now()+"_"+file.name.replace(/[^\w.-]/g,"_"),
+  mimeType:file.type,
+  parents:[DRIVE_FOLDER_ID]
+ };
+
+ const start=await fetch(
+  "https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&fields=id,name",
+  {
+   method:"POST",
+   headers:{
+    Authorization:"Bearer "+driveToken,
+    "Content-Type":"application/json"
+   },
+   body:JSON.stringify(metadata)
+  }
+ );
+ if(!start.ok)throw new Error("Google Drive imeshindwa kuanzisha upload: "+await start.text());
+ const uploadUrl=start.headers.get("Location");
+ if(!uploadUrl)throw new Error("Google Drive haikutoa upload URL.");
+
+ const uploaded=await fetch(uploadUrl,{
+  method:"PUT",
+  headers:{"Content-Type":file.type},
+  body:file
+ });
+ if(!uploaded.ok)throw new Error("Picha haikupakiwa: "+await uploaded.text());
+ const result=await uploaded.json();
+ if(!result.id)throw new Error("Drive haikurudisha File ID.");
+
+ const permission=await fetch(
+  "https://www.googleapis.com/drive/v3/files/"+encodeURIComponent(result.id)+"/permissions",
+  {
+   method:"POST",
+   headers:{
+    Authorization:"Bearer "+driveToken,
+    "Content-Type":"application/json"
+   },
+   body:JSON.stringify({role:"reader",type:"anyone"})
+  }
+ );
+ if(!permission.ok)throw new Error("Picha imepakiwa lakini ruhusa ya kuonekana kwa wageni imeshindikana: "+await permission.text());
+
+ return "https://drive.google.com/thumbnail?id="+encodeURIComponent(result.id)+"&sz=w1200";
+}
+
+/* PREVIEW YA PICHA */
+$("vImage").addEventListener("change",()=>{
+ const file=$("vImage").files[0];
+ if(!file){$("imagePreview").classList.add("hidden");return}
+ $("imagePreview").src=URL.createObjectURL(file);
+ $("imagePreview").classList.remove("hidden");
+});
+$("oImage").addEventListener("change",()=>{
+ const file=$("oImage").files[0];
+ if(!file){$("offerImagePreview").classList.add("hidden");return}
+ $("offerImagePreview").src=URL.createObjectURL(file);
+ $("offerImagePreview").classList.remove("hidden");
+});
+
+/* SESSION NA ADMIN */
 async function refreshAuth(){
-  if(!configured()){say("Supabase haijaunganishwa. Kagua URL na public key.");return}
-  try{
-    const {data,error}=await db.auth.getSession();
-    if(error)throw error;
-    currentUser=data.session?.user||null;
-    isAdmin=false;
-    $("logoutBtn").classList.toggle("hidden",!currentUser);
+ try{
+  const {data,error}=await db.auth.getSession();
+  if(error)throw error;
+  currentUser=data.session?.user||null;
+  isAdmin=false;
+
+  if(currentUser){
+   const {data:profile,error:pError}=await db.from("profiles")
+    .select("role,full_name,account_number")
+    .eq("id",currentUser.id).maybeSingle();
+   if(pError)throw pError;
+   isAdmin=profile?.role==="admin";
+   if(isAdmin){
+    $("adminTab").classList.remove("hidden");
+    $("logoutBtn").classList.remove("hidden");
+    $("adminLoginTab").classList.add("hidden");
+    say("Karibu admin "+(profile.full_name||""),true);
+   }else{
+    await db.auth.signOut();
+    currentUser=null;
     $("adminTab").classList.add("hidden");
-    if(currentUser){
-      const {data:profile,error:profileError}=await db.from("profiles")
-        .select("role,full_name,account_number").eq("id",currentUser.id).maybeSingle();
-      if(profileError)throw profileError;
-      isAdmin=profile?.role==="admin";
-      $("adminTab").classList.toggle("hidden",!isAdmin);
-      say("Umeingia kama "+(profile?.full_name||profile?.account_number||"Mtumiaji"),true);
-    }else{
-      say("Karibu 28TALE GIRLS. Ingia au jisajili ili kuendelea.");
-    }
-    await loadVideos();await loadOffers();
-  }catch(error){showError("Imeshindwa kukagua akaunti:",error)}
-}
-
-/* VIDEO LIST */
-async function loadVideos(){
-  if(!configured())return;
-  $("videoList").innerHTML=`<p class="muted">${esc(tr("loading"))}</p>`;
-  const {data,error}=await db.from("videos")
-    .select("id,title,image_url,video_url,description,is_published,preview_video_url")
-    .eq("is_published",true).order("created_at",{ascending:false});
-  if(error){
-    $("videoList").innerHTML=`<p class="muted">${esc(error.message)}</p>`;
-    console.error("loadVideos:",error);return;
+    $("logoutBtn").classList.add("hidden");
+    $("adminLoginTab").classList.remove("hidden");
+    say("Akaunti hii haina ruhusa ya admin.");
+   }
+  }else{
+   $("adminTab").classList.add("hidden");
+   $("logoutBtn").classList.add("hidden");
+   $("adminLoginTab").classList.remove("hidden");
   }
-  $("videoList").innerHTML=(data||[]).map(v=>`
-    <article class="card">
-      <img src="${esc(v.image_url||"")}" alt="${esc(v.title)}" loading="lazy"
-        referrerpolicy="no-referrer" onerror="this.style.display='none'">
-      <div class="cardbody">
-        <h3>${esc(v.title)}</h3>
-        ${v.description?`<p>${esc(v.description)}</p>`:""}
-        <button type="button" class="watch-button" data-watch="${esc(v.id)}">
-          ${v.preview_video_url
-            ?`<video class="watch-preview" src="${esc(v.preview_video_url)}" muted autoplay loop playsinline preload="metadata"></video>`
-            :`<span class="watch-preview-placeholder">▶</span>`}
-          <span class="watch-button-text">▶ ${esc(tr("watch"))}</span>
-        </button>
-      </div>
-    </article>`).join("")||`<p class="muted">${esc(tr("noVideos"))}</p>`;
-  $("videoList").querySelectorAll("[data-watch]").forEach(b=>{
-    b.addEventListener("click",()=>watchVideo(b.dataset.watch,b));
-  });
+  await loadVideos();
+  await loadOffers();
+ }catch(e){console.error(e);say("Imeshindwa kukagua session: "+e.message)}
 }
 
-/* VIDEO PAYMENT LINK */
-async function watchVideo(id,button){
-  if(!currentUser){tab("authPanel");say("Ingia au jisajili kwanza.");return}
-  button.disabled=true;
-  try{
-    const {data,error}=await db.from("videos").select("video_url")
-      .eq("id",id).eq("is_published",true).single();
-    if(error)throw error;
-    const url=validHttps(data?.video_url);
-    if(!url)throw new Error("Link ya malipo si sahihi au haijapangwa.");
-    window.location.href=url;
-  }catch(error){showError("Imeshindwa kufungua link ya malipo:",error);button.disabled=false}
-}
-
-/* OFFERS - WATUMIAJI */
-async function loadOffers(){
-  if(!configured())return;
-  $("offersList").innerHTML='<p class="muted">Inapakia offer...</p>';
-  const now=new Date().toISOString();
-  const {data,error}=await db.from("offers").select("*")
-    .eq("is_active",true)
-    .or(`starts_at.is.null,starts_at.lte.${now}`)
-    .or(`ends_at.is.null,ends_at.gt.${now}`)
-    .order("created_at",{ascending:false});
-  if(error){
-    console.error("loadOffers:",error);
-    $("offersList").innerHTML='<p class="muted">Offer hazijaweza kupakiwa.</p>';
-    return;
-  }
-  if(!data?.length){
-    $("offersSection").classList.add("hidden");
-    $("offersList").innerHTML="";
-    return;
-  }
-  $("offersSection").classList.remove("hidden");
-  $("offersList").innerHTML=data.map(o=>{
-    const discount=o.original_price>0
-      ?Math.max(0,Math.round((1-(Number(o.offer_price)/Number(o.original_price)))*100)):0;
-    const expiry=o.ends_at
-      ?`Offer inaisha: ${new Date(o.ends_at).toLocaleString()}`:"Offer haina tarehe maalumu ya mwisho.";
-    return `<article class="offer-card">
-      ${o.image_url?`<img src="${esc(o.image_url)}" alt="${esc(o.title)}" loading="lazy" onerror="this.style.display='none'">`:""}
-      <div class="offer-content">
-        <span class="offer-tag">${discount>0?`PUNGUZO ${discount}%`:"SPECIAL OFFER"}</span>
-        <h3 class="offer-title">${esc(o.title)}</h3>
-        ${o.description?`<p class="offer-description">${esc(o.description)}</p>`:""}
-        <div class="offer-prices">
-          ${Number(o.original_price)>0?`<span class="old-price">TSh ${Number(o.original_price).toLocaleString("en-US")}</span>`:""}
-          <span class="new-price">TSh ${Number(o.offer_price).toLocaleString("en-US")}</span>
-        </div>
-        <p class="offer-expiry">⏳ ${esc(expiry)}</p>
-        <button type="button" class="offer-button" data-offer-pay="${esc(o.id)}">🎁 PATA OFA</button>
-      </div>
-    </article>`;
-  }).join("");
-  $("offersList").querySelectorAll("[data-offer-pay]").forEach(b=>{
-    b.addEventListener("click",()=>openOfferPayment(b.dataset.offerPay,b));
-  });
-}
-
-async function openOfferPayment(id,button){
-  if(!currentUser){tab("authPanel");say("Ingia au jisajili kwanza ili kuendelea na offer.");return}
-  button.disabled=true;
-  try{
-    const now=new Date().toISOString();
-    const {data,error}=await db.from("offers").select("payment_url,is_active,starts_at,ends_at")
-      .eq("id",id).eq("is_active",true).single();
-    if(error)throw error;
-    if(data.starts_at&&new Date(data.starts_at)>new Date(now))throw new Error("Offer bado haijaanza.");
-    if(data.ends_at&&new Date(data.ends_at)<=new Date(now))throw new Error("Muda wa offer umeisha.");
-    const url=validHttps(data.payment_url);
-    if(!url)throw new Error("Link ya malipo ya offer si sahihi.");
-    window.location.href=url;
-  }catch(error){showError("Imeshindwa kufungua offer:",error);button.disabled=false}
-}
-
-/* ACCOUNT EMAIL FORMAT */
-function accountLoginEmail(accountNumber){
-  const account=String(accountNumber||"").trim().toUpperCase();
-  if(!/^28TG-\d{6}$/.test(account))throw new Error("Namba ya akaunti si sahihi. Mfano: 28TG-000003");
-  return account.toLowerCase()+"@login.28tale.invalid";
-}
-
-/* SIGNUP */
-$("signupForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!configured()){say("Supabase haijaunganishwa.");return}
-  const button=$("signupForm").querySelector('button[type="submit"]');
-  button.disabled=true;
-  try{
-    const name=$("signupName").value.trim();
-    const password=$("signupPassword").value;
-    if(!name)throw new Error("Andika jina lako.");
-    if(password.length<6)throw new Error("Nenosiri liwe na herufi 6 au zaidi.");
-    const {data:reservedNumber,error:reserveError}=await db.rpc("reserve_28tale_account_number");
-    if(reserveError)throw reserveError;
-    const accountNumber=String(reservedNumber||"").trim().toUpperCase();
-    const loginEmail=accountLoginEmail(accountNumber);
-    const {data,error}=await db.auth.signUp({
-      email:loginEmail,password,
-      options:{data:{full_name:name,account_number:accountNumber}}
-    });
-    if(error)throw error;
-    if(!data.user)throw new Error("Supabase haikuunda akaunti.");
-    if(!data.session){
-      say("Akaunti imeundwa lakini session haipo. Kagua mipangilio ya Authentication.");
-      return;
-    }
-    const {data:profile,error:profileError}=await db.from("profiles")
-      .select("account_number").eq("id",data.user.id).maybeSingle();
-    if(profileError)throw profileError;
-    if(profile?.account_number!==accountNumber){
-      await db.auth.signOut();
-      throw new Error("Namba ya akaunti haikulingana na profile.");
-    }
-    $("newAccountNumber").textContent=accountNumber;
-    $("newAccountBox").classList.remove("hidden");
-    await refreshAuth();tab("videosPanel");
-    say("Usajili umefanikiwa. Namba yako ni "+accountNumber+".",true);
-  }catch(error){showError("Usajili umeshindikana:",error)}
-  finally{button.disabled=false}
-});
-
-/* COPY ACCOUNT */
-$("copyAccountBtn").addEventListener("click",async()=>{
-  const account=$("newAccountNumber").textContent.trim();
-  if(!account)return;
-  try{await navigator.clipboard.writeText(account);say("Namba ya akaunti imenakiliwa.",true)}
-  catch{window.prompt("Nakili namba yako ya akaunti:",account)}
-});
-
-/* LOGIN */
+/* ADMIN LOGIN */
 $("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!configured()){say("Supabase haijaunganishwa.");return}
-  const button=$("loginForm").querySelector('button[type="submit"]');
-  button.disabled=true;
-  try{
-    const accountNumber=$("loginAccount").value.trim().toUpperCase();
-    const password=$("loginPassword").value;
-    const loginEmail=accountLoginEmail(accountNumber);
-    const {data,error}=await db.auth.signInWithPassword({email:loginEmail,password});
-    if(error)throw error;
-    if(!data.user)throw new Error("Imeshindwa kuthibitisha akaunti.");
-    const {data:profile,error:profileError}=await db.from("profiles")
-      .select("account_number").eq("id",data.user.id).maybeSingle();
-    if(profileError)throw profileError;
-    if(!profile||profile.account_number!==accountNumber){
-      await db.auth.signOut();
-      throw new Error("Namba ya akaunti haijalingana na profile.");
-    }
-    await refreshAuth();tab("videosPanel");say("Umeingia kwenye akaunti yako.",true);
-  }catch(error){showError("Kuingia kumeshindikana:",error)}
-  finally{button.disabled=false}
+ e.preventDefault();
+ const b=$("loginForm").querySelector("button[type=submit]");
+ b.disabled=true;
+ try{
+  const email=accountEmail($("loginAccount").value);
+  const password=$("loginPassword").value;
+  const {data,error}=await db.auth.signInWithPassword({email,password});
+  if(error)throw error;
+  const {data:profile,error:pError}=await db.from("profiles")
+   .select("role").eq("id",data.user.id).maybeSingle();
+  if(pError)throw pError;
+  if(profile?.role!=="admin"){
+   await db.auth.signOut();
+   throw new Error("Akaunti hii si ya admin.");
+  }
+  await refreshAuth();
+  tab("adminPanel");
+  say("Umeingia kama admin.",true);
+ }catch(e){say("Imeshindikana kuingia: "+e.message)}
+ finally{b.disabled=false}
 });
 
-/* STORAGE IMAGE UPLOAD */
-async function uploadImage(file,folder){
-  if(!file)return null;
-
-  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-    throw new Error("Chagua JPG, PNG au WebP pekee.");
-  }
-
-  if(file.size>5*1024*1024){
-    throw new Error("Picha imezidi MB 5.");
-  }
-
-  return await uploadToGoogleDrive(file,folder);
-  } 
-
-/* OFFER FORM RESET */
-function clearOfferForm(){
-  editingOfferId=null;editingOfferImageUrl="";
-  $("offerForm").reset();
-  $("oActive").checked=true;
-  $("cancelOfferEdit").classList.add("hidden");
-  $("saveOfferBtn").textContent="HIFADHI OFFER";
-}
-$("cancelOfferEdit").addEventListener("click",clearOfferForm);
-
-/* VIDEO OPTIONS FOR OFFER */
-async function loadVideoOptions(){
-  if(!isAdmin||!db)return;
-  const {data,error}=await db.from("videos").select("id,title").order("created_at",{ascending:false});
-  if(error){console.error(error);return}
-  const selected=$("oVideo").value;
-  $("oVideo").innerHTML='<option value="">Offer ya jumla / hakuna video maalumu</option>'+
-    (data||[]).map(v=>`<option value="${esc(v.id)}">${esc(v.title)}</option>`).join("");
-  if(selected)$("oVideo").value=selected;
-}
-
-/* SAVE OFFER */
-$("offerForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!isAdmin||!currentUser){say("Admin pekee ndiye anayeweza kusimamia offer.");return}
-  const title=$("oTitle").value.trim();
-  const original=Number($("oOriginalPrice").value);
-  const price=Number($("oOfferPrice").value);
-  const paymentUrl=validHttps($("oPaymentUrl").value);
-  const file=$("oImage").files[0];
-
-  if(!title){say("Weka jina la offer.");return}
-  if(!Number.isFinite(original)||original<0||!Number.isFinite(price)||price<0){
-    say("Weka bei sahihi.");return;
-  }
-  if(original>0&&price>original){say("Bei ya offer haiwezi kuwa kubwa kuliko bei ya kawaida.");return}
-  if(!paymentUrl){say("Link ya malipo lazima iwe sahihi na ianze na https://");return}
-  if(file&&(!["image/jpeg","image/png","image/webp"].includes(file.type)||file.size>5*1024*1024)){
-    say("Picha iwe JPG, PNG au WebP na isizidi MB 5.");return;
-  }
-  const startValue=$("oStartsAt").value;
-  const endValue=$("oEndsAt").value;
-  const startsAt=startValue?new Date(startValue):null;
-  const endsAt=endValue?new Date(endValue):null;
-  if(startsAt&&Number.isNaN(startsAt.getTime())){say("Tarehe ya kuanza si sahihi.");return}
-  if(endsAt&&Number.isNaN(endsAt.getTime())){say("Tarehe ya mwisho si sahihi.");return}
-  if(startsAt&&endsAt&&endsAt<=startsAt){say("Tarehe ya mwisho lazima iwe baada ya tarehe ya kuanza.");return}
-
-  const button=$("saveOfferBtn");button.disabled=true;
-  try{
-    let imageUrl=editingOfferImageUrl;
-    if(file)imageUrl=await uploadImage(file,"offer");
-    if(!imageUrl)throw new Error("Chagua picha ya offer.");
-    const offer={
-      title,
-      description:$("oDescription").value.trim()||null,
-      video_id:$("oVideo").value||null,
-      image_url:imageUrl,
-      original_price:original,
-      offer_price:price,
-      payment_url:paymentUrl,
-      starts_at:startsAt?startsAt.toISOString():null,
-      ends_at:endsAt?endsAt.toISOString():null,
-      is_active:$("oActive").checked,
-      updated_at:new Date().toISOString()
-    };
-    const result=editingOfferId
-      ?await db.from("offers").update(offer).eq("id",editingOfferId)
-      :await db.from("offers").insert(offer);
-    if(result.error)throw result.error;
-    say("Offer imehifadhiwa kikamilifu.",true);
-    clearOfferForm();
-    await loadOffers();await loadAdminOffers();
-  }catch(error){showError("Imeshindikana kuhifadhi offer:",error)}
-  finally{button.disabled=false}
+/* KUTOKA */
+$("logoutBtn").addEventListener("click",async()=>{
+ const {error}=await db.auth.signOut();
+ if(error){say(error.message);return}
+ currentUser=null;isAdmin=false;driveToken=null;
+ $("adminTab").classList.add("hidden");
+ $("logoutBtn").classList.add("hidden");
+ $("adminLoginTab").classList.remove("hidden");
+ tab("videosPanel");
+ say("Umetoka kwenye akaunti.",true);
 });
 
-/* ADMIN OFFERS LIST */
-async function loadAdminOffers(){
-  if(!isAdmin||!db)return;
-  const box=$("adminOfferList");
-  box.innerHTML='<p class="muted">Inapakia offer...</p>';
-  const {data,error}=await db.from("offers").select("*").order("created_at",{ascending:false});
-  if(error){box.innerHTML=`<p class="bad">${esc(error.message)}</p>`;return}
-  box.innerHTML='<hr><h3>Orodha ya offer zako</h3>'+
-    (data||[]).map(o=>`
-      <div class="item">
-        ${o.image_url?`<img class="offer-admin-image" src="${esc(o.image_url)}" alt="">`:""}
-        <b>${esc(o.title)}</b><br>
-        <small>Bei: TSh ${Number(o.offer_price).toLocaleString("en-US")} · ${o.is_active?"IMEWASHWA":"IMEZIMWA"}</small><br>
-        <small>${o.ends_at?"Mwisho: "+esc(new Date(o.ends_at).toLocaleString()):"Hakuna tarehe ya mwisho"}</small>
-        <div class="row" style="margin-top:9px">
-          <button type="button" data-oedit="${esc(o.id)}">Hariri</button>
-          <button type="button" data-otoggle="${esc(o.id)}" data-active="${!o.is_active}" style="background:#493348">${o.is_active?"Zima":"Washa"}</button>
-          <button type="button" data-odel="${esc(o.id)}" style="background:#9d304f">Futa</button>
-        </div>
-      </div>`).join("")||'<p class="muted">Bado hujaweka offer.</p>';
+/* VIDEO ZA WAGENI */
+async function loadVideos(){
+ $("videoList").innerHTML=`<div class="empty-state">${text("loading")}</div>`;
+ const {data,error}=await db.from("videos")
+  .select("id,title,image_url,video_url,description,is_published,created_at")
+  .eq("is_published",true).order("created_at",{ascending:false});
+ if(error){
+  $("videoList").innerHTML=`<div class="empty-state">${escapeHtml(error.message)}</div>`;
+  console.error(error);return;
+ }
+ $("videoCount").textContent=(data?.length||0)+" VIDEO";
+ $("videoList").innerHTML=(data||[]).map(v=>`
+  <article class="card">
+   <div class="card-image-wrap">
+    <img class="card-image" src="${escapeHtml(v.image_url||"")}"
+     alt="${escapeHtml(v.title)}" loading="lazy"
+     onerror="this.style.opacity='.2'">
+    <span class="live-badge">● LIVE</span>
+   </div>
+   <div class="card-content">
+    <h3>${escapeHtml(v.title)}</h3>
+    ${v.description?`<p class="card-description">${escapeHtml(v.description)}</p>`:""}
+    <button class="watch-btn" data-watch="${escapeHtml(v.id)}">${text("watch")}</button>
+   </div>
+  </article>`).join("")||`<div class="empty-state">${text("empty")}</div>`;
 
-  box.querySelectorAll("[data-oedit]").forEach(b=>{
-    b.onclick=()=>{
-      const o=data.find(x=>String(x.id)===b.dataset.oedit);if(!o)return;
-      editingOfferId=o.id;editingOfferImageUrl=o.image_url||"";
-      $("oTitle").value=o.title||"";
-      $("oDescription").value=o.description||"";
-      $("oImage").value="";
-      $("oVideo").value=o.video_id||"";
-      $("oOriginalPrice").value=o.original_price;
-      $("oOfferPrice").value=o.offer_price;
-      $("oPaymentUrl").value=o.payment_url||"";
-      $("oStartsAt").value=o.starts_at?toLocalDateTime(o.starts_at):"";
-      $("oEndsAt").value=o.ends_at?toLocalDateTime(o.ends_at):"";
-      $("oActive").checked=!!o.is_active;
-      $("saveOfferBtn").textContent="HIFADHI MABADILIKO";
-      $("cancelOfferEdit").classList.remove("hidden");
-      window.scrollTo({top:0,behavior:"smooth"});
-      say("Unahariri offer: "+o.title,true);
-    };
-  });
-
-  box.querySelectorAll("[data-otoggle]").forEach(b=>{
-    b.onclick=async()=>{
-      const {error:updateError}=await db.from("offers")
-        .update({is_active:b.dataset.active==="true",updated_at:new Date().toISOString()})
-        .eq("id",b.dataset.otoggle);
-      if(updateError){showError("Imeshindwa kubadilisha offer:",updateError);return}
-      say("Hali ya offer imebadilishwa.",true);
-      await loadOffers();await loadAdminOffers();
-    };
-  });
-
-  box.querySelectorAll("[data-odel]").forEach(b=>{
-    b.onclick=async()=>{
-      if(!confirm("Una uhakika unataka kufuta offer hii?"))return;
-      const {error:deleteError}=await db.from("offers").delete().eq("id",b.dataset.odel);
-      if(deleteError){showError("Imeshindwa kufuta offer:",deleteError);return}
-      if(String(editingOfferId)===b.dataset.odel)clearOfferForm();
-      say("Offer imefutwa.",true);
-      await loadOffers();await loadAdminOffers();
-    };
-  });
+ $("videoList").querySelectorAll("[data-watch]").forEach(b=>{
+  b.addEventListener("click",()=>watchVideo(b.dataset.watch,b));
+ });
 }
-function toLocalDateTime(value){
-  const d=new Date(value);
-  const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);
-  return local.toISOString().slice(0,16);
+async function watchVideo(id,button){
+ button.disabled=true;
+ try{
+  const {data,error}=await db.from("videos").select("video_url")
+   .eq("id",id).eq("is_published",true).single();
+  if(error)throw error;
+  const url=safeUrl(data?.video_url);
+  if(!url)throw new Error("Link ya video haijawekwa vizuri.");
+  window.location.assign(url);
+ }catch(e){say("Imeshindikana kufungua video: "+e.message);button.disabled=false}
 }
 
-/* VIDEO FORM RESET */
+/* OFFERS ZA WAGENI */
+async function loadOffers(){
+ const now=new Date().toISOString();
+ const {data,error}=await db.from("offers").select("*")
+  .eq("is_active",true)
+  .or(`starts_at.is.null,starts_at.lte.${now}`)
+  .or(`ends_at.is.null,ends_at.gt.${now}`)
+  .order("created_at",{ascending:false});
+ if(error){console.error(error);return}
+ if(!data?.length){
+  $("offersSection").classList.add("hidden");return;
+ }
+ $("offersSection").classList.remove("hidden");
+ $("offersList").innerHTML=data.map(o=>`
+  <article class="offer-card">
+   ${o.image_url?`<img src="${escapeHtml(o.image_url)}" alt="${escapeHtml(o.title)}" loading="lazy">`:""}
+   <div class="offer-content">
+    <span class="offer-tag">SPECIAL OFFER</span>
+    <h3 class="offer-title">${escapeHtml(o.title)}</h3>
+    ${o.description?`<p class="offer-description">${escapeHtml(o.description)}</p>`:""}
+    <p><span class="old-price">TSh ${Number(o.original_price).toLocaleString()}</span></p>
+    <div class="offer-price">TSh ${Number(o.offer_price).toLocaleString()}</div>
+    <br><button class="offer-button" data-offer="${escapeHtml(o.id)}">🎁 PATA OFA</button>
+   </div>
+  </article>`).join("");
+ $("offersList").querySelectorAll("[data-offer]").forEach(b=>{
+  b.onclick=()=>openOffer(b.dataset.offer,b);
+ });
+}
+async function openOffer(id,button){
+ button.disabled=true;
+ try{
+  const {data,error}=await db.from("offers")
+   .select("payment_url,is_active,starts_at,ends_at")
+   .eq("id",id).eq("is_active",true).single();
+  if(error)throw error;
+  const now=Date.now();
+  if(data.starts_at&&new Date(data.starts_at).getTime()>now)throw new Error("Offer bado haijaanza.");
+  if(data.ends_at&&new Date(data.ends_at).getTime()<=now)throw new Error("Offer imeisha.");
+  const url=safeUrl(data.payment_url);
+  if(!url)throw new Error("Link ya malipo si sahihi.");
+  window.location.assign(url);
+ }catch(e){say(e.message);button.disabled=false}
+}
+
+/* SHIRIKI */
+async function shareWebsite(){
+ const url="https://gbpesa.github.io/28tale-girls/";
+ const data={title:"28TALE GIRLS",text:"Karibu 28TALE GIRLS — Video collection",url};
+ try{
+  if(navigator.share)await navigator.share(data);
+  else{await navigator.clipboard.writeText(url);say("Link imenakiliwa.",true)}
+ }catch(e){if(e.name!=="AbortError")say("Imeshindwa kushiriki link.")}
+}
+</script>
+  
+/* HIFADHI VIDEO */
 function clearVideoForm(){
-  editingVideoId=null;editingImageUrl="";editingPreviewUrl="";
-  $("videoForm").reset();$("vPreview").value="";
-  $("vPublished").checked=true;$("cancelEdit").classList.add("hidden");
-  $("videoFormHeading").textContent="Ongeza video";$("vImage").required=true;
+ editingVideoId=null;
+ editingImageUrl="";
+ $("videoForm").reset();
+ $("vPublished").checked=true;
+ $("imagePreview").classList.add("hidden");
+ $("cancelEdit").classList.add("hidden");
+ $("videoFormHeading").textContent="➕ Ongeza video mpya";
+ $("saveVideoBtn").textContent="HIFADHI VIDEO";
 }
 $("cancelEdit").addEventListener("click",clearVideoForm);
 
-/* VIDEO SAVE / EDIT */
 $("videoForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if(!isAdmin||!currentUser){say("Admin pekee ndiye anayeweza kuweka video.");return}
-  const file=$("vImage").files[0],previewFile=$("vPreview").files[0];
-  const title=$("vTitle").value.trim();
-  const paymentUrl=validHttps($("vUrl").value);
-  if(!title){say("Weka jina la video.");return}
-  if(!paymentUrl){say("Weka link sahihi ya malipo inayoanza na https://");return}
-  if(file&&(!["image/jpeg","image/png","image/webp"].includes(file.type)||file.size>5*1024*1024)){
-    say("Chagua JPG, PNG au WebP isiyozidi MB 5.");return}
-  if(previewFile&&(!["video/mp4","video/webm"].includes(previewFile.type)||previewFile.size>15*1024*1024)){
-    say("Kavideo kiwe MP4 au WebM na kisizidi MB 15.");return}
-  if(!file&&!editingVideoId){say("Chagua picha ya cover kutoka kwenye simu.");return}
+ e.preventDefault();
+ if(!isAdmin||!currentUser){say("Admin pekee anaruhusiwa.");return}
 
-  const button=$("videoForm").querySelector('button[type="submit"]');button.disabled=true;
-  try{
-    let imageUrl=editingImageUrl,previewVideoUrl=editingPreviewUrl;
-    if(file)imageUrl=await uploadImage(file,"cover");
-    if(previewFile){
-  if(!["video/mp4","video/webm"].includes(previewFile.type)){
-    throw new Error("Chagua MP4 au WebM.");
-  }
+ const file=$("vImage").files[0];
+ const title=$("vTitle").value.trim();
+ const videoUrl=safeUrl($("vUrl").value);
 
-  if(previewFile.size>15*1024*1024){
-    throw new Error("Video preview imezidi MB 15.");
-  }
+ if(!title){say("Weka jina la video.");return}
+ if(!videoUrl){say("Weka link sahihi ya video inayoanza na https://");return}
+ if(file&&file.size>5*1024*1024){say("Picha isizidi MB 5.");return}
+ if(!file&&!editingVideoId){say("Chagua picha kutoka Gallery.");return}
 
-  previewVideoUrl=await uploadToGoogleDrive(previewFile,"preview");
-  }
-    if(!imageUrl)throw new Error("Picha haijapatikana. Chagua picha tena.");
-    const video={
-      title,image_url:imageUrl,video_url:paymentUrl,
-      preview_video_url:previewVideoUrl||null,
-      description:$("vDesc").value.trim(),
-      is_published:$("vPublished").checked,
-      updated_at:new Date().toISOString(),
-      token_cost:1
-    };
-    const result=editingVideoId
-      ?await db.from("videos").update(video).eq("id",editingVideoId)
-      :await db.from("videos").insert(video);
-    if(result.error)throw result.error;
-    say("Video imehifadhiwa kikamilifu.",true);
-    clearVideoForm();await loadVideos();await loadAdminVideos();await loadVideoOptions();
-  }catch(error){showError("Imeshindikana kuhifadhi video:",error)}
-  finally{button.disabled=false}
+ const b=$("saveVideoBtn");b.disabled=true;
+ try{
+  let imageUrl=editingImageUrl;
+  if(file)imageUrl=await driveUploadImage(file,"video");
+  if(!imageUrl)throw new Error("Picha haijapatikana.");
+
+  const video={
+   title,
+   image_url:imageUrl,
+   video_url:videoUrl,
+   description:$("vDesc").value.trim(),
+   is_published:$("vPublished").checked,
+   updated_at:new Date().toISOString()
+  };
+
+  const result=editingVideoId
+   ?await db.from("videos").update(video).eq("id",editingVideoId)
+   :await db.from("videos").insert(video);
+
+  if(result.error)throw result.error;
+  say("Video imehifadhiwa kikamilifu.",true);
+  clearVideoForm();
+  await loadVideos();
+  await loadAdminVideos();
+  await loadVideoOptions();
+ }catch(e){say("Imeshindikana kuhifadhi video: "+e.message)}
+ finally{b.disabled=false}
 });
 
-/* ADMIN VIDEO LIST */
+/* ORODHA YA VIDEO ZA ADMIN */
 async function loadAdminVideos(){
-  if(!isAdmin||!db)return;
-  const {data,error}=await db.from("videos").select("*").order("created_at",{ascending:false});
-  if(error){$("adminVideoList").innerHTML=esc(error.message);return}
-  $("adminVideoList").innerHTML='<h2 style="margin-top:22px">Simamia video</h2>'+
-    (data||[]).map(v=>`
-      <div class="item">
-        <b>${esc(v.title)}</b><br>
-        <small>${v.is_published?esc(tr("published")):esc(tr("hidden"))}</small>
-        <div class="row" style="margin-top:8px">
-          <button type="button" data-edit="${esc(v.id)}">${esc(tr("edit"))}</button>
-          <button type="button" data-pub="${esc(v.id)}" data-value="${!v.is_published}" style="background:#493348">${v.is_published?esc(tr("hide")):esc(tr("publish"))}</button>
-          <button type="button" data-del="${esc(v.id)}" style="background:#9d304f">${esc(tr("delete"))}</button>
-        </div>
-      </div>`).join("")||'<p class="muted">Hakuna video.</p>';
+ if(!isAdmin)return;
+ const box=$("adminVideoList");
+ box.innerHTML="<p class='small-note'>Inapakia...</p>";
 
-  $("adminVideoList").querySelectorAll("[data-edit]").forEach(b=>{
-    b.onclick=()=>{
-      const v=data.find(x=>String(x.id)===b.dataset.edit);if(!v)return;
-      editingVideoId=v.id;editingImageUrl=v.image_url||"";editingPreviewUrl=v.preview_video_url||"";
-      $("vPreview").value="";$("vTitle").value=v.title||"";$("vImage").value="";
-      $("vImage").required=false;$("vUrl").value=v.video_url||"";
-      $("vDesc").value=v.description||"";$("vPublished").checked=!!v.is_published;
-      $("videoFormHeading").textContent="Hariri video";
-      $("cancelEdit").classList.remove("hidden");
-      window.scrollTo({top:0,behavior:"smooth"});
-      say("Unahariri video. Unaweza kuchagua picha mpya au kubakiza ya zamani.",true);
-    };
-  });
-  $("adminVideoList").querySelectorAll("[data-pub]").forEach(b=>{
-    b.onclick=async()=>{
-      const {error:updateError}=await db.from("videos").update({
-        is_published:b.dataset.value==="true",updated_at:new Date().toISOString()
-      }).eq("id",b.dataset.pub);
-      if(updateError){showError("Imeshindwa kubadilisha hali ya video:",updateError);return}
-      say("Hali ya video imebadilishwa.",true);
-      await loadVideos();await loadAdminVideos();
-    };
-  });
-  $("adminVideoList").querySelectorAll("[data-del]").forEach(b=>{
-    b.onclick=async()=>{
-      if(!confirm("Una uhakika unataka kufuta video hii?"))return;
-      const {error:deleteError}=await db.from("videos").delete().eq("id",b.dataset.del);
-      if(deleteError){showError("Imeshindwa kufuta video:",deleteError);return}
-      say("Video imefutwa.",true);
-      if(String(editingVideoId)===b.dataset.del)clearVideoForm();
-      await loadVideos();await loadAdminVideos();await loadVideoOptions();
-    };
-  });
+ const {data,error}=await db.from("videos").select("*")
+  .order("created_at",{ascending:false});
+ if(error){box.innerHTML=escapeHtml(error.message);return}
+
+ box.innerHTML="<h3>Video zako</h3>"+(data||[]).map(v=>`
+  <div class="item">
+   <b>${escapeHtml(v.title)}</b><br>
+   <small>${v.is_published?"IMECHAPISHWA":"IMEFICHWA"}</small>
+   <div class="item-actions">
+    <button data-edit-video="${escapeHtml(v.id)}">Hariri</button>
+    <button data-toggle-video="${escapeHtml(v.id)}" data-publish="${!v.is_published}">
+     ${v.is_published?"Ficha":"Chapisha"}
+    </button>
+    <button class="danger" data-delete-video="${escapeHtml(v.id)}">Futa</button>
+   </div>
+  </div>`).join("")||"<p class='small-note'>Bado hakuna video.</p>";
+
+ box.querySelectorAll("[data-edit-video]").forEach(b=>{
+  b.onclick=()=>{
+   const v=data.find(x=>String(x.id)===b.dataset.editVideo);
+   if(!v)return;
+   editingVideoId=v.id;
+   editingImageUrl=v.image_url||"";
+   $("vTitle").value=v.title||"";
+   $("vUrl").value=v.video_url||"";
+   $("vDesc").value=v.description||"";
+   $("vPublished").checked=!!v.is_published;
+   $("vImage").value="";
+   $("imagePreview").src=v.image_url||"";
+   $("imagePreview").classList.toggle("hidden",!v.image_url);
+   $("videoFormHeading").textContent="✏️ Hariri video";
+   $("saveVideoBtn").textContent="HIFADHI MABADILIKO";
+   $("cancelEdit").classList.remove("hidden");
+   $("videoFormHeading").scrollIntoView({behavior:"smooth"});
+   say("Unaweza kubadilisha taarifa au picha ya video.",true);
+  };
+ });
+
+ box.querySelectorAll("[data-toggle-video]").forEach(b=>{
+  b.onclick=async()=>{
+   const {error}=await db.from("videos").update({
+    is_published:b.dataset.publish==="true",
+    updated_at:new Date().toISOString()
+   }).eq("id",b.dataset.toggleVideo);
+   if(error){say(error.message);return}
+   say("Hali ya video imebadilishwa.",true);
+   await loadVideos();await loadAdminVideos();
+  };
+ });
+
+ box.querySelectorAll("[data-delete-video]").forEach(b=>{
+  b.onclick=async()=>{
+   if(!confirm("Una uhakika unataka kufuta video hii?"))return;
+   const {error}=await db.from("videos").delete().eq("id",b.dataset.deleteVideo);
+   if(error){say("Imeshindwa kufuta: "+error.message);return}
+   if(String(editingVideoId)===b.dataset.deleteVideo)clearVideoForm();
+   say("Video imefutwa.",true);
+   await loadVideos();await loadAdminVideos();await loadVideoOptions();
+  };
+ });
 }
 
-/* USER COUNT */
+/* ORODHA YA VIDEO KWENYE OFFER */
+async function loadVideoOptions(){
+ if(!isAdmin)return;
+ const {data,error}=await db.from("videos").select("id,title")
+  .order("created_at",{ascending:false});
+ if(error){console.error(error);return}
+ $("oVideo").innerHTML='<option value="">Offer ya jumla</option>'+
+  (data||[]).map(v=>`<option value="${escapeHtml(v.id)}">${escapeHtml(v.title)}</option>`).join("");
+}
+
+/* OFFER RESET */
+function clearOfferForm(){
+ editingOfferId=null;editingOfferImageUrl="";
+ $("offerForm").reset();
+ $("oActive").checked=true;
+ $("offerImagePreview").classList.add("hidden");
+ $("cancelOfferEdit").classList.add("hidden");
+ $("saveOfferBtn").textContent="HIFADHI OFFER";
+}
+$("cancelOfferEdit").addEventListener("click",clearOfferForm);
+
+/* HIFADHI OFFER */
+$("offerForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!isAdmin||!currentUser){say("Admin pekee anaruhusiwa.");return}
+
+ const title=$("oTitle").value.trim();
+ const original=Number($("oOriginalPrice").value);
+ const price=Number($("oOfferPrice").value);
+ const paymentUrl=safeUrl($("oPaymentUrl").value);
+ const file=$("oImage").files[0];
+
+ if(!title){say("Weka jina la offer.");return}
+ if(!Number.isFinite(original)||original<0||!Number.isFinite(price)||price<0){
+  say("Bei si sahihi.");return;
+ }
+ if(original>0&&price>original){say("Bei ya offer haiwezi kuzidi bei ya kawaida.");return}
+ if(!paymentUrl){say("Weka link sahihi ya malipo.");return}
+ if(file&&file.size>5*1024*1024){say("Picha isizidi MB 5.");return}
+
+ const start=$("oStartsAt").value;
+ const end=$("oEndsAt").value;
+ const startDate=start?new Date(start):null;
+ const endDate=end?new Date(end):null;
+
+ if(startDate&&Number.isNaN(startDate.getTime())){say("Tarehe ya kuanza si sahihi.");return}
+ if(endDate&&Number.isNaN(endDate.getTime())){say("Tarehe ya mwisho si sahihi.");return}
+ if(startDate&&endDate&&endDate<=startDate){say("Tarehe ya mwisho lazima iwe baada ya tarehe ya kuanza.");return}
+
+ const b=$("saveOfferBtn");b.disabled=true;
+ try{
+  let imageUrl=editingOfferImageUrl;
+  if(file)imageUrl=await driveUploadImage(file,"offer");
+  if(!imageUrl)throw new Error("Chagua picha ya offer.");
+
+  const offer={
+   title,
+   description:$("oDescription").value.trim()||null,
+   video_id:$("oVideo").value||null,
+   image_url:imageUrl,
+   original_price:original,
+   offer_price:price,
+   payment_url:paymentUrl,
+   starts_at:startDate?startDate.toISOString():null,
+   ends_at:endDate?endDate.toISOString():null,
+   is_active:$("oActive").checked,
+   updated_at:new Date().toISOString()
+  };
+
+  const result=editingOfferId
+   ?await db.from("offers").update(offer).eq("id",editingOfferId)
+   :await db.from("offers").insert(offer);
+  if(result.error)throw result.error;
+
+  say("Offer imehifadhiwa.",true);
+  clearOfferForm();
+  await loadOffers();await loadAdminOffers();
+ }catch(e){say("Imeshindikana kuhifadhi offer: "+e.message)}
+ finally{b.disabled=false}
+});
+
+/* ORODHA YA OFFERS ZA ADMIN */
+async function loadAdminOffers(){
+ if(!isAdmin)return;
+ const box=$("adminOfferList");
+ box.innerHTML="<p class='small-note'>Inapakia offers...</p>";
+
+ const {data,error}=await db.from("offers").select("*")
+  .order("created_at",{ascending:false});
+ if(error){box.innerHTML=escapeHtml(error.message);return}
+
+ box.innerHTML="<h3>Offers zilizopo</h3>"+(data||[]).map(o=>`
+  <div class="item">
+   <b>${escapeHtml(o.title)}</b><br>
+   <small>TSh ${Number(o.offer_price).toLocaleString()} · ${o.is_active?"HAI":"IMEZIMWA"}</small>
+   <div class="item-actions">
+    <button data-edit-offer="${escapeHtml(o.id)}">Hariri</button>
+    <button data-toggle-offer="${escapeHtml(o.id)}" data-active="${!o.is_active}">
+     ${o.is_active?"Zima":"Washa"}
+    </button>
+    <button class="danger" data-delete-offer="${escapeHtml(o.id)}">Futa</button>
+   </div>
+  </div>`).join("")||"<p class='small-note'>Hakuna offers.</p>";
+
+ box.querySelectorAll("[data-edit-offer]").forEach(b=>{
+  b.onclick=()=>{
+   const o=data.find(x=>String(x.id)===b.dataset.editOffer);
+   if(!o)return;
+   editingOfferId=o.id;
+   editingOfferImageUrl=o.image_url||"";
+   $("oTitle").value=o.title||"";
+   $("oDescription").value=o.description||"";
+   $("oImage").value="";
+   $("offerImagePreview").src=o.image_url||"";
+   $("offerImagePreview").classList.toggle("hidden",!o.image_url);
+   $("oVideo").value=o.video_id||"";
+   $("oOriginalPrice").value=o.original_price;
+   $("oOfferPrice").value=o.offer_price;
+   $("oPaymentUrl").value=o.payment_url||"";
+   $("oStartsAt").value=o.starts_at?localDateTime(o.starts_at):"";
+   $("oEndsAt").value=o.ends_at?localDateTime(o.ends_at):"";
+   $("oActive").checked=!!o.is_active;
+   $("saveOfferBtn").textContent="HIFADHI MABADILIKO";
+   $("cancelOfferEdit").classList.remove("hidden");
+   $("offerForm").scrollIntoView({behavior:"smooth"});
+   say("Unahariri offer: "+o.title,true);
+  };
+ });
+
+ box.querySelectorAll("[data-toggle-offer]").forEach(b=>{
+  b.onclick=async()=>{
+   const {error}=await db.from("offers").update({
+    is_active:b.dataset.active==="true",
+    updated_at:new Date().toISOString()
+   }).eq("id",b.dataset.toggleOffer);
+   if(error){say(error.message);return}
+   say("Hali ya offer imebadilishwa.",true);
+   await loadOffers();await loadAdminOffers();
+  };
+ });
+
+ box.querySelectorAll("[data-delete-offer]").forEach(b=>{
+  b.onclick=async()=>{
+   if(!confirm("Una uhakika unataka kufuta offer hii?"))return;
+   const {error}=await db.from("offers").delete().eq("id",b.dataset.deleteOffer);
+   if(error){say(error.message);return}
+   if(String(editingOfferId)===b.dataset.deleteOffer)clearOfferForm();
+   say("Offer imefutwa.",true);
+   await loadOffers();await loadAdminOffers();
+  };
+ });
+}
+function localDateTime(value){
+ const d=new Date(value);
+ return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);
+}
+
+/* IDADI YA AKAUNTI */
 async function loadUserCount(){
-  if(!isAdmin||!db)return;
-  $("userCount").textContent="...";
-  const {count,error}=await db.from("profiles").select("id",{count:"exact",head:true});
-  if(error){$("userCount").textContent="Imeshindikana";console.error(error);return}
-  $("userCount").textContent=count??0;
+ if(!isAdmin)return;
+ $("userCount").textContent="...";
+ const {count,error}=await db.from("profiles")
+  .select("id",{count:"exact",head:true});
+ $("userCount").textContent=error?"Haipatikani":(count??0);
+ if(error)console.error(error);
 }
 $("refreshUserCount").addEventListener("click",loadUserCount);
 
-/* SHARE INVITE */
-$("shareBtn").addEventListener("click",async()=>{
-  if(!currentUser){tab("authPanel");say("Ingia kwanza ili upate link yako binafsi ya mwaliko.");return}
-  try{
-    const {data:profile,error}=await db.from("profiles").select("account_number")
-      .eq("id",currentUser.id).maybeSingle();
-    if(error)throw error;
-    if(!profile?.account_number)throw new Error("Namba ya akaunti haijapatikana.");
-    const inviteUrl=new URL(window.location.href);
-    inviteUrl.searchParams.set("ref",profile.account_number);
-    const shareData={title:"28TALE GIRLS",text:"Karibu 28TALE GIRLS! Jiunge kupitia link yangu.",url:inviteUrl.toString()};
-    if(navigator.share)await navigator.share(shareData);
-    else{await navigator.clipboard.writeText(inviteUrl.toString());alert("Link yako binafsi imenakiliwa. Itume kwa marafiki!")}
-  }catch(error){if(error.name!=="AbortError")showError("Imeshindikana kupata link ya mwaliko:",error)}
-});
-
-/* START */
-applyLanguage();
-try{
-  if(window.supabase&&SUPABASE_URL.startsWith("https://")&&SUPABASE_ANON_KEY){
-    db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-    refreshAuth();
-  }else{
-    $("videoList").innerHTML='<p class="muted">Supabase haijaunganishwa. Kagua URL, key na intaneti.</p>';
-    say("Imeshindwa kuanzisha Supabase. Kagua mipangilio.");
-  }
-}catch(error){showError("Hitilafu wakati wa kuanzisha tovuti:",error)}
+/* ANZA MFUMO */
+refreshAuth();
 </script>
 </body>
 </html>
