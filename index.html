@@ -953,14 +953,16 @@ $("videoForm").addEventListener("submit",async e=>{
     let imageUrl=editingImageUrl,previewVideoUrl=editingPreviewUrl;
     if(file)imageUrl=await uploadImage(file,"cover");
     if(previewFile){
-      const safe=previewFile.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-      const path=currentUser.id+"/"+Date.now()+"_"+safe;
-      const {error}=await db.storage.from("video-button-previews").upload(path,previewFile,{
-        cacheControl:"3600",upsert:false,contentType:previewFile.type
-      });
-      if(error)throw error;
-      previewVideoUrl=db.storage.from("video-button-previews").getPublicUrl(path).data.publicUrl;
-    }
+  if(!["video/mp4","video/webm"].includes(previewFile.type)){
+    throw new Error("Chagua MP4 au WebM.");
+  }
+
+  if(previewFile.size>15*1024*1024){
+    throw new Error("Video preview imezidi MB 15.");
+  }
+
+  previewVideoUrl=await uploadToGoogleDrive(previewFile,"preview");
+  }
     if(!imageUrl)throw new Error("Picha haijapatikana. Chagua picha tena.");
     const video={
       title,image_url:imageUrl,video_url:paymentUrl,
